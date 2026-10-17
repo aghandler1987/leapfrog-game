@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Splash — pixel-art water burst with central ripple + flying droplets. 24x16. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16" shape-rendering="crispEdges">
+  <!-- Palette:
+       #0d0d0d  black outline
+       #0058f8  medium blue (water)
+       #58d8f8  bright cyan
+       #a8e8ff  pale cyan
+       #fcfcfc  white (foam highlight)
+  -->
+
+  <!-- Flying droplets scattered around the splash -->
+  <!-- Top-left droplet -->
+  <rect x="2" y="1" width="2" height="2" fill="#58d8f8"/>
+  <rect x="1" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="4" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2" y="3" width="2" height="1" fill="#0058f8"/>
+
+  <!-- Top-center droplet (bigger) -->
+  <rect x="10" y="0" width="3" height="1" fill="#58d8f8"/>
+  <rect x="9"  y="1" width="1" height="2" fill="#0d0d0d"/>
+  <rect x="10" y="1" width="3" height="2" fill="#a8e8ff"/>
+  <rect x="13" y="1" width="1" height="2" fill="#0d0d0d"/>
+  <rect x="10" y="3" width="3" height="1" fill="#0058f8"/>
+
+  <!-- Top-right droplet -->
+  <rect x="19" y="1" width="2" height="2" fill="#58d8f8"/>
+  <rect x="18" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="21" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="19" y="3" width="2" height="1" fill="#0058f8"/>
+
+  <!-- Left droplet -->
+  <rect x="0" y="7"  width="2" height="2" fill="#58d8f8"/>
+  <rect x="0" y="9"  width="2" height="1" fill="#0058f8"/>
+
+  <!-- Right droplet -->
+  <rect x="22" y="7" width="2" height="2" fill="#58d8f8"/>
+  <rect x="22" y="9" width="2" height="1" fill="#0058f8"/>
+
+  <!-- Main central burst — ring of water -->
+  <!-- Row 5: top of main burst -->
+  <rect x="7"  y="5" width="2" height="1" fill="#0d0d0d"/>
+  <rect x="9"  y="5" width="6" height="1" fill="#a8e8ff"/>
+  <rect x="15" y="5" width="2" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 6: outer burst row -->
+  <rect x="5"  y="6" width="2" height="1" fill="#0d0d0d"/>
+  <rect x="7"  y="6" width="2" height="1" fill="#58d8f8"/>
+  <rect x="9"  y="6" width="6" height="1" fill="#fcfcfc"/>
+  <rect x="15" y="6" width="2" height="1" fill="#58d8f8"/>
+  <rect x="17" y="6" width="2" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 7: widest point -->
+  <rect x="4"  y="7" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5"  y="7" width="2" height="1" fill="#58d8f8"/>
+  <rect x="7"  y="7" width="2" height="1" fill="#a8e8ff"/>
+  <rect x="9"  y="7" width="6" height="1" fill="#58d8f8"/>
+  <rect x="15" y="7" width="2" height="1" fill="#a8e8ff"/>
+  <rect x="17" y="7" width="2" height="1" fill="#58d8f8"/>
+  <rect x="19" y="7" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 8: center of ripple -->
+  <rect x="4"  y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5"  y="8" width="2" height="1" fill="#0058f8"/>
+  <rect x="7"  y="8" width="2" height="1" fill="#58d8f8"/>
+  <rect x="9"  y="8" width="6" height="1" fill="#a8e8ff"/>
+  <rect x="15" y="8" width="2" height="1" fill="#58d8f8"/>
+  <rect x="17" y="8" width="2" height="1" fill="#0058f8"/>
+  <rect x="19" y="8" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 9: lower ring -->
+  <rect x="5"  y="9" width="2" height="1" fill="#0d0d0d"/>
+  <rect x="7"  y="9" width="2" height="1" fill="#0058f8"/>
+  <rect x="9"  y="9" width="6" height="1" fill="#58d8f8"/>
+  <rect x="15" y="9" width="2" height="1" fill="#0058f8"/>
+  <rect x="17" y="9" width="2" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 10: closing bottom -->
+  <rect x="7"  y="10" width="2" height="1" fill="#0d0d0d"/>
+  <rect x="9"  y="10" width="6" height="1" fill="#0058f8"/>
+  <rect x="15" y="10" width="2" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 11: wide ripple ring beneath -->
+  <rect x="3"  y="11" width="2" height="1" fill="#58d8f8" opacity="0.6"/>
+  <rect x="9"  y="11" width="6" height="1" fill="#0d0d0d"/>
+  <rect x="19" y="11" width="2" height="1" fill="#58d8f8" opacity="0.6"/>
+
+  <!-- Row 12: wider ripple -->
+  <rect x="2"  y="12" width="3" height="1" fill="#58d8f8" opacity="0.5"/>
+  <rect x="19" y="12" width="3" height="1" fill="#58d8f8" opacity="0.5"/>
+
+  <!-- Row 13: widest ripple -->
+  <rect x="1"  y="13" width="4" height="1" fill="#58d8f8" opacity="0.35"/>
+  <rect x="19" y="13" width="4" height="1" fill="#58d8f8" opacity="0.35"/>
+
+  <!-- Bottom droplet falling (optional accent) -->
+  <rect x="11" y="14" width="2" height="1" fill="#58d8f8"/>
+  <rect x="11" y="15" width="2" height="1" fill="#0058f8"/>
+</svg>

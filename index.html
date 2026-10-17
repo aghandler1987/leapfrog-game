@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEAP FROG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Scanline overlay for CRT effect -->
+  <div class="scanlines"></div>
+  <!-- Full-screen red flash on life loss -->
+  <div id="damage-flash" class="damage-flash"></div>
+
+  <!-- Konami unlock banner -->
+  <div id="konami-banner" class="konami-banner hidden">
+    <div class="konami-flash"></div>
+    <div class="konami-text">
+      <div class="konami-title">★ CHEAT UNLOCKED ★</div>
+      <div class="konami-sub">GOLDEN FROG</div>
+    </div>
+  </div>
+
+  <!-- "Press any key" splash shown briefly on load until the first user gesture -->
+  <div id="start-splash" class="start-splash">
+    <div class="start-splash-inner">
+      <div class="start-splash-title">LEAP FROG</div>
+
+      <div class="rules">
+        <div class="rules-heading">HOW TO PLAY</div>
+        <ul class="rules-list">
+          <li>🐸  RANDOM FROG FACTS — SOME TRUE, SOME FALSE</li>
+          <li>✓  GET IT RIGHT → LEAP FORWARD + 1 POINT</li>
+          <li>✗  GET IT WRONG → LEAP BACK + LOSE A LIFE</li>
+          <li>❤️  YOU HAVE 3 LIVES</li>
+          <li>⚡  3 IN A ROW → PREPARE FOR AN EPIC BATTLE</li>
+        </ul>
+      </div>
+
+      <!-- Theme picker — switching reloads the page -->
+      <div class="theme-picker" id="splash-theme-picker"></div>
+
+      <div class="start-splash-prompt">PRESS ANY KEY</div>
+      <div class="start-splash-sub">OR CLICK TO START</div>
+    </div>
+  </div>
+
+  <div class="sky">
+    <img data-sprite="cloud" class="cloud cloud-1" alt=""/>
+    <img data-sprite="cloud" class="cloud cloud-2" alt=""/>
+    <img data-sprite="cloud" class="cloud cloud-3" alt=""/>
+  </div>
+  <div class="pond">
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="wave wave-3"></div>
+  </div>
+
+  <header class="hud">
+    <div class="hud-item">
+      <span class="hud-label">Score</span>
+      <span id="score" class="hud-value">000</span>
+    </div>
+
+    <h1 class="title">LEAP FROG</h1>
+
+    <div class="hud-right">
+      <div class="lives-wrap">
+        <span class="hud-label">Lives</span>
+        <div id="lives" class="lives" aria-label="Lives remaining">
+          <span class="life">♥</span>
+          <span class="life">♥</span>
+          <span class="life">♥</span>
+        </div>
+      </div>
+      <div class="hud-item hud-item-small">
+        <span class="hud-label">Best</span>
+        <span id="high-score" class="hud-value">000</span>
+      </div>
+      <div class="audio-cluster">
+        <button id="btn-mute" class="mute-btn" aria-label="Toggle sound">
+          <span id="mute-icon">♪</span>
+        </button>
+        <div class="music-player">
+          <button id="btn-prev-track" class="player-btn" aria-label="Previous track" title="Previous track">◄◄</button>
+          <button id="btn-play-pause" class="player-btn" aria-label="Pause/play music" title="Pause/play">II</button>
+          <button id="btn-next-track" class="player-btn" aria-label="Next track" title="Next track">►►</button>
+        </div>
+        <div class="track-name" id="track-name">ARCADE HOP</div>
+      </div>
+      <button id="btn-frog-picker" class="variants-link" aria-label="Choose frog" title="Choose frog">★</button>
+    </div>
+  </header>
+
+  <main id="game">
+    <div id="track" class="track"></div>
+    <!-- Floating TRUE/FALSE flies the frog can tongue-grab to answer. -->
+    <div id="answer-orbs" class="answer-flies">
+      <button id="orb-true" class="answer-fly fly-true" aria-label="Answer TRUE" title="Press T or click">
+        <img data-sprite="fly" class="fly-img" alt="" aria-hidden="true"/>
+        <span class="fly-text">TRUE</span>
+        <span class="fly-key">T</span>
+      </button>
+      <button id="orb-false" class="answer-fly fly-false" aria-label="Answer FALSE" title="Press F or click">
+        <img data-sprite="fly" class="fly-img" alt="" aria-hidden="true"/>
+        <span class="fly-text">FALSE</span>
+        <span class="fly-key">F</span>
+      </button>
+    </div>
+
+    <!-- Tongue that shoots up-left (true) or up-right (false) to grab an orb -->
+    <div id="orb-tongue" class="orb-tongue"></div>
+
+    <div id="frog" class="frog">
+      <div class="golden-sparkles" aria-hidden="true">
+        <span class="sparkle sparkle-1">✦</span>
+        <span class="sparkle sparkle-2">✦</span>
+        <span class="sparkle sparkle-3">✦</span>
+        <span class="sparkle sparkle-4">✦</span>
+        <span class="sparkle sparkle-5">✦</span>
+        <span class="sparkle sparkle-6">✦</span>
+      </div>
+      <img data-sprite="frog1" alt="frog" class="sprite-img"/>
+      <div id="frog-tongue" class="frog-tongue"></div>
+      <div id="frog-tongue-up" class="frog-tongue-up"></div>
+      <div id="yum-bubble" class="yum-bubble hidden">YUM!</div>
+    </div>
+    <div id="splash" class="splash hidden"><img data-sprite="splash" alt="splash" class="sprite-img"/></div>
+
+    <div id="fact-card" class="fact-card">
+      <!-- Countdown bar — 10s per fact -->
+      <div class="fact-timer">
+        <div class="fact-timer-fill" id="fact-timer-fill"></div>
+      </div>
+      <p id="fact-text" class="fact-text"></p>
+      <div class="fact-buttons">
+        <button id="btn-true" class="fact-btn true-btn">TRUE</button>
+        <button id="btn-false" class="fact-btn false-btn">FALSE</button>
+      </div>
+      <div id="feedback" class="feedback hidden"></div>
+    </div>
+
+    <!-- Boss fight overlay -->
+    <div id="boss-scene" class="boss-scene hidden">
+      <div class="storm-sky"></div>
+      <div class="rain"></div>
+      <div class="lightning" id="lightning"></div>
+
+      <div class="boss-intro" id="boss-intro">
+        <div class="boss-intro-text">⚡ BOSS FIGHT ⚡</div>
+        <div class="boss-name" id="boss-name">BONEJAW</div>
+        <div class="boss-name-sub" id="boss-name-sub">APPROACHES</div>
+        <div class="boss-intro-sub">DRAIN HIS POWER!</div>
+      </div>
+
+      <div class="boss-arena" id="boss-arena">
+        <!-- Player side -->
+        <div class="boss-fighter player-fighter" id="player-fighter">
+          <div class="fighter-label">YOU</div>
+          <div class="power-bar">
+            <div class="power-fill stage-good" id="player-power-fill"></div>
+            <div class="power-ticks"></div>
+          </div>
+          <div class="meter">
+            <div class="meter-fill" id="player-meter-fill"></div>
+            <div class="meter-zone" id="player-meter-zone"></div>
+          </div>
+          <div class="fighter-stack">
+            <div class="dizzy-stars" id="player-stars">💫</div>
+            <div class="explosion" id="player-explosion"></div>
+            <div class="fighter-sprite" id="player-sprite"><img data-sprite="frog1" alt="frog" class="sprite-img"/></div>
+            <div class="tongue tongue-player" id="player-tongue"></div>
+            <div class="pedestal pedestal-player"></div>
+          </div>
+        </div>
+
+        <!-- Boss side -->
+        <div class="boss-fighter boss-fighter-enemy" id="boss-fighter">
+          <div class="fighter-label" id="boss-label">BOSS</div>
+          <div class="power-bar">
+            <div class="power-fill stage-good" id="boss-power-fill"></div>
+            <div class="power-ticks"></div>
+          </div>
+          <div class="meter">
+            <div class="meter-fill meter-fill-boss" id="boss-meter-fill"></div>
+          </div>
+          <div class="fighter-stack">
+            <div class="dizzy-stars" id="boss-stars">💫</div>
+            <div class="explosion" id="boss-explosion"></div>
+            <div class="fighter-sprite boss-sprite" id="boss-sprite"><img data-sprite="boss1" alt="boss frog" class="sprite-img"/></div>
+            <div class="tongue tongue-boss" id="boss-tongue"></div>
+            <div class="pedestal pedestal-boss"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="boss-instruction" id="boss-instruction">
+        PRESS <strong>SPACE</strong> IN THE YELLOW ZONE!
+        <div class="boss-instruction-sub">↓ DODGE</div>
+      </div>
+
+      <div class="boss-result hidden" id="boss-result">
+        <div class="boss-result-text" id="boss-result-text"></div>
+      </div>
+    </div>
+
+    <!-- Frog picker modal -->
+    <div id="frog-picker" class="frog-picker hidden">
+      <div class="frog-picker-card">
+        <div class="frog-picker-header">
+          <h2 class="frog-picker-title">CHOOSE YOUR FROG</h2>
+          <button id="btn-close-picker" class="picker-close" aria-label="Close">×</button>
+        </div>
+        <div class="frog-picker-grid" id="frog-picker-grid"></div>
+      </div>
+    </div>
+
+    <!-- Combo counter — floats near score when streak > 1 -->
+    <div id="combo" class="combo hidden">
+      <span class="combo-x">x</span><span id="combo-value">1</span>
+      <span class="combo-label">COMBO</span>
+    </div>
+
+    <div id="game-over" class="game-over hidden">
+      <div class="game-over-card">
+        <h2>GAME OVER</h2>
+        <p class="game-over-score">SCORE <strong id="final-score">0</strong></p>
+        <p id="new-best" class="new-best hidden">★ NEW BEST ★</p>
+        <button id="btn-restart" class="restart-btn">PLAY AGAIN</button>
+        <div class="game-over-theme">
+          <p class="game-over-theme-label">THEME</p>
+          <div class="theme-picker theme-picker-small" id="game-over-theme-picker"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="credit">
+    T = TRUE  ·  F = FALSE  ·  SPACE STRIKE  ·  M MUTE
+  </footer>
+
+  <script src="theme.js"></script>
+  <script src="facts.js"></script>
+  <script src="audio.js"></script>
+  <script src="boss.js"></script>
+  <script src="game.js"></script>
+  <script src="ambient.js"></script>
+</body>
+</html>

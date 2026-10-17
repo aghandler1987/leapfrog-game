@@ -1,0 +1,3435 @@
+/* ========================================================
+   LEAP FROG — Arcade / NES Retro Styling
+   Palette: a limited set of NES-ish colors.
+   Font: Press Start 2P (chunky pixel).
+   Everything uses hard shadows (no soft blur), chunky
+   borders, and sharp edges for a 1980s arcade feel.
+   ======================================================== */
+
+:root {
+  /* NES-ish palette (retro theme defaults) */
+  --nes-black:   #0d0d0d;
+  --nes-dark:    #1a1a2e;
+  --nes-red:     #d82800;
+  --nes-pink:    #ff6680;
+  --nes-orange:  #fc9838;
+  --nes-yellow:  #fcd800;
+  --nes-green:   #00a800;
+  --nes-lime:    #a0d848;
+  --nes-cyan:    #58d8f8;
+  --nes-blue:    #0058f8;
+  --nes-navy:    #0e2a56;
+  --nes-white:   #fcfcfc;
+  --nes-cream:   #f8e8c8;
+  --nes-gray:    #787878;
+}
+
+/* ========================================================
+   EMOJI THEME — soft, modern, friendly
+   Overrides the NES palette with pastels and swaps the font
+   to a system sans. Disables retro-only effects (scanlines,
+   pixelation, stepped animations).
+   ======================================================== */
+
+[data-theme="emoji"] {
+  --nes-black:   #2d3142;   /* soft dark blue-gray */
+  --nes-dark:    #4f5d75;   /* mid blue-gray */
+  --nes-red:     #ef6461;   /* coral red */
+  --nes-pink:    #ffb5a7;   /* soft pink */
+  --nes-orange:  #ffb961;   /* warm orange */
+  --nes-yellow:  #ffd166;   /* sunny yellow */
+  --nes-green:   #4caf50;   /* fresh green */
+  --nes-lime:    #a8dadc;   /* soft lime-cyan */
+  --nes-cyan:    #a0e7e5;   /* mint */
+  --nes-blue:    #5e8bff;   /* soft blue */
+  --nes-navy:    #e8f1f5;   /* VERY light blue (was dark) — flipping dark→light */
+  --nes-white:   #ffffff;
+  --nes-cream:   #fff9e6;
+  --nes-gray:    #a9b4c2;
+}
+
+[data-theme="emoji"] html,
+[data-theme="emoji"] body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  image-rendering: auto;
+  color: var(--nes-black);
+}
+
+/* Everything that was Press Start 2P → system sans */
+[data-theme="emoji"] * {
+  font-family: inherit !important;
+  image-rendering: auto !important;
+}
+
+/* Remove the CRT scanline overlay in emoji mode */
+[data-theme="emoji"] .scanlines {
+  display: none;
+}
+
+/* Soften all the chunky retro shadows into subtle modern ones */
+[data-theme="emoji"] .fact-card,
+[data-theme="emoji"] .game-over-card,
+[data-theme="emoji"] .frog-picker-card,
+[data-theme="emoji"] .hud-item,
+[data-theme="emoji"] .lives-wrap,
+[data-theme="emoji"] .start-splash-inner {
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(45, 49, 66, 0.15),
+              0 2px 8px rgba(45, 49, 66, 0.08);
+  background: #ffffff;
+  color: var(--nes-black);
+}
+
+[data-theme="emoji"] .fact-text {
+  color: var(--nes-black);
+}
+
+/* Lives — the ♥ chars become red with no pixel border */
+[data-theme="emoji"] .life {
+  color: var(--nes-red);
+  text-shadow: none;
+}
+
+/* Fact-card tail (the little triangle below) — hide for the softer look */
+[data-theme="emoji"] .fact-card::after {
+  display: none;
+}
+
+/* Buttons — rounded modern pill style */
+[data-theme="emoji"] .fact-btn,
+[data-theme="emoji"] .restart-btn {
+  border-radius: 999px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(45, 49, 66, 0.2);
+  padding: 0.9rem 1.5rem;
+  letter-spacing: 1px;
+  text-transform: none;
+  font-weight: 600;
+}
+
+[data-theme="emoji"] .true-btn {
+  background: var(--nes-green);
+  color: #fff;
+}
+[data-theme="emoji"] .false-btn {
+  background: var(--nes-red);
+  color: #fff;
+}
+
+[data-theme="emoji"] .fact-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(45, 49, 66, 0.3);
+}
+[data-theme="emoji"] .fact-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(45, 49, 66, 0.15);
+}
+
+/* Sky + pond — soft gradients instead of chunky color bands */
+[data-theme="emoji"] .sky {
+  background: linear-gradient(to bottom, #cfe9f5 0%, #e3f2fd 60%, #f0f7fa 100%);
+}
+[data-theme="emoji"] .pond {
+  background: linear-gradient(to bottom, #7cb6d9 0%, #4a90b8 50%, #2d6b8a 100%);
+  border-top: none;
+}
+
+/* Waves — a subtle shimmer, no chunky stepped bars */
+[data-theme="emoji"] .wave-1,
+[data-theme="emoji"] .wave-2,
+[data-theme="emoji"] .wave-3 {
+  display: none;
+}
+
+/* Title — soft modern instead of hard-shadow pixel style */
+[data-theme="emoji"] .title {
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-shadow: 0 3px 10px rgba(45, 49, 66, 0.2);
+  color: var(--nes-blue);
+}
+
+/* Fly answer flies: smaller, rounder, no jittery buzz */
+[data-theme="emoji"] .answer-fly {
+  filter: drop-shadow(0 4px 10px rgba(45, 49, 66, 0.2));
+  animation-duration: 2s;
+}
+
+[data-theme="emoji"] .fly-text {
+  color: var(--nes-black);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="emoji"] .fly-key {
+  background: var(--nes-blue);
+  color: #fff;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(45, 49, 66, 0.3);
+}
+
+/* HUD values stay yellow but with no pixel shadow */
+[data-theme="emoji"] .hud-value {
+  color: var(--nes-blue);
+  font-weight: 700;
+}
+
+[data-theme="emoji"] .hud-label {
+  color: var(--nes-dark);
+  letter-spacing: 1px;
+}
+
+/* Score pop-up / combo */
+[data-theme="emoji"] .combo {
+  color: var(--nes-orange);
+  text-shadow: 0 2px 6px rgba(45, 49, 66, 0.3);
+  letter-spacing: 1px;
+}
+
+/* Legend footer at bottom */
+[data-theme="emoji"] .credit {
+  color: var(--nes-black);
+  text-shadow: none;
+  letter-spacing: 1px;
+  background: rgba(255,255,255,0.7);
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+}
+
+/* Lilypads in emoji mode — the 🪷 emoji is naturally oval, keep large */
+[data-theme="emoji"] .lilypad {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Boss arena pedestals — rounder */
+[data-theme="emoji"] .pedestal {
+  border-radius: 12px;
+  border: none;
+  box-shadow: inset 0 -8px 0 rgba(0, 0, 0, 0.2), 0 6px 12px rgba(0, 0, 0, 0.4);
+  background: #8d6e63;
+}
+[data-theme="emoji"] .pedestal::before {
+  display: none;
+}
+
+/* Start splash — rounder, softer */
+[data-theme="emoji"] .start-splash-inner {
+  border: none;
+}
+[data-theme="emoji"] .start-splash-title {
+  color: var(--nes-blue);
+  text-shadow: 0 4px 12px rgba(45, 49, 66, 0.2);
+  letter-spacing: 2px;
+}
+
+[data-theme="emoji"] .rules-list li {
+  color: var(--nes-black);
+  letter-spacing: 0;
+  line-height: 1.6;
+}
+
+[data-theme="emoji"] .start-splash-prompt {
+  color: var(--nes-orange);
+}
+
+[data-theme="emoji"] .rules-heading {
+  color: var(--nes-dark);
+  border-bottom-color: var(--nes-dark);
+}
+
+/* Fact timer — soft rounded bar */
+[data-theme="emoji"] .fact-timer {
+  border-radius: 999px;
+  border: none;
+  background: #eceef2;
+  overflow: hidden;
+}
+[data-theme="emoji"] .fact-timer-fill {
+  border-radius: 999px;
+}
+
+/* ========================================================
+   NEON SYNTHWAVE THEME
+   Dark purple/navy background, hot pink + electric cyan,
+   perspective grid floor, retro-futurist typography, glow.
+   ======================================================== */
+
+[data-theme="neon"] {
+  --nes-black:   #0a0518;   /* deep purple-black */
+  --nes-dark:    #1a0b3d;   /* deep purple */
+  --nes-red:     #ff0080;   /* hot pink */
+  --nes-pink:    #ff6680;   /* soft pink */
+  --nes-orange:  #ff00ff;   /* magenta */
+  --nes-yellow:  #fcd800;   /* keep gold */
+  --nes-green:   #00ff88;   /* neon green */
+  --nes-lime:    #00ff88;
+  --nes-cyan:    #00ffff;   /* electric cyan */
+  --nes-blue:    #0080ff;
+  --nes-navy:    #1a0b3d;
+  --nes-white:   #ffffff;
+  --nes-cream:   #ff6680;
+  --nes-gray:    #4a3a7a;
+}
+
+[data-theme="neon"] html,
+[data-theme="neon"] body {
+  font-family: 'VT323', 'Press Start 2P', monospace;
+  background: #0a0518;
+  color: #ffffff;
+}
+
+/* VT323 is naturally larger — scale down most elements slightly to compensate */
+[data-theme="neon"] * {
+  letter-spacing: 1px;
+}
+
+/* ===== Sky — dark starry gradient ===== */
+[data-theme="neon"] .sky {
+  background:
+    radial-gradient(2px 2px at 20% 15%, #fff, transparent),
+    radial-gradient(2px 2px at 70% 25%, #fff, transparent),
+    radial-gradient(1px 1px at 40% 40%, #fff, transparent),
+    radial-gradient(1px 1px at 85% 55%, #fff, transparent),
+    radial-gradient(2px 2px at 10% 65%, #fcd800, transparent),
+    radial-gradient(1px 1px at 55% 10%, #ff00ff, transparent),
+    linear-gradient(to bottom, #1a0b3d 0%, #3d1b70 60%, #ff0080 100%);
+  background-size: 100% 100%;
+}
+
+/* ===== Pond — perspective neon grid ===== */
+[data-theme="neon"] .pond {
+  background:
+    /* Horizontal grid lines fading to vanishing point */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 10%,
+      rgba(255, 0, 255, 0.3) 10%,
+      rgba(255, 0, 255, 0.3) calc(10% + 2px)
+    ),
+    /* Vertical grid with perspective — angled to create vanishing point */
+    linear-gradient(135deg, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
+    linear-gradient(45deg, rgba(0, 255, 255, 0.2) 0%, transparent 50%),
+    /* Base dark purple */
+    linear-gradient(to bottom, #1a0b3d 0%, #0a0518 100%);
+  border-top: 2px solid #ff00ff;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.6), inset 0 2px 10px rgba(0, 255, 255, 0.3);
+}
+
+[data-theme="neon"] .wave-1,
+[data-theme="neon"] .wave-2,
+[data-theme="neon"] .wave-3 {
+  display: none;
+}
+
+/* ===== Scanlines — purple-tinted ===== */
+[data-theme="neon"] .scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(255, 0, 255, 0.1) 3px,
+    rgba(255, 0, 255, 0.1) 4px
+  );
+}
+
+/* ===== Glow on all sprites (frog, lilypad, boss, flies, etc.) ===== */
+[data-theme="neon"] .sprite-img,
+[data-theme="neon"] .frog-pick-img,
+[data-theme="neon"] .ambient-fish img,
+[data-theme="neon"] .ambient-bug img,
+[data-theme="neon"] .ambient-ufo img {
+  filter:
+    drop-shadow(0 0 2px currentColor)
+    drop-shadow(0 0 6px rgba(255, 0, 255, 0.6))
+    drop-shadow(0 0 12px rgba(0, 255, 255, 0.4));
+}
+
+/* Frog glow — cyan dominant */
+[data-theme="neon"] .frog .sprite-img {
+  filter:
+    drop-shadow(0 0 3px rgba(0, 255, 255, 0.9))
+    drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
+}
+
+/* Lilypad glow — pink dominant */
+[data-theme="neon"] .lilypad {
+  filter:
+    drop-shadow(0 0 4px rgba(255, 0, 255, 0.8))
+    drop-shadow(0 0 10px rgba(255, 0, 255, 0.4));
+}
+
+/* Boss glow — hot pink angry */
+[data-theme="neon"] .boss-sprite .sprite-img {
+  filter:
+    drop-shadow(0 0 4px rgba(255, 0, 128, 1))
+    drop-shadow(0 0 12px rgba(255, 0, 128, 0.6));
+}
+
+/* ===== HUD panels — translucent dark with pink glow border ===== */
+[data-theme="neon"] .hud-item,
+[data-theme="neon"] .lives-wrap {
+  background: rgba(10, 5, 24, 0.85);
+  border: 2px solid #ff00ff;
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.7), inset 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+[data-theme="neon"] .hud-value {
+  color: #00ffff;
+  text-shadow: 0 0 6px #00ffff, 0 0 12px rgba(0, 255, 255, 0.5);
+  font-size: 1.3rem;
+}
+
+[data-theme="neon"] .hud-label {
+  color: #ff00ff;
+  text-shadow: 0 0 3px #ff00ff;
+  font-size: 0.7rem;
+}
+
+[data-theme="neon"] .life {
+  color: #ff0080;
+  text-shadow: 0 0 6px #ff0080, 0 0 12px rgba(255, 0, 128, 0.6);
+}
+
+/* Title */
+[data-theme="neon"] .title {
+  color: #00ffff;
+  text-shadow:
+    0 0 8px #00ffff,
+    0 0 20px rgba(0, 255, 255, 0.7),
+    4px 4px 0 #ff00ff,
+    0 0 40px rgba(255, 0, 255, 0.5);
+  letter-spacing: 4px;
+  font-size: 2.4rem;
+}
+
+/* ===== Fact card — dark glass with glow outline ===== */
+[data-theme="neon"] .fact-card {
+  background: rgba(10, 5, 24, 0.9);
+  border: 3px solid #ff00ff;
+  box-shadow:
+    0 0 20px rgba(255, 0, 255, 0.6),
+    0 0 40px rgba(0, 255, 255, 0.3),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+[data-theme="neon"] .fact-text {
+  color: #ffffff;
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.6);
+  font-size: 1.3rem;
+}
+
+[data-theme="neon"] .fact-card::after {
+  border-top-color: #ff00ff;
+  filter: drop-shadow(0 2px 0 #ff00ff);
+}
+
+/* ===== TRUE/FALSE buttons — neon pills ===== */
+[data-theme="neon"] .fact-btn {
+  background: #0a0518;
+  color: #00ffff;
+  border: 2px solid #00ffff;
+  box-shadow:
+    0 0 10px rgba(0, 255, 255, 0.6),
+    inset 0 0 6px rgba(0, 255, 255, 0.3);
+  text-shadow: 0 0 4px rgba(0, 255, 255, 0.8);
+  font-size: 1rem;
+}
+
+[data-theme="neon"] .true-btn {
+  color: #00ff88;
+  border-color: #00ff88;
+  box-shadow:
+    0 0 10px rgba(0, 255, 136, 0.6),
+    inset 0 0 6px rgba(0, 255, 136, 0.3);
+  text-shadow: 0 0 4px rgba(0, 255, 136, 0.8);
+}
+
+[data-theme="neon"] .false-btn {
+  color: #ff0080;
+  border-color: #ff0080;
+  box-shadow:
+    0 0 10px rgba(255, 0, 128, 0.6),
+    inset 0 0 6px rgba(255, 0, 128, 0.3);
+  text-shadow: 0 0 4px rgba(255, 0, 128, 0.8);
+}
+
+[data-theme="neon"] .fact-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Fact timer bar — neon glow ===== */
+[data-theme="neon"] .fact-timer {
+  border-color: #ff00ff;
+  background: #0a0518;
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+}
+[data-theme="neon"] .fact-timer-fill {
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* ===== Answer flies — bright neon tint ===== */
+[data-theme="neon"] .answer-fly {
+  filter:
+    drop-shadow(0 0 6px rgba(255, 0, 255, 0.9))
+    drop-shadow(0 0 14px rgba(255, 0, 255, 0.5));
+}
+
+[data-theme="neon"] .fly-text {
+  color: #00ffff;
+  text-shadow: 0 0 4px #00ffff, 0 0 8px #0a0518;
+  font-size: 0.8rem;
+}
+
+[data-theme="neon"] .fly-key {
+  background: #0a0518;
+  border-color: #00ffff;
+  color: #00ffff;
+  box-shadow: 0 0 6px rgba(0, 255, 255, 0.8);
+}
+
+/* ===== Start splash ===== */
+[data-theme="neon"] .start-splash-inner {
+  background: rgba(10, 5, 24, 0.95);
+  border: 3px solid #ff00ff;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.8), 0 0 60px rgba(0, 255, 255, 0.4);
+}
+
+[data-theme="neon"] .start-splash-title {
+  color: #00ffff;
+  text-shadow:
+    0 0 10px #00ffff,
+    0 0 20px rgba(0, 255, 255, 0.7),
+    4px 4px 0 #ff00ff;
+  letter-spacing: 4px;
+}
+
+[data-theme="neon"] .start-splash-prompt {
+  color: #ff00ff;
+  text-shadow: 0 0 10px #ff00ff;
+  font-size: 1.3rem;
+}
+
+[data-theme="neon"] .start-splash-sub {
+  color: #00ffff;
+  text-shadow: 0 0 4px #00ffff;
+}
+
+[data-theme="neon"] .rules-heading {
+  color: #ff00ff;
+  border-bottom-color: #ff00ff;
+  text-shadow: 0 0 6px #ff00ff;
+}
+
+[data-theme="neon"] .rules-list li {
+  color: #ffffff;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+/* ===== Theme picker tiles ===== */
+[data-theme="neon"] .theme-tile {
+  background: rgba(10, 5, 24, 0.9);
+  border: 2px solid #ff00ff;
+  color: #00ffff;
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.6);
+  text-shadow: 0 0 4px #00ffff;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+[data-theme="neon"] .theme-tile.selected {
+  border-color: #00ffff;
+  color: #fcd800;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.9), 0 0 24px rgba(252, 216, 0, 0.5);
+  text-shadow: 0 0 6px #fcd800;
+}
+
+/* ===== Game over + boss overlays ===== */
+[data-theme="neon"] .game-over,
+[data-theme="neon"] .boss-scene {
+  background: rgba(10, 5, 24, 0.85);
+}
+
+[data-theme="neon"] .game-over-card {
+  background: #0a0518;
+  border: 3px solid #ff00ff;
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);
+}
+
+[data-theme="neon"] .game-over-card h2 {
+  color: #ff00ff;
+  text-shadow: 0 0 12px #ff00ff, 0 0 24px rgba(255, 0, 255, 0.5);
+  font-size: 2rem;
+}
+
+[data-theme="neon"] .boss-name {
+  color: #ff00ff;
+  text-shadow:
+    0 0 10px #ff00ff,
+    0 0 30px rgba(255, 0, 255, 0.7),
+    5px 5px 0 #00ffff;
+}
+
+[data-theme="neon"] .boss-name-sub {
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff;
+}
+
+[data-theme="neon"] .boss-intro-text {
+  color: #fcd800;
+  text-shadow: 0 0 10px #fcd800, 0 0 20px rgba(252, 216, 0, 0.5);
+}
+
+/* Boss arena power bars */
+[data-theme="neon"] .power-bar {
+  border-color: #00ffff;
+  background: #0a0518;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+[data-theme="neon"] .power-fill {
+  box-shadow: 0 0 10px currentColor;
+}
+
+/* ===== Mute + player + variants buttons ===== */
+[data-theme="neon"] .mute-btn,
+[data-theme="neon"] .variants-link,
+[data-theme="neon"] .player-btn,
+[data-theme="neon"] .track-name {
+  background: #0a0518;
+  border-color: #ff00ff;
+  color: #00ffff;
+  box-shadow: 0 0 6px rgba(255, 0, 255, 0.6);
+  text-shadow: 0 0 4px #00ffff;
+}
+
+/* ===== Combo counter — hot pink ===== */
+[data-theme="neon"] .combo {
+  color: #ff0080;
+  text-shadow: 0 0 10px #ff0080, 0 0 20px rgba(255, 0, 128, 0.5);
+}
+
+/* ===== Credit footer ===== */
+[data-theme="neon"] .credit {
+  color: #00ffff;
+  text-shadow: 0 0 6px #00ffff;
+  font-size: 0.95rem;
+}
+
+[data-theme="neon"] .legend-arrow {
+  color: #ff00ff;
+  text-shadow: 0 0 8px #ff00ff;
+}
+
+/* ===== Pedestals in boss arena — chrome synthwave look ===== */
+[data-theme="neon"] .pedestal {
+  background: linear-gradient(to bottom, #ff00ff 0%, #8020b0 50%, #1a0b3d 100%);
+  border-color: #00ffff;
+  box-shadow:
+    0 0 15px rgba(255, 0, 255, 0.6),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="neon"] .pedestal::before {
+  display: none;
+}
+
+/* ===== Konami unlock banner — synthwave style ===== */
+[data-theme="neon"] .konami-title {
+  color: #fcd800;
+  text-shadow: 0 0 20px #fcd800, 4px 4px 0 #ff00ff;
+}
+[data-theme="neon"] .konami-sub {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+/* ========================================================
+   MODERN THEME — polished vector sprites, clean sans-serif,
+   soft gradients, no pixelation, no scanlines, no CRT vibe.
+   Palette shifts to natural sky/pond colors.
+   ======================================================== */
+
+[data-theme="modern"] html,
+[data-theme="modern"] body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  image-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(180deg, #a4d4ea 0%, #cfe9f5 60%, #e8f1f5 100%);
+  color: #2d2a3c;
+}
+
+[data-theme="modern"] * {
+  font-family: inherit;
+  image-rendering: auto;
+}
+
+/* Modern pond — swap NES slab for a soft water gradient */
+[data-theme="modern"] .scene,
+[data-theme="modern"] .water {
+  background: linear-gradient(180deg, #74b4de 0%, #5a9ec9 50%, #3f7fa8 100%);
+  image-rendering: auto;
+}
+
+[data-theme="modern"] .sky {
+  background: linear-gradient(180deg, #cfe9f5 0%, #a4d4ea 100%);
+  image-rendering: auto;
+}
+
+/* Kill the retro scanline overlay in Modern */
+[data-theme="modern"] .scanlines { display: none; }
+
+/* Score, lives, combo — clean sans-serif panels */
+[data-theme="modern"] .hud {
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+[data-theme="modern"] .score,
+[data-theme="modern"] .high-score,
+[data-theme="modern"] .lives,
+[data-theme="modern"] .combo {
+  background: rgba(255, 255, 255, 0.9);
+  color: #2d2a3c;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 0.85rem;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* Fact card — soft rounded white card instead of pixel border */
+[data-theme="modern"] .fact-card {
+  background: rgba(255, 255, 255, 0.98);
+  color: #2d2a3c;
+  border: none;
+  border-radius: 20px;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem 1.5rem 1.25rem;
+}
+
+[data-theme="modern"] .fact-card::after {
+  border-top-color: rgba(255, 255, 255, 0.98);
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.1));
+}
+
+[data-theme="modern"] .fact-text {
+  color: #2d2a3c;
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+[data-theme="modern"] .fact-progress {
+  background: #d8e3eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+[data-theme="modern"] .fact-progress-fill {
+  background: linear-gradient(90deg, #5e8bff, #7fb3ff);
+  border-radius: 999px;
+}
+
+/* TRUE / FALSE feedback — soft colored cards */
+[data-theme="modern"] .feedback {
+  border-radius: 12px;
+  border: none;
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  font-size: 0.9rem;
+}
+
+[data-theme="modern"] .feedback.correct {
+  background: #e3f6e3;
+  color: #1f5f1f;
+}
+
+[data-theme="modern"] .feedback.wrong {
+  background: #fde0e0;
+  color: #a01818;
+}
+
+/* Fly answer buttons — keep sprite, kill retro key-cap */
+[data-theme="modern"] .fly-text {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+[data-theme="modern"] .fly-key {
+  font-family: inherit;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #2d2a3c;
+  border-radius: 6px;
+  padding: 0.1rem 0.35rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* GAME OVER card — soft modern dialog */
+[data-theme="modern"] .game-over-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 24px;
+  color: #2d2a3c;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="modern"] .game-over-card h2 {
+  font-family: inherit;
+  font-weight: 800;
+  color: #e85d0f;
+  letter-spacing: 2px;
+  text-shadow: none;
+}
+
+[data-theme="modern"] .game-over-score {
+  font-family: inherit;
+  color: #2d2a3c;
+}
+
+[data-theme="modern"] .restart-btn {
+  background: linear-gradient(180deg, #ffcc55, #f0a830);
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 700;
+  color: #4a2a00;
+  box-shadow: 0 4px 12px rgba(240, 168, 48, 0.4);
+  letter-spacing: 1px;
+  padding: 0.75rem 1.5rem;
+}
+
+[data-theme="modern"] .restart-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(240, 168, 48, 0.5);
+}
+
+/* Theme picker tiles — soft pills */
+[data-theme="modern"] .theme-tile {
+  background: #ffffff;
+  color: #2d2a3c;
+  border: 2px solid #d8e3eb;
+  border-radius: 999px;
+  font-family: inherit;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="modern"] .theme-tile.selected {
+  background: #5e8bff;
+  color: #ffffff;
+  border-color: #5e8bff;
+  box-shadow: 0 4px 12px rgba(94, 139, 255, 0.4);
+}
+
+/* Frog picker modal — clean modern dialog */
+[data-theme="modern"] .picker-card {
+  background: #ffffff;
+  border: none;
+  border-radius: 24px;
+  color: #2d2a3c;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="modern"] .picker-card h2 {
+  font-family: inherit;
+  color: #2d2a3c;
+  text-shadow: none;
+  font-weight: 800;
+}
+
+[data-theme="modern"] .frog-pick {
+  background: #f5f5f7;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  transition: all 0.15s ease;
+}
+
+[data-theme="modern"] .frog-pick:hover {
+  border-color: #5e8bff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(94, 139, 255, 0.2);
+}
+
+[data-theme="modern"] .frog-pick.selected {
+  border-color: #e85d0f;
+  background: #fff4e6;
+  box-shadow: 0 6px 16px rgba(232, 93, 15, 0.3);
+}
+
+/* Splash screen — modern sans-serif */
+[data-theme="modern"] .splash-title {
+  font-family: inherit;
+  color: #2d2a3c;
+  text-shadow: none;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+[data-theme="modern"] .splash-tip {
+  font-family: inherit;
+  color: #4a4a5c;
+  font-weight: 500;
+}
+
+/* Boss arena title bar */
+[data-theme="modern"] .boss-title {
+  font-family: inherit;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+/* Credits footer */
+[data-theme="modern"] .credit {
+  font-family: inherit;
+  color: #2d2a3c;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Press Start 2P', monospace;
+  color: var(--nes-white);
+  background: var(--nes-black);
+  -webkit-font-smoothing: none;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  text-rendering: geometricPrecision;
+}
+
+/* ========================================================
+   Scene
+   ======================================================== */
+
+.cloud {
+  position: absolute;
+  image-rendering: pixelated;
+  opacity: 0.9;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.cloud-1 { top: 6%;  width: 160px; animation: cloud-drift 90s linear infinite; }
+.cloud-2 { top: 18%; width: 220px; animation: cloud-drift 140s linear infinite -40s; opacity: 0.75; }
+.cloud-3 { top: 30%; width: 120px; animation: cloud-drift 180s linear infinite -90s; opacity: 0.6; }
+
+@keyframes cloud-drift {
+  from { transform: translateX(110vw); }
+  to   { transform: translateX(-250px); }
+}
+
+.sky {
+  position: fixed;
+  inset: 0 0 28% 0;
+  overflow: hidden;
+  /* chunky two-band sky — NES loved color bands */
+  background:
+    linear-gradient(to bottom,
+      var(--nes-cyan)  0%, var(--nes-cyan)  60%,
+      #90e0f8          60%, #90e0f8          100%);
+  z-index: 0;
+}
+
+/* Pixel-art-ish sun */
+.sky::before {
+  content: "";
+  position: fixed;
+  top: 6%;
+  right: 8%;
+  width: 56px;
+  height: 56px;
+  background: var(--nes-yellow);
+  box-shadow:
+    0 0 0 8px var(--nes-orange),
+    8px 0 0 0 var(--nes-yellow),
+    -8px 0 0 0 var(--nes-yellow),
+    0 8px 0 0 var(--nes-yellow),
+    0 -8px 0 0 var(--nes-yellow);
+  image-rendering: pixelated;
+}
+
+.pond {
+  position: fixed;
+  inset: 72% 0 0 0;
+  /* chunky bands for depth */
+  background:
+    linear-gradient(to bottom,
+      var(--nes-blue)  0%,  var(--nes-blue)  30%,
+      #003cb8          30%, #003cb8          70%,
+      var(--nes-navy)  70%, var(--nes-navy)  100%);
+  z-index: 0;
+  overflow: hidden;
+  border-top: 4px solid var(--nes-black);
+}
+
+/* ========================================================
+   Moving water — stepped (not smooth) waves for pixel feel
+   ======================================================== */
+
+.wave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 40px;
+  background-repeat: repeat-x;
+  background-size: 64px 100%;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+/* Top waterline — bright crest */
+.wave-1 {
+  top: 0;
+  height: 20px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 5' shape-rendering='crispEdges'><rect x='0' y='0' width='4' height='1' fill='%2358d8f8'/><rect x='4' y='1' width='4' height='1' fill='%2358d8f8'/><rect x='8' y='0' width='4' height='1' fill='%2358d8f8'/><rect x='12' y='1' width='4' height='1' fill='%2358d8f8'/><rect x='0' y='1' width='4' height='4' fill='%230058f8'/><rect x='4' y='2' width='4' height='3' fill='%230058f8'/><rect x='8' y='1' width='4' height='4' fill='%230058f8'/><rect x='12' y='2' width='4' height='3' fill='%230058f8'/></svg>");
+  animation: wave-scroll 8s steps(16) infinite;
+}
+
+/* Mid wave — white foam dashes */
+.wave-2 {
+  top: 24px;
+  height: 10px;
+  opacity: 0.9;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 4' shape-rendering='crispEdges'><rect x='4' y='1' width='6' height='2' fill='%23fcfcfc'/><rect x='18' y='1' width='4' height='2' fill='%23fcfcfc'/></svg>");
+  animation: wave-scroll-reverse 14s steps(32) infinite;
+}
+
+/* Deeper wave — darker ripples */
+.wave-3 {
+  top: 60px;
+  height: 10px;
+  opacity: 0.6;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 4' shape-rendering='crispEdges'><rect x='6' y='1' width='8' height='2' fill='%2358d8f8'/><rect x='28' y='1' width='6' height='2' fill='%2358d8f8'/></svg>");
+  animation: wave-scroll 20s steps(48) infinite;
+}
+
+@keyframes wave-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes wave-scroll-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ========================================================
+   Scanline overlay (classic CRT look)
+   ======================================================== */
+
+.scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.18) 3px,
+    rgba(0, 0, 0, 0.18) 4px
+  );
+  z-index: 100;
+  mix-blend-mode: multiply;
+}
+
+/* ========================================================
+   HUD
+   ======================================================== */
+
+.hud {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem;
+  z-index: 10;
+  pointer-events: none;
+  gap: 1rem;
+}
+
+.title {
+  /* Absolute center across the whole HUD, independent of flex layout, so the
+     Score/Lives/Best boxes don't push it off-center. */
+  position: absolute;
+  top: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.9rem;
+  color: var(--nes-yellow);
+  text-shadow:
+    4px 4px 0 var(--nes-red),
+    8px 8px 0 var(--nes-black),
+    0 0 0 var(--nes-white);
+  letter-spacing: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hud-right {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.hud-item,
+.lives-wrap {
+  background: var(--nes-black);
+  border: 3px solid var(--nes-white);
+  padding: 0.5rem 0.75rem;
+  box-shadow: 4px 4px 0 var(--nes-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+}
+
+.hud-item-small { min-width: 60px; }
+
+.hud-label {
+  font-size: 0.55rem;
+  color: var(--nes-cyan);
+  letter-spacing: 2px;
+  margin-bottom: 0.35rem;
+}
+
+.hud-value {
+  font-size: 1rem;
+  color: var(--nes-yellow);
+  line-height: 1;
+}
+
+/* ========================================================
+   Lives — hearts for the main game HUD
+   ======================================================== */
+
+.lives-wrap {
+  padding: 0.5rem 0.75rem 0.6rem;
+  min-width: 110px;
+}
+
+.lives {
+  display: flex;
+  gap: 0.4rem;
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.life {
+  color: var(--nes-red);
+  text-shadow:
+    1px 1px 0 var(--nes-black),
+    -1px -1px 0 var(--nes-black),
+    1px -1px 0 var(--nes-black),
+    -1px 1px 0 var(--nes-black);
+  transition: color 0.1s linear;
+  display: inline-block;
+}
+
+.life.losing {
+  animation: life-lost 0.6s ease-out forwards;
+}
+
+.life.lost {
+  color: var(--nes-gray);
+  opacity: 0.4;
+}
+
+@keyframes life-lost {
+  0%   { transform: scale(1);   color: var(--nes-red); }
+  15%  { transform: scale(1.8); color: var(--nes-white); }
+  25%  { transform: scale(1.6); color: var(--nes-red); }
+  40%  { transform: scale(1.9) rotate(-15deg); color: var(--nes-white); }
+  55%  { transform: scale(1.6) rotate(15deg);  color: var(--nes-red); }
+  75%  { transform: scale(1.3) rotate(-5deg);  color: var(--nes-red); opacity: 0.9; }
+  100% { transform: scale(1)   rotate(0);     color: var(--nes-gray); opacity: 0.4; }
+}
+
+.lives-wrap.flashing {
+  animation: lives-flash 0.5s linear 2;
+}
+
+@keyframes lives-flash {
+  0%, 100% { background: var(--nes-black);   border-color: var(--nes-white); }
+  50%      { background: var(--nes-red); border-color: var(--nes-yellow); }
+}
+
+/* ========================================================
+   Power bar — used in the BOSS fight (not the main HUD).
+   Fighting-game style: 10 hits, color shifts as it depletes.
+   ======================================================== */
+
+.power-bar {
+  position: relative;
+  width: 160px;
+  height: 16px;
+  background: var(--nes-black);
+  border: 2px solid var(--nes-white);
+  overflow: hidden;
+  box-shadow: inset 2px 2px 0 rgba(0,0,0,0.4), 2px 2px 0 var(--nes-dark);
+}
+
+.power-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--nes-lime);
+  transition: width 0.3s ease-out, background 0.3s ease;
+}
+
+.power-fill.stage-good     { background: var(--nes-lime); }
+.power-fill.stage-caution  { background: var(--nes-yellow); }
+.power-fill.stage-danger   { background: var(--nes-orange); }
+.power-fill.stage-critical {
+  background: var(--nes-red);
+  animation: power-critical 0.4s steps(2) infinite;
+}
+
+@keyframes power-critical {
+  0%, 100% { background: var(--nes-red); }
+  50%      { background: var(--nes-pink); }
+}
+
+.power-ticks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0,
+    transparent calc(10% - 1px),
+    rgba(0, 0, 0, 0.5) calc(10% - 1px),
+    rgba(0, 0, 0, 0.5) 10%
+  );
+}
+
+/* Full-screen red flash on life loss */
+.damage-flash {
+  position: fixed;
+  inset: 0;
+  background: var(--nes-red);
+  opacity: 0;
+  z-index: 90;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.damage-flash.flashing {
+  animation: damage-flash 0.5s ease-out;
+}
+
+@keyframes damage-flash {
+  0%   { opacity: 0; }
+  15%  { opacity: 0.55; }
+  100% { opacity: 0; }
+}
+
+/* ========================================================
+   Mute button
+   ======================================================== */
+
+.mute-btn {
+  pointer-events: auto;
+  background: var(--nes-black);
+  border: 3px solid var(--nes-white);
+  color: var(--nes-yellow);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--nes-dark);
+  padding: 0;
+  transition: transform 0.05s linear;
+}
+
+.mute-btn:hover {
+  transform: translate(-1px, -1px);
+}
+
+.mute-btn:active {
+  transform: translate(2px, 2px);
+}
+
+.mute-btn.muted {
+  color: var(--nes-gray);
+}
+
+/* Audio cluster — mute button on top, mini player + track name below */
+.audio-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+}
+.audio-cluster > * { pointer-events: auto; }
+
+/* Mini music player — prev/play/next buttons in a row */
+.music-player {
+  display: flex;
+  gap: 2px;
+}
+
+.player-btn {
+  background: var(--nes-black);
+  border: 2px solid var(--nes-white);
+  color: var(--nes-cyan);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.5rem;
+  width: 28px;
+  height: 24px;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 2px 2px 0 var(--nes-dark);
+  transition: transform 0.05s linear;
+  letter-spacing: 0;
+}
+
+.player-btn:hover { transform: translate(-1px, -1px); color: var(--nes-yellow); }
+.player-btn:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--nes-dark); }
+
+.player-btn.playing { color: var(--nes-lime); }
+.player-btn.paused  { color: var(--nes-orange); }
+
+.player-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  color: var(--nes-gray);
+}
+.player-btn:disabled:hover,
+.player-btn:disabled:active { transform: none; box-shadow: 2px 2px 0 var(--nes-dark); }
+
+.music-player.disabled .track-name,
+.audio-cluster.boss-locked .track-name {
+  opacity: 0.4;
+}
+
+/* Track name display below the player */
+.track-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.4rem;
+  color: var(--nes-yellow);
+  background: var(--nes-black);
+  border: 2px solid var(--nes-white);
+  padding: 3px 6px;
+  letter-spacing: 1px;
+  text-align: center;
+  max-width: 110px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 600px) {
+  .player-btn { width: 24px; height: 20px; font-size: 0.4rem; }
+  .track-name { font-size: 0.35rem; max-width: 85px; }
+}
+
+.variants-link {
+  pointer-events: auto;
+  background: var(--nes-black);
+  border: 3px solid var(--nes-white);
+  color: var(--nes-cyan);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--nes-dark);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.05s linear;
+}
+
+.variants-link:hover { transform: translate(-1px, -1px); color: var(--nes-yellow); }
+.variants-link:active { transform: translate(2px, 2px); }
+
+/* ========================================================
+   Game area
+   ======================================================== */
+
+#game {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+.track {
+  position: absolute;
+  top: 72%;
+  left: 0;
+  right: 0;
+  /* Height chosen so lilypads (which sit at bottom:0 of the track) land
+     directly under the frog's feet (which rest ~18px below the 72% waterline).
+     frog feet = 72% + 18px   /   lilypad top = track_bottom - 50px (pad height)
+     So track_bottom = 72% + 68px → height = 68px. */
+  height: 68px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.lilypad {
+  position: absolute;
+  bottom: 0;
+  width: 160px;
+  height: 50px;
+  line-height: 1;
+  transform: translateX(-50%);
+  /* Smooth slide for position + a slightly slower fade so pads appear and
+     disappear on the move, not by popping in place. */
+  transition: left 0.4s ease-out, opacity 0.4s ease-out;
+  user-select: none;
+  filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.6));
+  image-rendering: pixelated;
+}
+
+.lilypad .sprite-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+
+/* ========================================================
+   Frog
+   ======================================================== */
+
+.frog {
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  line-height: 1;
+  /* Translate up by (frog height) so its FEET sit at the top: 72% waterline.
+     Then shift down ~18px so the frog overlaps the lilypad top for grounding. */
+  transform: translate(-50%, calc(-100% + 18px));
+  z-index: 5;
+  transition: opacity 0.5s ease;
+  filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.6));
+  user-select: none;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+.frog .sprite-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  transform-origin: bottom center;
+  transition: transform 0.1s ease-out;
+}
+
+/* Ducking — squash the sprite vertically and bulge it horizontally so it
+   reads as a crouch pose. Transform-origin on bottom anchors the feet. */
+.frog.ducking .sprite-img {
+  transform: scaleY(0.6) scaleX(1.15);
+}
+
+/* Hide the tongue elements when ducking so they don't float in weird spots */
+.frog.ducking .frog-tongue,
+.frog.ducking .frog-tongue-up {
+  opacity: 0 !important;
+}
+
+/* ========================================================
+   Golden frog sparkles — twinkling stars around the frog.
+   Hidden by default; shown when the parent gets .is-golden.
+   ======================================================== */
+
+.golden-sparkles {
+  position: absolute;
+  inset: -20px;      /* extend beyond the frog box so stars can orbit outside */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 7;
+}
+
+.frog.is-golden .golden-sparkles,
+.frog-pick.golden-sparkle-pick .golden-sparkles {
+  opacity: 1;
+}
+
+.sparkle {
+  position: absolute;
+  color: var(--nes-yellow);
+  text-shadow:
+    0 0 4px var(--nes-white),
+    2px 2px 0 var(--nes-orange);
+  font-size: 18px;
+  line-height: 1;
+  animation: sparkle-twinkle 1.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Each sparkle at a different position + animation delay for staggered twinkle */
+.sparkle-1 { top:  0%;  left: 10%; animation-delay: 0s;     font-size: 16px; }
+.sparkle-2 { top: 15%;  right: 5%; animation-delay: 0.3s;   font-size: 22px; }
+.sparkle-3 { top: 45%;  left:  0%; animation-delay: 0.6s;   font-size: 14px; }
+.sparkle-4 { top: 55%;  right: 0%; animation-delay: 0.9s;   font-size: 18px; }
+.sparkle-5 { bottom: 20%; left: 15%; animation-delay: 1.1s; font-size: 20px; }
+.sparkle-6 { bottom: 5%;  right: 20%; animation-delay: 1.4s; font-size: 15px; }
+
+@keyframes sparkle-twinkle {
+  0%, 100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1.3) rotate(120deg);
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1) rotate(180deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.6) rotate(240deg);
+    opacity: 0.6;
+  }
+}
+
+/* Fidget tongue — pure cosmetic. Positioned to come out of the frog's mouth
+   when SPACE is pressed outside battle mode. */
+.frog-tongue {
+  position: absolute;
+  top: 32%;           /* mouth sits at row 5 of 16 in the frog sprite ≈ 31% */
+  left: 50%;
+  width: 0;
+  height: 8px;
+  background: var(--nes-pink);
+  border-top: 2px solid var(--nes-red);
+  border-bottom: 2px solid var(--nes-red);
+  box-shadow: 0 0 0 2px var(--nes-black);
+  opacity: 0;
+  z-index: 6;
+  pointer-events: none;
+  transform-origin: left center;
+}
+
+.frog-tongue::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--nes-red);
+  border: 2px solid var(--nes-black);
+  border-radius: 50%;
+}
+
+.frog-tongue.flicking {
+  animation: frog-tongue-flick 0.35s steps(6);
+}
+
+@keyframes frog-tongue-flick {
+  0%   { width: 0;    opacity: 0; }
+  20%  { width: 50px; opacity: 1; }
+  60%  { width: 60px; opacity: 1; }
+  100% { width: 0;    opacity: 0; }
+}
+
+/* Upward tongue — fires straight up when the player holds UP + presses SPACE.
+   Vertical bar extending from the frog's mouth upward, with a ball tip. */
+.frog-tongue-up {
+  position: absolute;
+  bottom: 68%;           /* mouth is at row 5/16 from top = 11/16 ≈ 68% from bottom */
+  left: 50%;
+  width: 8px;
+  height: 0;
+  background: var(--nes-pink);
+  border-left: 2px solid var(--nes-red);
+  border-right: 2px solid var(--nes-red);
+  box-shadow: 0 0 0 2px var(--nes-black);
+  opacity: 0;
+  z-index: 7;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transform-origin: bottom center;
+}
+
+.frog-tongue-up::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--nes-red);
+  border: 2px solid var(--nes-black);
+  border-radius: 50%;
+}
+
+.frog-tongue-up.firing {
+  animation: frog-tongue-up-fire 0.4s steps(6);
+}
+
+@keyframes frog-tongue-up-fire {
+  0%   { height: 0;     opacity: 0; }
+  20%  { height: 180px; opacity: 1; }
+  60%  { height: 220px; opacity: 1; }
+  100% { height: 0;     opacity: 0; }
+}
+
+/* YUM speech bubble — floats above the frog when it eats something */
+.yum-bubble {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--nes-white);
+  color: var(--nes-red);
+  border: 3px solid var(--nes-black);
+  padding: 6px 12px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  box-shadow: 3px 3px 0 var(--nes-black);
+  z-index: 8;
+  pointer-events: none;
+}
+
+.yum-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--nes-black);
+}
+
+.yum-bubble.showing {
+  animation: yum-pop 1.1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes yum-pop {
+  0%   { transform: translateX(-50%) scale(0.1); opacity: 0; }
+  20%  { transform: translateX(-50%) scale(1.3); opacity: 1; }
+  40%  { transform: translateX(-50%) scale(1);   opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateX(-50%) scale(1) translateY(-30px); opacity: 0; }
+}
+
+.frog.hopping-forward { animation: hop-forward 0.4s steps(8, end); }
+.frog.hopping-back    { animation: hop-back    0.4s steps(8, end); }
+.frog.wobbling        { animation: wobble      0.6s steps(10, end); }
+.frog.falling         { animation: fall-in-water 0.9s steps(12, end) forwards; }
+
+/* Base rest transform: translate(-50%, calc(-100% + 18px))
+   Hops offset further up from that base. */
+@keyframes hop-forward {
+  0%   { transform: translate(-50%, calc(-100% + 18px)); }
+  50%  { transform: translate(-50%, calc(-100% - 82px)) rotate(8deg); }
+  100% { transform: translate(-50%, calc(-100% + 18px)); }
+}
+
+@keyframes hop-back {
+  0%   { transform: translate(-50%, calc(-100% + 18px)); }
+  50%  { transform: translate(-50%, calc(-100% - 52px)) rotate(-12deg) scaleX(-1); }
+  100% { transform: translate(-50%, calc(-100% + 18px)); }
+}
+
+@keyframes wobble {
+  0%   { transform: translate(-50%, calc(-100% + 18px)) rotate(0deg); }
+  15%  { transform: translate(-60%, calc(-100% + 18px)) rotate(-10deg); }
+  30%  { transform: translate(-40%, calc(-100% + 18px)) rotate(10deg); }
+  45%  { transform: translate(-60%, calc(-100% + 18px)) rotate(-8deg); }
+  60%  { transform: translate(-40%, calc(-100% + 18px)) rotate(8deg); }
+  75%  { transform: translate(-55%, calc(-100% + 18px)) rotate(-4deg); }
+  100% { transform: translate(-50%, calc(-100% + 18px)) rotate(0deg); }
+}
+
+@keyframes fall-in-water {
+  0%   { transform: translate(-50%, calc(-100% + 18px)) rotate(0deg); opacity: 1; }
+  40%  { transform: translate(-50%, calc(-100% - 52px)) rotate(-25deg); opacity: 1; }
+  100% { transform: translate(-50%, 100%) rotate(-120deg); opacity: 0; }
+}
+
+/* ========================================================
+   Splash
+   ======================================================== */
+
+.splash {
+  position: absolute;
+  top: 72%;
+  left: 50%;
+  width: 180px;
+  height: 120px;
+  transform: translate(-50%, -20%) scale(0.3);
+  z-index: 4;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.6));
+}
+
+.splash .sprite-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+
+.splash.splashing { animation: splash 1s steps(10, end) forwards; }
+
+@keyframes splash {
+  0%   { transform: translate(-50%, -20%) scale(0.3); opacity: 0; }
+  30%  { transform: translate(-50%, -40%) scale(1.3); opacity: 1; }
+  100% { transform: translate(-50%, -20%) scale(1.8); opacity: 0; }
+}
+
+/* ========================================================
+   Answer orbs — floating TRUE/FALSE targets the frog tongues to.
+   One sits upper-left of center (↑ = TRUE), one upper-right (↓ = FALSE).
+   ======================================================== */
+
+/* Floating TRUE/FALSE flies stacked right of the frog. Each buzzes with a
+   subtle jittery animation and has a labeled key cap. The frog tongues them. */
+.answer-flies {
+  position: fixed;
+  /* Anchor to the frog's upper-body level and center the stack vertically
+     so both flies float ABOVE the waterline, flanking the frog's mouth. */
+  top: 60%;
+  transform: translateY(-50%);
+  left: calc(50% + 90px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.answer-fly {
+  position: relative;
+  width: 110px;
+  height: 70px;                        /* matches 44x28 aspect (~ 1.57) */
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  font-family: 'Press Start 2P', monospace;
+  transition: transform 0.1s ease;
+  animation: fly-buzz 0.6s ease-in-out infinite;
+  filter: drop-shadow(3px 3px 0 rgba(0,0,0,0.5));
+}
+
+.fly-true { animation-delay: 0s; }
+.fly-false { animation-delay: 0.3s; }
+
+.answer-fly:hover { transform: scale(1.08); animation-duration: 0.3s; }
+.answer-fly:active { transform: scale(0.95); }
+
+.fly-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+/* Each fly tints its body: TRUE goes green, FALSE goes red */
+.fly-true .fly-img  { filter: hue-rotate(90deg)  saturate(1.4); }
+.fly-false .fly-img { filter: hue-rotate(-90deg) saturate(1.4); }
+
+/* The TRUE/FALSE word overlay sits in the body panel of the fly.
+   Body panel is x=13-31 of 44 wide, y=14-17 of 28 tall → center ~50/55%. */
+.fly-text {
+  position: absolute;
+  top: 48%;
+  left: 30%;
+  width: 40%;
+  text-align: center;
+  color: var(--nes-white);
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  text-shadow:
+     1px  1px 0 var(--nes-black),
+    -1px -1px 0 var(--nes-black),
+     1px -1px 0 var(--nes-black),
+    -1px  1px 0 var(--nes-black);
+  z-index: 2;
+}
+
+/* Keyboard shortcut badge on the top-right */
+.fly-key {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  background: var(--nes-black);
+  color: var(--nes-yellow);
+  border: 2px solid var(--nes-white);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  box-shadow: 2px 2px 0 var(--nes-dark);
+  z-index: 3;
+  animation: none;        /* key cap doesn't buzz */
+}
+
+@keyframes fly-buzz {
+  0%   { transform: translate(0, 0)       rotate(-1deg); }
+  25%  { transform: translate(2px, -1px)  rotate(1deg); }
+  50%  { transform: translate(-1px, 1px)  rotate(-1.5deg); }
+  75%  { transform: translate(1px, 2px)   rotate(1.5deg); }
+  100% { transform: translate(0, 0)       rotate(-1deg); }
+}
+
+/* When grabbed by tongue — pop + flash */
+.answer-fly.grabbed {
+  animation: fly-grabbed 0.4s steps(4);
+}
+
+@keyframes fly-grabbed {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  25%      { transform: scale(1.4) rotate(-15deg); filter: brightness(2); }
+  50%      { transform: scale(1.1) rotate(10deg); }
+  75%      { transform: scale(1.3) rotate(-5deg); filter: brightness(1.5); }
+}
+
+.answer-flies.hidden-temporarily {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* ========================================================
+   Orb tongue — fires from the frog's mouth to the chosen orb.
+   Positioned absolutely in viewport; JS sets rotation + length inline.
+   ======================================================== */
+
+.orb-tongue {
+  position: fixed;
+  top: 72%;
+  left: 50vw;
+  width: 0;
+  height: 10px;
+  background: var(--nes-pink);
+  border-top: 2px solid var(--nes-red);
+  border-bottom: 2px solid var(--nes-red);
+  box-shadow: 0 0 0 2px var(--nes-black);
+  opacity: 0;
+  transform-origin: left center;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.orb-tongue::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  background: var(--nes-red);
+  border: 2px solid var(--nes-black);
+  border-radius: 50%;
+}
+
+.orb-tongue.firing {
+  animation: orb-tongue-fire 0.4s cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+@keyframes orb-tongue-fire {
+  0%   { width: 0; opacity: 0; }
+  20%  { opacity: 1; }
+  50%  { width: var(--tongue-length, 300px); opacity: 1; }
+  80%  { width: var(--tongue-length, 300px); opacity: 1; }
+  100% { width: 0; opacity: 0; }
+}
+
+@media (max-width: 600px) {
+  .answer-flies { left: calc(50% + 60px); gap: 8px; top: 58%; }
+  .answer-fly { width: 80px; height: 52px; }
+  .fly-text { font-size: 0.4rem; }
+  .fly-key { width: 18px; height: 18px; font-size: 0.55rem; top: -5px; right: -5px; }
+}
+
+/* ========================================================
+   Fact card — now a blocky arcade message box
+   ======================================================== */
+
+.fact-card {
+  position: absolute;
+  /* Pin near the top of the viewport so the card can grow downward with
+     the explanation without ever reaching the frog mid-hop. */
+  top: 5rem;
+  /* Left-align the card so its right edge leaves horizontal clearance for
+     the TRUE/FALSE flies that float at `left: calc(50% + 90px)`. The card
+     stops just before the fly column so the explanation never covers them. */
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(72vw, 480px);
+  max-height: calc(60vh - 6rem);
+  overflow-y: auto;
+  background: var(--nes-black);
+  color: var(--nes-white);
+  border: 4px solid var(--nes-white);
+  padding: 1.25rem 1.25rem 1.1rem;
+  box-shadow:
+    8px 8px 0 var(--nes-dark),
+    inset 0 0 0 4px var(--nes-black);
+  z-index: 20;
+  transition: opacity 0.3s ease;
+}
+
+.fact-card.hidden-temporarily {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Pixel-y notch pointer below the box */
+.fact-card::after {
+  content: "";
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24px;
+  height: 16px;
+  background: var(--nes-black);
+  border-left: 4px solid var(--nes-white);
+  border-right: 4px solid var(--nes-white);
+  box-shadow: 0 4px 0 var(--nes-white);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* Timer bar at the top of the fact card */
+.fact-timer {
+  width: 100%;
+  height: 8px;
+  background: var(--nes-dark);
+  border: 2px solid var(--nes-white);
+  margin: 0 0 0.8rem;
+  overflow: hidden;
+}
+
+.fact-timer-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--nes-cyan);
+  transition: width 0.1s linear, background 0.3s ease;
+}
+
+.fact-timer-fill.caution  { background: var(--nes-yellow); }
+.fact-timer-fill.danger   { background: var(--nes-orange); }
+.fact-timer-fill.critical {
+  background: var(--nes-red);
+  animation: fact-timer-pulse 0.3s steps(2) infinite;
+}
+
+@keyframes fact-timer-pulse {
+  0%, 100% { background: var(--nes-red); }
+  50%      { background: var(--nes-pink); }
+}
+
+.fact-text {
+  font-size: 0.78rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 1.1rem;
+  color: var(--nes-white);
+  letter-spacing: 1px;
+}
+
+.fact-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.fact-btn {
+  flex: 1;
+  max-width: 160px;
+  padding: 0.75rem 0.5rem;
+  font-size: 0.75rem;
+  font-family: 'Press Start 2P', monospace;
+  border: 3px solid var(--nes-black);
+  cursor: pointer;
+  transition: transform 0.05s linear;
+  letter-spacing: 2px;
+  color: var(--nes-black);
+}
+
+.true-btn {
+  background: var(--nes-lime);
+  box-shadow:
+    inset -4px -4px 0 var(--nes-green),
+    inset 4px 4px 0 var(--nes-white),
+    4px 4px 0 var(--nes-black);
+}
+
+.false-btn {
+  background: var(--nes-pink);
+  box-shadow:
+    inset -4px -4px 0 var(--nes-red),
+    inset 4px 4px 0 var(--nes-white),
+    4px 4px 0 var(--nes-black);
+}
+
+.fact-btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+}
+
+.fact-btn:active:not(:disabled),
+.true-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow:
+    inset 4px 4px 0 var(--nes-green),
+    inset -4px -4px 0 var(--nes-white),
+    0 0 0 var(--nes-black);
+}
+
+.false-btn:active:not(:disabled) {
+  box-shadow:
+    inset 4px 4px 0 var(--nes-red),
+    inset -4px -4px 0 var(--nes-white),
+    0 0 0 var(--nes-black);
+}
+
+.fact-btn:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+/* ========================================================
+   Feedback
+   ======================================================== */
+
+.feedback {
+  margin-top: 0.9rem;
+  padding: 0.7rem 0.8rem;
+  font-size: 0.65rem;
+  line-height: 1.6;
+  text-align: center;
+  letter-spacing: 1px;
+  border: 3px solid;
+}
+
+.feedback.correct {
+  background: #004400;
+  color: var(--nes-lime);
+  border-color: var(--nes-lime);
+}
+
+.feedback.wrong {
+  background: #440000;
+  color: var(--nes-pink);
+  border-color: var(--nes-red);
+}
+
+.feedback-verdict {
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+
+/* ========================================================
+   Game over
+   ======================================================== */
+
+.game-over {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 13, 13, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  animation: fade-in 0.3s steps(4) forwards;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.game-over-card {
+  background: var(--nes-black);
+  border: 4px solid var(--nes-white);
+  padding: 2rem 2.5rem 1.75rem;
+  text-align: center;
+  box-shadow: 10px 10px 0 var(--nes-red);
+  min-width: 320px;
+  animation: pop-in 0.4s steps(6) forwards;
+}
+
+@keyframes pop-in {
+  from { transform: scale(0.4); }
+  to   { transform: scale(1); }
+}
+
+.game-over-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1.25rem;
+  color: var(--nes-red);
+  letter-spacing: 3px;
+  text-shadow: 3px 3px 0 var(--nes-yellow);
+}
+
+.game-over-score {
+  font-size: 0.75rem;
+  color: var(--nes-white);
+  margin-bottom: 0.75rem;
+  letter-spacing: 2px;
+}
+
+.game-over-score strong {
+  color: var(--nes-yellow);
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.new-best {
+  font-size: 0.7rem;
+  color: var(--nes-yellow);
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  animation: blink 0.6s steps(2) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0.3; }
+}
+
+.restart-btn {
+  margin-top: 1rem;
+  background: var(--nes-yellow);
+  border: 3px solid var(--nes-black);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.75rem;
+  cursor: pointer;
+  color: var(--nes-black);
+  letter-spacing: 2px;
+  font-family: 'Press Start 2P', monospace;
+  box-shadow:
+    inset -4px -4px 0 var(--nes-orange),
+    inset 4px 4px 0 var(--nes-white),
+    4px 4px 0 var(--nes-black);
+  transition: transform 0.05s linear;
+}
+
+.restart-btn:hover {
+  transform: translate(-1px, -1px);
+}
+
+.restart-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    inset 4px 4px 0 var(--nes-orange),
+    inset -4px -4px 0 var(--nes-white),
+    0 0 0 var(--nes-black);
+}
+
+/* ========================================================
+   Frog picker modal — in-game character chooser
+   ======================================================== */
+
+.frog-picker {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 13, 13, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 55;
+  animation: fade-in 0.25s steps(4) forwards;
+  padding: 1rem;
+}
+
+.frog-picker-card {
+  background: var(--nes-black);
+  border: 4px solid var(--nes-white);
+  box-shadow: 10px 10px 0 var(--nes-red);
+  padding: 1.5rem 1.5rem 1.25rem;
+  width: min(760px, 95vw);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  animation: pop-in 0.3s steps(4) forwards;
+}
+
+.frog-picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 3px solid var(--nes-cyan);
+}
+
+.frog-picker-title {
+  font-size: 1rem;
+  color: var(--nes-yellow);
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 0 var(--nes-red);
+}
+
+.picker-close {
+  background: var(--nes-black);
+  border: 2px solid var(--nes-white);
+  color: var(--nes-red);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 3px 3px 0 var(--nes-dark);
+  transition: transform 0.05s linear;
+}
+
+.picker-close:hover { transform: translate(-1px, -1px); color: var(--nes-yellow); }
+.picker-close:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--nes-dark); }
+
+.frog-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.75rem;
+  overflow-y: auto;
+  padding: 0.25rem 0.25rem 0.5rem;
+  flex: 1;
+}
+
+.frog-pick {
+  background: var(--nes-navy);
+  border: 3px solid var(--nes-dark);
+  padding: 0.5rem 0.5rem 0.4rem;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.05s linear;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.frog-pick:hover {
+  border-color: var(--nes-white);
+  transform: translate(-1px, -1px);
+}
+
+.frog-pick:active {
+  transform: translate(2px, 2px);
+}
+
+.frog-pick.selected {
+  border-color: var(--nes-yellow);
+  background: #1a2a4a;
+  box-shadow: inset 0 0 0 2px var(--nes-red);
+}
+
+.frog-pick.selected::after {
+  content: "✓";
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  color: var(--nes-yellow);
+  font-size: 0.7rem;
+}
+
+.frog-pick-img {
+  width: 72px;
+  height: 72px;
+  display: block;
+  margin: 0 auto 0.4rem;
+  image-rendering: pixelated;
+}
+
+.frog-pick-name {
+  font-size: 0.4rem;
+  color: var(--nes-white);
+  letter-spacing: 1px;
+  min-height: 1.2em;
+  line-height: 1.3;
+}
+
+.frog-pick.selected .frog-pick-name {
+  color: var(--nes-yellow);
+}
+
+.frog-picker-footer {
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 2px solid var(--nes-dark);
+}
+
+.picker-link {
+  color: var(--nes-cyan);
+  text-decoration: none;
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  padding: 0.4rem 0.75rem;
+  border: 2px solid var(--nes-cyan);
+  display: inline-block;
+}
+
+.picker-link:hover {
+  background: var(--nes-cyan);
+  color: var(--nes-black);
+}
+
+@media (max-width: 600px) {
+  .frog-picker-card { padding: 1rem; }
+  .frog-picker-title { font-size: 0.75rem; }
+  .frog-picker-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 0.5rem; }
+  .frog-pick-img { width: 56px; height: 56px; }
+  .frog-pick-name { font-size: 0.35rem; }
+}
+
+/* ========================================================
+   Footer
+   ======================================================== */
+
+.credit {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: var(--nes-white);
+  z-index: 10;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 0 var(--nes-black);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Make the arrow glyphs bigger and brighter than the surrounding text */
+.legend-arrow {
+  font-size: 1.4rem;
+  color: var(--nes-yellow);
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  text-shadow: 2px 2px 0 var(--nes-black);
+}
+
+/* ========================================================
+   Start splash — shown until first user gesture
+   (needed because browsers block audio before interaction)
+   ======================================================== */
+
+.start-splash {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 13, 13, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  cursor: pointer;
+  animation: fade-in 0.3s steps(4) forwards;
+}
+
+.start-splash.dismissed {
+  animation: fade-out 0.3s steps(4) forwards;
+  pointer-events: none;
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+.start-splash-inner {
+  text-align: center;
+  padding: 2rem 2.5rem;
+  border: 4px solid var(--nes-white);
+  background: var(--nes-black);
+  box-shadow: 10px 10px 0 var(--nes-red);
+}
+
+.start-splash-title {
+  font-size: 1.8rem;
+  color: var(--nes-yellow);
+  letter-spacing: 3px;
+  text-shadow:
+    4px 4px 0 var(--nes-red),
+    8px 8px 0 var(--nes-navy);
+  margin-bottom: 1.5rem;
+}
+
+.rules {
+  margin-bottom: 1.5rem;
+  text-align: left;
+  display: inline-block;
+}
+
+.rules-heading {
+  font-size: 0.75rem;
+  color: var(--nes-cyan);
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--nes-cyan);
+}
+
+.rules-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rules-list li {
+  font-size: 0.6rem;
+  color: var(--nes-white);
+  letter-spacing: 1px;
+  line-height: 2;
+  padding: 0.2rem 0;
+}
+
+.start-splash-prompt {
+  font-size: 1rem;
+  color: var(--nes-yellow);
+  letter-spacing: 3px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.6rem;
+  animation: blink 0.6s steps(2) infinite;
+}
+
+/* Theme picker on the splash screen — click a tile to reload with the theme */
+.theme-picker {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0 0 1.25rem;
+  flex-wrap: wrap;
+}
+
+.theme-tile {
+  background: var(--nes-black);
+  color: var(--nes-white);
+  border: 3px solid var(--nes-white);
+  padding: 0.5rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.55rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--nes-dark);
+  transition: transform 0.05s linear;
+  min-width: 70px;
+}
+
+.theme-tile:hover { transform: translate(-1px, -1px); color: var(--nes-yellow); }
+.theme-tile:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--nes-dark); }
+
+.theme-tile.selected {
+  border-color: var(--nes-yellow);
+  color: var(--nes-yellow);
+  box-shadow: 3px 3px 0 var(--nes-red);
+}
+
+/* Smaller theme picker variant used inside the GAME OVER modal */
+.game-over-theme {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 2px dashed var(--nes-dark);
+}
+.game-over-theme-label {
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  color: var(--nes-dark);
+  margin: 0 0 0.6rem;
+  text-align: center;
+}
+.theme-picker-small {
+  gap: 0.4rem;
+  margin: 0;
+}
+.theme-picker-small .theme-tile {
+  padding: 0.35rem 0.6rem;
+  font-size: 0.5rem;
+  letter-spacing: 1.5px;
+  min-width: 56px;
+  border-width: 2px;
+  box-shadow: 2px 2px 0 var(--nes-dark);
+}
+.theme-picker-small .theme-tile.selected {
+  box-shadow: 2px 2px 0 var(--nes-red);
+}
+
+/* In emoji mode all frogs look identical (🐸), so the picker is pointless */
+[data-theme="emoji"] .variants-link {
+  display: none;
+}
+
+[data-theme="emoji"] .theme-tile {
+  border-radius: 999px;
+  border: 2px solid var(--nes-dark);
+  box-shadow: 0 3px 10px rgba(45,49,66,0.15);
+  background: #fff;
+  color: var(--nes-black);
+}
+[data-theme="emoji"] .theme-tile.selected {
+  border-color: var(--nes-blue);
+  color: var(--nes-blue);
+  box-shadow: 0 4px 12px rgba(94, 139, 255, 0.3);
+}
+
+.start-splash-sub {
+  font-size: 0.55rem;
+  color: var(--nes-cyan);
+  letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+  .start-splash-title { font-size: 1.2rem; margin-bottom: 1rem; }
+  .start-splash-prompt { font-size: 0.75rem; }
+  .start-splash-sub { font-size: 0.5rem; }
+  .start-splash-inner { padding: 1.5rem 1rem; max-width: 92vw; }
+  .rules-heading { font-size: 0.6rem; margin-bottom: 0.75rem; }
+  .rules-list li { font-size: 0.5rem; line-height: 1.8; }
+  .rules { margin-bottom: 1rem; }
+}
+
+/* ========================================================
+   BOSS FIGHT SCENE
+   ======================================================== */
+
+.boss-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow: hidden;
+  animation: boss-fade-in 0.5s steps(5) forwards;
+}
+
+@keyframes boss-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.boss-scene.leaving {
+  animation: boss-fade-out 0.5s steps(5) forwards;
+}
+
+@keyframes boss-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* Dark stormy sky */
+.storm-sky {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      #0a0a1a 0%, #0a0a1a 30%,
+      #1a1a2e 30%, #1a1a2e 60%,
+      #0e1420 60%, #0e1420 100%);
+}
+
+/* Rain streaks — thin diagonal lines falling */
+.rain {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    100deg,
+    transparent 0,
+    transparent 8px,
+    rgba(180, 220, 255, 0.3) 8px,
+    rgba(180, 220, 255, 0.3) 9px,
+    transparent 9px,
+    transparent 20px
+  );
+  background-size: 100% 60px;
+  animation: rain-fall 0.4s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes rain-fall {
+  from { background-position: 0 0; }
+  to   { background-position: -15px 60px; }
+}
+
+/* Lightning flash — full screen white, triggered by JS adding .flash */
+.lightning {
+  position: absolute;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.lightning.flash {
+  animation: lightning-flash 0.4s ease-out;
+}
+
+@keyframes lightning-flash {
+  0%   { opacity: 0; }
+  10%  { opacity: 0.9; }
+  20%  { opacity: 0.2; }
+  30%  { opacity: 0.95; }
+  100% { opacity: 0; }
+}
+
+/* ====== Boss intro banner ====== */
+.boss-intro {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+  animation: boss-intro-pop 0.6s steps(6) forwards;
+}
+
+.boss-intro.leaving { opacity: 0; }
+
+@keyframes boss-intro-pop {
+  from { transform: translateX(-50%) scale(0.3); opacity: 0; }
+  to   { transform: translateX(-50%) scale(1);   opacity: 1; }
+}
+
+.boss-intro-text {
+  font-size: 2rem;
+  color: var(--nes-yellow);
+  letter-spacing: 4px;
+  text-shadow:
+    4px 4px 0 var(--nes-red),
+    8px 8px 0 var(--nes-black);
+  margin-bottom: 1rem;
+  animation: blink 0.4s steps(2) infinite;
+}
+
+/* Boss name — the hero of the intro, big chunky letters */
+.boss-name {
+  font-size: 3rem;
+  color: var(--nes-red);
+  letter-spacing: 6px;
+  text-shadow:
+    5px 5px 0 var(--nes-yellow),
+    10px 10px 0 var(--nes-black);
+  margin: 1rem 0 0.3rem;
+  line-height: 1;
+  animation: boss-name-slam 0.45s steps(5) forwards;
+}
+
+.boss-name-sub {
+  font-size: 0.9rem;
+  color: var(--nes-yellow);
+  letter-spacing: 4px;
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 0 var(--nes-black);
+  animation: boss-name-slam 0.45s steps(5) 0.15s both;
+}
+
+@keyframes boss-name-slam {
+  from { transform: scale(0.3); opacity: 0; }
+  60%  { transform: scale(1.2); opacity: 1; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.boss-intro-sub {
+  font-size: 0.8rem;
+  color: var(--nes-white);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 var(--nes-black);
+}
+
+/* ====== Arena layout ======
+   Fighters are centered with a fixed gap so tongues can actually meet
+   in the middle. Each fighter is a vertical stack with the sprite sitting
+   on a chunky pedestal; the tongue is positioned to extend from the
+   mouth exactly to the opposite sprite. */
+.boss-arena {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 60px;              /* fixed gap between the two fighters' edges */
+  z-index: 2;
+}
+
+.boss-fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  width: 180px;           /* fixed-width columns so the layout is predictable */
+}
+
+/* The sprite + tongue + pedestal are stacked. The sprite is absolutely
+   positioned above the pedestal and the tongue reaches outward from
+   the sprite's mouth. */
+.fighter-stack {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Pedestals — chunky stone blocks the frogs stand on */
+.pedestal {
+  width: 140px;
+  height: 60px;
+  background: #4a3828;
+  border: 4px solid var(--nes-black);
+  box-shadow:
+    inset -6px -6px 0 #2a1e14,
+    inset 6px 6px 0 #6a4e38,
+    6px 6px 0 rgba(0,0,0,0.5);
+  position: relative;
+}
+
+/* Little brick texture lines */
+.pedestal::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  right: 10px;
+  height: 4px;
+  background:
+    linear-gradient(to right,
+      transparent 0, transparent 30px,
+      #2a1e14 30px, #2a1e14 34px,
+      transparent 34px, transparent 70px,
+      #2a1e14 70px, #2a1e14 74px,
+      transparent 74px);
+}
+
+.fighter-label {
+  font-size: 0.6rem;
+  color: var(--nes-cyan);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 var(--nes-black);
+}
+
+.boss-fighter-enemy .fighter-label {
+  color: var(--nes-red);
+}
+
+/* Hit counters — 3 dots, filled as hits land */
+.hit-counter {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.hit-dot {
+  width: 14px;
+  height: 14px;
+  background: var(--nes-black);
+  border: 2px solid var(--nes-white);
+  box-shadow: 2px 2px 0 var(--nes-dark);
+}
+
+.hit-dot.filled {
+  background: var(--nes-yellow);
+  animation: hit-dot-pop 0.3s steps(3);
+}
+
+.boss-fighter-enemy .hit-dot.filled {
+  background: var(--nes-red);
+}
+
+@keyframes hit-dot-pop {
+  0%   { transform: scale(0.4); }
+  50%  { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+/* Timing meter */
+.meter {
+  width: 120px;
+  height: 14px;
+  background: var(--nes-black);
+  border: 2px solid var(--nes-white);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 2px 2px 0 var(--nes-dark);
+}
+
+.meter-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--nes-lime);
+  /* No transition: the fill width must track the game state exactly, or the
+     visible bar lags behind the logical value and strikes feel mistimed. */
+}
+
+.meter-fill-boss {
+  background: var(--nes-red);
+}
+
+/* The "strike zone" — highlighted band on the meter. Position/width are set
+   inline by boss.js from STRIKE_ZONE_START/END so the visible band always
+   matches the logical hit window. */
+.meter-zone {
+  position: absolute;
+  top: 0;
+  left: 0;    /* overridden inline */
+  width: 0;   /* overridden inline */
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(252, 216, 0, 0.6) 0,
+    rgba(252, 216, 0, 0.6) 4px,
+    rgba(252, 216, 0, 0.2) 4px,
+    rgba(252, 216, 0, 0.2) 8px
+  );
+  border-left: 2px solid var(--nes-yellow);
+  border-right: 2px solid var(--nes-yellow);
+  pointer-events: none;
+}
+
+/* Fighter sprites — sit directly on top of the pedestal */
+.fighter-sprite {
+  width: 110px;
+  height: 110px;
+  line-height: 1;
+  filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.7));
+  image-rendering: pixelated;
+  transition: transform 0.1s ease;
+  margin-bottom: -14px;   /* overlap the pedestal slightly for grounding */
+  position: relative;
+  z-index: 2;
+}
+
+.fighter-sprite .sprite-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+  transform-origin: bottom center;
+  transition: transform 0.1s ease-out;
+}
+
+/* Player ducking in boss fight — squashes the sprite so the boss's horizontal
+   tongue sails over it. */
+.fighter-sprite.ducking .sprite-img {
+  transform: scaleY(0.55) scaleX(1.2);
+}
+
+/* DODGE bubble that pops above the player when they successfully duck under a tongue */
+.dodge-bubble {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--nes-cyan);
+  color: var(--nes-black);
+  border: 3px solid var(--nes-black);
+  padding: 6px 12px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  box-shadow: 3px 3px 0 var(--nes-black);
+  z-index: 8;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.dodge-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid var(--nes-black);
+}
+
+.dodge-bubble.showing {
+  animation: dodge-pop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes dodge-pop {
+  0%   { transform: translateX(-50%) scale(0.1); opacity: 0; }
+  20%  { transform: translateX(-50%) scale(1.3); opacity: 1; }
+  40%  { transform: translateX(-50%) scale(1);   opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateX(-50%) scale(1) translateY(-30px); opacity: 0; }
+}
+
+/* Boss sprite is flipped to face the player */
+.boss-sprite {
+  transform: scaleX(-1);
+  filter: drop-shadow(-4px 4px 0 rgba(0,0,0,0.7));
+}
+
+/* Hit reaction — sprite flings backward and tilts, as if clobbered */
+.fighter-sprite.hit {
+  animation: sprite-hit 0.55s steps(5);
+}
+
+@keyframes sprite-hit {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  15%      { transform: translateX(-18px) rotate(-15deg); filter: brightness(2.8) drop-shadow(4px 4px 0 rgba(255,0,0,0.9)); }
+  40%      { transform: translateX(-24px) rotate(-20deg); }
+  70%      { transform: translateX(-10px) rotate(-5deg); }
+}
+
+/* Dramatic entrance — boss leaps in from off-screen right, arcs down to his pedestal. */
+.boss-sprite.entering {
+  animation: boss-entrance 1.3s cubic-bezier(0.33, 0, 0.67, 1) forwards;
+}
+
+@keyframes boss-entrance {
+  0%   { transform: scaleX(-1) translate(800px, -300px) rotate(540deg); opacity: 0; }
+  10%  { opacity: 1; }
+  45%  { transform: scaleX(-1) translate(300px, -400px) rotate(300deg); }
+  75%  { transform: scaleX(-1) translate(50px, -100px) rotate(60deg); }
+  88%  { transform: scaleX(-1) translate(0, 20px) rotate(0); }
+  95%  { transform: scaleX(-1) translate(0, -8px); }
+  100% { transform: scaleX(-1) translate(0, 0); }
+}
+
+.boss-sprite.hit {
+  animation: boss-sprite-hit 0.55s steps(5);
+}
+
+@keyframes boss-sprite-hit {
+  0%, 100% { transform: scaleX(-1) translateX(0) rotate(0); }
+  15%      { transform: scaleX(-1) translateX(-18px) rotate(15deg); filter: brightness(2.8) drop-shadow(-4px 4px 0 rgba(255,255,0,0.9)); }
+  40%      { transform: scaleX(-1) translateX(-24px) rotate(20deg); }
+  70%      { transform: scaleX(-1) translateX(-10px) rotate(5deg); }
+}
+
+/* ====== Dizzy stars — pop above the sprite when it takes a hit ====== */
+.dizzy-stars {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  font-size: 36px;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.6));
+}
+
+.dizzy-stars.showing {
+  animation: dizzy-stars 0.6s steps(6) forwards;
+}
+
+@keyframes dizzy-stars {
+  0%   { transform: translateX(-50%) scale(0) rotate(0);    opacity: 0; }
+  30%  { transform: translateX(-50%) scale(1.3) rotate(120deg); opacity: 1; }
+  70%  { transform: translateX(-50%) scale(1.1) rotate(240deg); opacity: 1; }
+  100% { transform: translateX(-50%) scale(0.9) rotate(360deg); opacity: 0; }
+}
+
+/* ====== Explosion — chunky pixel particles bursting outward on knockout ====== */
+.explosion {
+  position: absolute;
+  top: 20px;              /* roughly centered on the sprite */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;             /* zero-size container; particles are positioned relative to this */
+  height: 1px;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.explosion.active {
+  animation: explosion-flash 0.6s steps(4);
+}
+
+@keyframes explosion-flash {
+  0%, 100% { filter: none; }
+  20%      { filter: brightness(3); }
+}
+
+/* Each particle is a chunky coloured square flung outward */
+.particle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  border: 2px solid var(--nes-black);
+}
+
+.particle.p-yellow { background: var(--nes-yellow); }
+.particle.p-orange { background: var(--nes-orange); }
+.particle.p-red    { background: var(--nes-red); }
+.particle.p-white  { background: var(--nes-white); }
+.particle.p-pink   { background: var(--nes-pink); }
+
+.particle.flying {
+  animation: particle-fly 0.9s steps(10) forwards;
+}
+
+@keyframes particle-fly {
+  0%   { transform: translate(var(--sx, 0), var(--sy, 0)) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translate(var(--dx, 50px), var(--dy, -80px)) rotate(540deg) scale(0.3); opacity: 0; }
+}
+
+/* While knocked out, hide the sprite */
+.fighter-sprite.exploded {
+  opacity: 0;
+  transition: opacity 0.1s linear;
+}
+
+/* ====== Tongues ======
+   Positioned on the mouth of the sprite (horizontally at its edge, vertically
+   roughly at mouth height), extending outward across the arena gap into the
+   opponent. The target distance = half the sprite width (to clear the edge)
+   + full gap + half the opponent sprite width (to reach their mouth).
+   Fighter is 180px wide, gap is 60px, so tongue needs ~220-240px to land. */
+.tongue {
+  position: absolute;
+  /* Sprite is 110px, pedestal is 60px → stack ~170px tall. Sprite mouth is at
+     row 5/16 of 110px ≈ 34px from top → ~20% from top of the stack. */
+  top: 20%;
+  height: 12px;
+  background: var(--nes-pink);
+  border-top: 2px solid var(--nes-red);
+  border-bottom: 2px solid var(--nes-red);
+  width: 0;
+  opacity: 0;
+  z-index: 4;
+  box-shadow: 0 0 0 2px var(--nes-black);
+  transition: width 0.18s cubic-bezier(0.5, 0, 0.5, 1),
+              opacity 0.05s linear;
+}
+
+/* Tongue tip — chunky pixel ball at the end */
+.tongue::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  background: var(--nes-red);
+  border: 2px solid var(--nes-black);
+  border-radius: 50%;
+}
+
+/* Player's tongue shoots right, anchored just inside the right edge of sprite */
+.tongue-player {
+  left: 65%;              /* starts at the right side of the sprite's mouth */
+  transform-origin: left center;
+}
+
+/* Boss's tongue shoots left, anchored just inside the left edge of sprite */
+.tongue-boss {
+  right: 65%;             /* starts at the left side of the sprite's mouth */
+  transform-origin: right center;
+}
+
+/* Boss tongue tip is on the LEFT side when extended, since it reaches left */
+.tongue-boss::after {
+  right: auto;
+  left: -8px;
+}
+
+/* FULL extension: reach into opponent's face. 180px fighter width + 60px gap
+   means the tongue needs to cross ~220px to land on the opponent's mouth.
+   We go a touch past so the hit visually connects. */
+.tongue.firing {
+  opacity: 1;
+  width: 240px;
+}
+
+/* MISS extension: tongue goes out a bit but falls short — visual feedback
+   that your timing was off. */
+.tongue.firing.missed {
+  width: 110px;
+}
+
+/* ====== Boss result message ====== */
+.boss-instruction {
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.8rem;
+  color: var(--nes-white);
+  letter-spacing: 2px;
+  text-align: center;
+  text-shadow: 2px 2px 0 var(--nes-black);
+  z-index: 3;
+}
+
+.boss-instruction strong {
+  color: var(--nes-yellow);
+}
+
+/* Secondary hint line below the primary STRIKE instruction */
+.boss-instruction-sub {
+  margin-top: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--nes-lime);
+  letter-spacing: 2px;
+}
+
+.boss-result {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  text-align: center;
+  animation: boss-intro-pop 0.5s steps(5) forwards;
+}
+
+.boss-result-text {
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  padding: 1.5rem 2rem;
+  border: 4px solid var(--nes-white);
+  background: var(--nes-black);
+  box-shadow: 10px 10px 0 var(--nes-red);
+}
+
+.boss-result-text.victory {
+  color: var(--nes-yellow);
+  text-shadow: 3px 3px 0 var(--nes-red);
+}
+
+.boss-result-text.defeat {
+  color: var(--nes-red);
+  text-shadow: 3px 3px 0 var(--nes-yellow);
+}
+
+/* Screen shake for impactful hits */
+.boss-scene.shaking {
+  animation: screen-shake 0.3s steps(6);
+}
+
+@keyframes screen-shake {
+  0%, 100% { transform: translate(0, 0); }
+  20%      { transform: translate(-8px, 4px); }
+  40%      { transform: translate(6px, -6px); }
+  60%      { transform: translate(-6px, -4px); }
+  80%      { transform: translate(4px, 6px); }
+}
+
+@media (max-width: 600px) {
+  .boss-intro-text { font-size: 1.2rem; }
+  .boss-intro-sub { font-size: 0.55rem; }
+  .fighter-sprite { width: 80px; height: 80px; }
+  .meter { width: 90px; height: 10px; }
+  .hit-dot { width: 10px; height: 10px; }
+  .boss-instruction { font-size: 0.55rem; bottom: 10%; }
+  .boss-result-text { font-size: 1.4rem; padding: 1rem 1.25rem; }
+  .boss-arena { padding: 0 5%; }
+}
+
+/* ========================================================
+   Combo counter — appears when streak > 1
+   ======================================================== */
+
+.combo {
+  position: fixed;
+  top: 5.5rem;
+  left: 1.5rem;
+  z-index: 11;
+  color: var(--nes-yellow);
+  text-shadow:
+    3px 3px 0 var(--nes-red),
+    6px 6px 0 var(--nes-black);
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  pointer-events: none;
+  animation: combo-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.combo-x { font-size: 0.9rem; color: var(--nes-cyan); }
+.combo-label { font-size: 0.5rem; color: var(--nes-cyan); margin-left: 0.3rem; }
+
+.combo.pulsing { animation: combo-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+@keyframes combo-pop {
+  0%   { transform: scale(0.5); }
+  60%  { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  .combo { top: 4rem; left: 0.6rem; font-size: 1rem; }
+  .combo-x { font-size: 0.65rem; }
+  .combo-label { font-size: 0.4rem; }
+}
+
+/* ========================================================
+   Konami unlock banner
+   ======================================================== */
+
+.konami-banner {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: konami-sweep 3s ease-out forwards;
+}
+
+.konami-flash {
+  position: absolute;
+  inset: 0;
+  background: var(--nes-yellow);
+  animation: konami-flash 3s steps(10) forwards;
+}
+
+@keyframes konami-flash {
+  0%   { opacity: 0; }
+  5%   { opacity: 0.9; }
+  15%  { opacity: 0.3; }
+  25%  { opacity: 0.8; }
+  40%  { opacity: 0.2; }
+  60%  { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.konami-text {
+  position: relative;
+  text-align: center;
+  animation: konami-text-pop 3s ease-out forwards;
+}
+
+@keyframes konami-text-pop {
+  0%   { transform: scale(0.1); opacity: 0; }
+  20%  { transform: scale(1.3); opacity: 1; }
+  30%  { transform: scale(1);   opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: scale(1);   opacity: 0; }
+}
+
+@keyframes konami-sweep {
+  0%, 95% { opacity: 1; }
+  100%    { opacity: 0; }
+}
+
+.konami-title {
+  font-size: 2.2rem;
+  color: var(--nes-red);
+  letter-spacing: 6px;
+  text-shadow:
+    4px 4px 0 var(--nes-white),
+    8px 8px 0 var(--nes-black);
+  margin-bottom: 1rem;
+}
+
+.konami-sub {
+  font-size: 1.4rem;
+  color: var(--nes-yellow);
+  letter-spacing: 4px;
+  text-shadow: 3px 3px 0 var(--nes-black);
+}
+
+/* ========================================================
+   Ambient life — fish jumps, dragonflies, UFO
+   ======================================================== */
+
+/* Fish arc up out of the water and back down */
+.ambient-fish {
+  position: absolute;
+  top: 72%;
+  width: 40px;
+  height: 24px;
+  z-index: 1;
+  pointer-events: none;
+  image-rendering: pixelated;
+  animation: fish-jump 2.2s cubic-bezier(0.3, 0, 0.7, 1) forwards;
+  transform: translate(-50%, 0);
+}
+
+.ambient-fish img { width: 100%; height: 100%; image-rendering: pixelated; }
+
+.ambient-fish.flipped img { transform: scaleX(-1); }
+
+@keyframes fish-jump {
+  0%   { transform: translate(-50%, 20px) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  40%  { transform: translate(-30%, -140px) rotate(-25deg); }
+  50%  { transform: translate(-20%, -170px) rotate(0deg); }
+  60%  { transform: translate(-10%, -140px) rotate(25deg); }
+  90%  { opacity: 1; }
+  100% { transform: translate(10%, 30px) rotate(60deg); opacity: 0; }
+}
+
+/* Bugs / dragonflies drifting across */
+.ambient-bug {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  image-rendering: pixelated;
+}
+
+.ambient-bug.dragonfly {
+  width: 32px;
+  height: 20px;
+  left: -40px;
+  animation: bug-fly linear forwards;
+}
+
+.ambient-bug.dragonfly img {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  animation: wing-flap 0.1s steps(2) infinite;
+}
+
+.ambient-bug.bug {
+  width: 8px;
+  height: 8px;
+  background: var(--nes-black);
+  border-radius: 50%;
+  left: -20px;
+  animation: bug-fly-wobble linear forwards;
+}
+
+.ambient-bug.leftward {
+  left: auto;
+  right: -40px;
+}
+
+.ambient-bug.leftward img { transform: scaleX(-1); }
+
+@keyframes bug-fly {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(100vw + 60px)); }
+}
+
+.ambient-bug.leftward {
+  animation-name: bug-fly-left;
+}
+
+@keyframes bug-fly-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-100vw - 60px)); }
+}
+
+@keyframes bug-fly-wobble {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(25vw, -8px); }
+  50%  { transform: translate(50vw, 6px); }
+  75%  { transform: translate(75vw, -4px); }
+  100% { transform: translate(calc(100vw + 20px), 0); }
+}
+
+@keyframes wing-flap {
+  0%, 100% { transform: scaleY(1); }
+  50%      { transform: scaleY(0.6); }
+}
+
+/* UFO sweeps across the sky with abducted frog */
+.ambient-ufo {
+  position: absolute;
+  top: 8%;
+  left: -200px;
+  width: 180px;
+  height: 135px;
+  z-index: 3;
+  pointer-events: none;
+  image-rendering: pixelated;
+  animation: ufo-fly 6.5s linear forwards;
+}
+
+.ambient-ufo img { width: 100%; height: 100%; image-rendering: pixelated; }
+
+@keyframes ufo-fly {
+  0%   { transform: translateX(0) translateY(0); }
+  20%  { transform: translateX(25vw) translateY(-20px); }
+  50%  { transform: translateX(50vw) translateY(15px); }
+  80%  { transform: translateX(75vw) translateY(-10px); }
+  100% { transform: translateX(calc(100vw + 200px)) translateY(0); }
+}
+
+/* ========================================================
+   Utility
+   ======================================================== */
+
+.hidden { display: none !important; }
+
+/* ========================================================
+   Mobile
+   ======================================================== */
+
+@media (max-width: 600px) {
+  .title { font-size: 1.1rem; letter-spacing: 3px; top: 0.6rem; }
+  .lilypad { width: 110px; height: 36px; }
+  .frog { width: 64px; height: 64px; }
+  /* Mobile track height matches frog-feet + lilypad-height geometry */
+  .track { height: 54px; }
+  .splash { width: 130px; height: 90px; }
+  .fact-card { padding: 1rem 0.75rem 0.9rem; }
+  .fact-text { font-size: 0.65rem; }
+  .fact-btn { font-size: 0.6rem; padding: 0.65rem 0.4rem; }
+  .hud { padding: 0.6rem; gap: 0.4rem; }
+  .hud-item, .lives-wrap { padding: 0.4rem 0.5rem; min-width: 54px; }
+  .hud-label { font-size: 0.45rem; }
+  .hud-value { font-size: 0.75rem; }
+  .lives { font-size: 1rem; gap: 0.25rem; }
+  .lives-wrap { min-width: 90px; }
+  .power-bar { width: 115px; height: 12px; }
+  .credit { font-size: 0.65rem; }
+  .legend-arrow { font-size: 1.1rem; }
+}

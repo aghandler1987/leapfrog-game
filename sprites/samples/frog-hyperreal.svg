@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Hyper-realistic SVG frog — pushed hard with layered gradients, filters,
+     patterns, and anatomical detail. Rendered at 400x400 for high detail. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <!-- ========== Gradients ========== -->
+    <!-- Main dorsal (back) — bright ridge highlight down the center -->
+    <radialGradient id="dorsal" cx="50%" cy="25%" r="80%">
+      <stop offset="0%"   stop-color="#8ca644"/>
+      <stop offset="30%"  stop-color="#6b8832"/>
+      <stop offset="65%"  stop-color="#4a661e"/>
+      <stop offset="100%" stop-color="#273812"/>
+    </radialGradient>
+
+    <!-- Ventral (belly) — pale cream with yellow undertone -->
+    <radialGradient id="belly" cx="50%" cy="35%" r="80%">
+      <stop offset="0%"   stop-color="#fff5c8"/>
+      <stop offset="60%"  stop-color="#e8d898"/>
+      <stop offset="100%" stop-color="#a89654"/>
+    </radialGradient>
+
+    <!-- Flank gradient (side blending back-to-belly) -->
+    <linearGradient id="flank" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%"   stop-color="#4a661e"/>
+      <stop offset="40%"  stop-color="#6b7a3a"/>
+      <stop offset="80%"  stop-color="#b8a870"/>
+      <stop offset="100%" stop-color="#e8d898"/>
+    </linearGradient>
+
+    <!-- Limb (muscular leg) shading -->
+    <radialGradient id="limb" cx="40%" cy="30%" r="80%">
+      <stop offset="0%"   stop-color="#7a8e3c"/>
+      <stop offset="50%"  stop-color="#4a661e"/>
+      <stop offset="100%" stop-color="#1a2408"/>
+    </radialGradient>
+
+    <!-- Toe webbing (translucent membrane) -->
+    <linearGradient id="webbing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"  stop-color="#8c9e4a" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#4a661e" stop-opacity="0.65"/>
+    </linearGradient>
+
+    <!-- Eye iris — golden with concentric detail -->
+    <radialGradient id="iris" cx="50%" cy="50%" r="55%">
+      <stop offset="0%"   stop-color="#ffd04a"/>
+      <stop offset="35%"  stop-color="#d4982a"/>
+      <stop offset="70%"  stop-color="#8a5a14"/>
+      <stop offset="100%" stop-color="#2c1a06"/>
+    </radialGradient>
+
+    <!-- Eye socket shadow -->
+    <radialGradient id="socket" cx="50%" cy="50%" r="60%">
+      <stop offset="0%"   stop-color="#3a4a1a" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#1a2408" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Moisture sheen (used for glistening skin highlights) -->
+    <radialGradient id="sheen" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="60%"  stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Ground shadow -->
+    <radialGradient id="groundShadow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"   stop-color="#000" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- ========== Patterns ========== -->
+    <!-- Skin spots — irregular dark freckles on back -->
+    <pattern id="skinSpots" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="18" r="4"   fill="#1a2408" opacity="0.55"/>
+      <circle cx="38" cy="12" r="2.5" fill="#1a2408" opacity="0.4"/>
+      <circle cx="45" cy="42" r="5"   fill="#1a2408" opacity="0.5"/>
+      <circle cx="22" cy="48" r="3"   fill="#1a2408" opacity="0.45"/>
+      <circle cx="8"  cy="40" r="1.8" fill="#1a2408" opacity="0.35"/>
+      <circle cx="52" cy="25" r="1.5" fill="#1a2408" opacity="0.3"/>
+    </pattern>
+
+    <!-- Subtle skin bumps/pores -->
+    <pattern id="skinPores" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="4" r="0.8" fill="#ffffff" opacity="0.08"/>
+      <circle cx="8" cy="9" r="0.6" fill="#000000" opacity="0.1"/>
+    </pattern>
+
+    <!-- ========== Filters ========== -->
+    <!-- Soft blur for moisture highlights -->
+    <filter id="softBlur" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+
+    <!-- Subtle grain for skin texture -->
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="4"/>
+      <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.15 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+
+  <!-- ========== GROUND SHADOW ========== -->
+  <ellipse cx="200" cy="382" rx="140" ry="12" fill="url(#groundShadow)"/>
+
+  <!-- ========== LEFT HIND LEG (back leg tucked at side) ========== -->
+  <!-- Thigh (big muscular bulge) -->
+  <path d="M 60 240 Q 20 200 40 155 Q 85 130 115 210 Q 120 265 70 275 Q 50 268 60 240 Z"
+        fill="url(#limb)"/>
+  <!-- Thigh highlight (muscle definition) -->
+  <path d="M 55 220 Q 40 190 65 160 Q 80 155 85 180 Q 70 200 60 230 Z"
+        fill="#8ca644" opacity="0.4"/>
+  <!-- Lower leg shin -->
+  <path d="M 65 265 Q 25 285 10 320 Q 15 340 40 330 Q 65 310 85 275 Z"
+        fill="#263316"/>
+  <!-- Hind foot — long webbed toes -->
+  <!-- Toe 1 -->
+  <path d="M 10 320 L -5 345 L 2 358 L 14 340 Z" fill="url(#limb)"/>
+  <!-- Toe 2 -->
+  <path d="M 20 332 L 10 365 L 18 375 L 28 350 Z" fill="url(#limb)"/>
+  <!-- Toe 3 (longest, middle) -->
+  <path d="M 32 338 L 28 378 L 38 385 L 44 352 Z" fill="url(#limb)"/>
+  <!-- Toe 4 -->
+  <path d="M 45 335 L 46 372 L 56 375 L 58 345 Z" fill="url(#limb)"/>
+  <!-- Toe 5 (short, outer) -->
+  <path d="M 56 328 L 62 358 L 72 356 L 70 335 Z" fill="url(#limb)"/>
+
+  <!-- Toe webbing (translucent membrane connecting toes) -->
+  <path d="M -5 345 Q 5 358 10 365 Q 15 345 20 332" fill="url(#webbing)"/>
+  <path d="M 10 365 Q 18 378 28 378 Q 25 355 32 338" fill="url(#webbing)"/>
+  <path d="M 28 378 Q 38 382 46 372 Q 42 355 45 335" fill="url(#webbing)"/>
+  <path d="M 46 372 Q 55 370 62 358 Q 56 342 56 328" fill="url(#webbing)"/>
+
+  <!-- Toe tip pads (slightly darker) -->
+  <circle cx="2"  cy="355" r="4" fill="#1a2408"/>
+  <circle cx="18" cy="372" r="4.5" fill="#1a2408"/>
+  <circle cx="36" cy="382" r="5" fill="#1a2408"/>
+  <circle cx="54" cy="373" r="4.5" fill="#1a2408"/>
+  <circle cx="70" cy="356" r="4" fill="#1a2408"/>
+
+  <!-- ========== RIGHT HIND LEG (mirrored) ========== -->
+  <path d="M 340 240 Q 380 200 360 155 Q 315 130 285 210 Q 280 265 330 275 Q 350 268 340 240 Z"
+        fill="url(#limb)"/>
+  <path d="M 345 220 Q 360 190 335 160 Q 320 155 315 180 Q 330 200 340 230 Z"
+        fill="#8ca644" opacity="0.4"/>
+  <path d="M 335 265 Q 375 285 390 320 Q 385 340 360 330 Q 335 310 315 275 Z"
+        fill="#263316"/>
+  <path d="M 390 320 L 405 345 L 398 358 L 386 340 Z" fill="url(#limb)"/>
+  <path d="M 380 332 L 390 365 L 382 375 L 372 350 Z" fill="url(#limb)"/>
+  <path d="M 368 338 L 372 378 L 362 385 L 356 352 Z" fill="url(#limb)"/>
+  <path d="M 355 335 L 354 372 L 344 375 L 342 345 Z" fill="url(#limb)"/>
+  <path d="M 344 328 L 338 358 L 328 356 L 330 335 Z" fill="url(#limb)"/>
+  <path d="M 405 345 Q 395 358 390 365 Q 385 345 380 332" fill="url(#webbing)"/>
+  <path d="M 390 365 Q 382 378 372 378 Q 375 355 368 338" fill="url(#webbing)"/>
+  <path d="M 372 378 Q 362 382 354 372 Q 358 355 355 335" fill="url(#webbing)"/>
+  <path d="M 354 372 Q 345 370 338 358 Q 344 342 344 328" fill="url(#webbing)"/>
+  <circle cx="398" cy="355" r="4"   fill="#1a2408"/>
+  <circle cx="382" cy="372" r="4.5" fill="#1a2408"/>
+  <circle cx="364" cy="382" r="5"   fill="#1a2408"/>
+  <circle cx="346" cy="373" r="4.5" fill="#1a2408"/>
+  <circle cx="330" cy="356" r="4"   fill="#1a2408"/>
+
+  <!-- ========== BODY — layered: belly bottom, flank middle, dorsal top ========== -->
+  <!-- Belly (visible from front) -->
+  <ellipse cx="200" cy="290" rx="105" ry="80" fill="url(#belly)"/>
+
+  <!-- Belly scales/wrinkles — faint horizontal shading lines -->
+  <path d="M 130 275 Q 200 285 270 275" stroke="#8a7a42" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M 125 300 Q 200 312 275 300" stroke="#8a7a42" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M 130 325 Q 200 335 270 325" stroke="#8a7a42" stroke-width="1" fill="none" opacity="0.3"/>
+  <path d="M 140 348 Q 200 356 260 348" stroke="#8a7a42" stroke-width="1" fill="none" opacity="0.3"/>
+
+  <!-- Flank (side fading from back-green to belly-cream) -->
+  <path d="M 95 260 Q 90 180 200 170 Q 310 180 305 260 Q 305 310 200 320 Q 95 310 95 260 Z"
+        fill="url(#flank)"/>
+
+  <!-- Dorsal (back as seen from above-ish) -->
+  <path d="M 100 230 Q 95 130 200 115 Q 305 130 300 230 Q 300 290 200 300 Q 100 290 100 230 Z"
+        fill="url(#dorsal)"/>
+
+  <!-- Spot pattern on dorsal -->
+  <path d="M 100 230 Q 95 130 200 115 Q 305 130 300 230 Q 300 290 200 300 Q 100 290 100 230 Z"
+        fill="url(#skinSpots)"/>
+
+  <!-- Pore texture on dorsal -->
+  <path d="M 100 230 Q 95 130 200 115 Q 305 130 300 230 Q 300 290 200 300 Q 100 290 100 230 Z"
+        fill="url(#skinPores)"/>
+
+  <!-- Dorsal ridge line (slight spine indentation down the middle) -->
+  <path d="M 200 135 Q 200 220 200 290"
+        stroke="#1a2408" stroke-width="1.5" fill="none" opacity="0.35"/>
+
+  <!-- Shoulder bulges (muscular hint) -->
+  <ellipse cx="120" cy="215" rx="18" ry="35" fill="#1a2408" opacity="0.25"/>
+  <ellipse cx="280" cy="215" rx="18" ry="35" fill="#1a2408" opacity="0.25"/>
+
+  <!-- Moisture highlights on back (large soft diffuse spots) -->
+  <ellipse cx="150" cy="165" rx="22" ry="12" fill="url(#sheen)" filter="url(#softBlur)"/>
+  <ellipse cx="250" cy="180" rx="28" ry="14" fill="url(#sheen)" filter="url(#softBlur)"/>
+  <ellipse cx="195" cy="215" rx="18" ry="8"  fill="url(#sheen)" filter="url(#softBlur)" opacity="0.7"/>
+
+  <!-- ========== FRONT LEGS (peeking out beneath body) ========== -->
+  <!-- Left foreleg -->
+  <path d="M 112 310 Q 85 335 80 365 Q 85 378 100 372 Q 118 348 130 318 Z" fill="url(#limb)"/>
+  <!-- Front toes (4 fingers, no webbing on front) -->
+  <path d="M 75 368 L 65 385 L 72 390 L 82 373 Z" fill="url(#limb)"/>
+  <path d="M 85 370 L 80 388 L 88 393 L 95 375 Z" fill="url(#limb)"/>
+  <path d="M 95 370 L 95 388 L 103 390 L 105 374 Z" fill="url(#limb)"/>
+  <path d="M 105 368 L 110 385 L 118 383 L 115 370 Z" fill="url(#limb)"/>
+  <circle cx="70" cy="388" r="3.5" fill="#1a2408"/>
+  <circle cx="84" cy="391" r="3.5" fill="#1a2408"/>
+  <circle cx="99" cy="391" r="3.5" fill="#1a2408"/>
+  <circle cx="114" cy="384" r="3.5" fill="#1a2408"/>
+
+  <!-- Right foreleg (mirrored) -->
+  <path d="M 288 310 Q 315 335 320 365 Q 315 378 300 372 Q 282 348 270 318 Z" fill="url(#limb)"/>
+  <path d="M 325 368 L 335 385 L 328 390 L 318 373 Z" fill="url(#limb)"/>
+  <path d="M 315 370 L 320 388 L 312 393 L 305 375 Z" fill="url(#limb)"/>
+  <path d="M 305 370 L 305 388 L 297 390 L 295 374 Z" fill="url(#limb)"/>
+  <path d="M 295 368 L 290 385 L 282 383 L 285 370 Z" fill="url(#limb)"/>
+  <circle cx="330" cy="388" r="3.5" fill="#1a2408"/>
+  <circle cx="316" cy="391" r="3.5" fill="#1a2408"/>
+  <circle cx="301" cy="391" r="3.5" fill="#1a2408"/>
+  <circle cx="286" cy="384" r="3.5" fill="#1a2408"/>
+
+  <!-- ========== HEAD (wider than body, with eye bulges on top) ========== -->
+  <!-- Head base dome -->
+  <path d="M 90 120 Q 80 60 200 50 Q 320 60 310 120 Q 310 165 200 170 Q 90 165 90 120 Z"
+        fill="url(#dorsal)"/>
+
+  <!-- Head spot pattern overlay -->
+  <path d="M 90 120 Q 80 60 200 50 Q 320 60 310 120 Q 310 165 200 170 Q 90 165 90 120 Z"
+        fill="url(#skinSpots)" opacity="0.7"/>
+
+  <!-- Jaw line (subtle crease above the mouth) -->
+  <path d="M 100 155 Q 200 175 300 155" stroke="#1a2408" stroke-width="1.5" fill="none" opacity="0.35"/>
+
+  <!-- Tympanum (ear discs behind each eye — classic frog feature) -->
+  <ellipse cx="80" cy="130" rx="12" ry="14" fill="#2a3614"/>
+  <circle cx="80" cy="130" r="8" fill="#1a2408"/>
+  <circle cx="80" cy="130" r="4" fill="#0a0a0a" opacity="0.6"/>
+  <ellipse cx="320" cy="130" rx="12" ry="14" fill="#2a3614"/>
+  <circle cx="320" cy="130" r="8" fill="#1a2408"/>
+  <circle cx="320" cy="130" r="4" fill="#0a0a0a" opacity="0.6"/>
+
+  <!-- ========== EYE SOCKETS (deep set) ========== -->
+  <ellipse cx="140" cy="70" rx="42" ry="38" fill="url(#socket)"/>
+  <ellipse cx="260" cy="70" rx="42" ry="38" fill="url(#socket)"/>
+
+  <!-- Eye bulges (dorsal protrusions) -->
+  <ellipse cx="140" cy="62" rx="36" ry="42" fill="url(#dorsal)"/>
+  <ellipse cx="260" cy="62" rx="36" ry="42" fill="url(#dorsal)"/>
+
+  <!-- Spot pattern on eye bulges -->
+  <ellipse cx="140" cy="62" rx="36" ry="42" fill="url(#skinSpots)" opacity="0.6"/>
+  <ellipse cx="260" cy="62" rx="36" ry="42" fill="url(#skinSpots)" opacity="0.6"/>
+
+  <!-- ========== EYES (realistic layered) ========== -->
+  <!-- Eye white outer rim -->
+  <ellipse cx="140" cy="60" rx="28" ry="32" fill="#f8f0d4"/>
+  <ellipse cx="260" cy="60" rx="28" ry="32" fill="#f8f0d4"/>
+
+  <!-- Iris (big golden circle with concentric gradient) -->
+  <circle cx="140" cy="60" r="25" fill="url(#iris)"/>
+  <circle cx="260" cy="60" r="25" fill="url(#iris)"/>
+
+  <!-- Iris radial texture lines (fine streaks from pupil to edge) -->
+  <g stroke="#8a5a14" stroke-width="0.8" opacity="0.6" fill="none">
+    <!-- Left eye streaks -->
+    <line x1="140" y1="40" x2="140" y2="45"/>
+    <line x1="150" y1="42" x2="147" y2="48"/>
+    <line x1="155" y1="48" x2="150" y2="53"/>
+    <line x1="160" y1="60" x2="153" y2="60"/>
+    <line x1="155" y1="72" x2="150" y2="68"/>
+    <line x1="150" y1="78" x2="147" y2="72"/>
+    <line x1="140" y1="80" x2="140" y2="75"/>
+    <line x1="130" y1="78" x2="133" y2="72"/>
+    <line x1="125" y1="72" x2="130" y2="68"/>
+    <line x1="120" y1="60" x2="127" y2="60"/>
+    <line x1="125" y1="48" x2="130" y2="53"/>
+    <line x1="130" y1="42" x2="133" y2="48"/>
+    <!-- Right eye streaks -->
+    <line x1="260" y1="40" x2="260" y2="45"/>
+    <line x1="270" y1="42" x2="267" y2="48"/>
+    <line x1="275" y1="48" x2="270" y2="53"/>
+    <line x1="280" y1="60" x2="273" y2="60"/>
+    <line x1="275" y1="72" x2="270" y2="68"/>
+    <line x1="270" y1="78" x2="267" y2="72"/>
+    <line x1="260" y1="80" x2="260" y2="75"/>
+    <line x1="250" y1="78" x2="253" y2="72"/>
+    <line x1="245" y1="72" x2="250" y2="68"/>
+    <line x1="240" y1="60" x2="247" y2="60"/>
+    <line x1="245" y1="48" x2="250" y2="53"/>
+    <line x1="250" y1="42" x2="253" y2="48"/>
+  </g>
+
+  <!-- Vertical slit pupil (classic bufonid) -->
+  <ellipse cx="140" cy="60" rx="4" ry="22" fill="#0a0a0a"/>
+  <ellipse cx="260" cy="60" rx="4" ry="22" fill="#0a0a0a"/>
+
+  <!-- Specular highlights (two per eye for wet lens look) -->
+  <ellipse cx="131" cy="48" rx="5" ry="7" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="135" cy="70" rx="2" ry="3" fill="#ffffff" opacity="0.7"/>
+  <ellipse cx="251" cy="48" rx="5" ry="7" fill="#ffffff" opacity="0.9"/>
+  <ellipse cx="255" cy="70" rx="2" ry="3" fill="#ffffff" opacity="0.7"/>
+
+  <!-- Lower eyelid (nictitating membrane hint — thin line at bottom) -->
+  <path d="M 115 78 Q 140 92 165 78" stroke="#263316" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M 235 78 Q 260 92 285 78" stroke="#263316" stroke-width="2" fill="none" opacity="0.6"/>
+
+  <!-- Upper eyelid shading (subtle shadow cast ON the eye) -->
+  <path d="M 112 55 Q 140 42 168 55 Q 160 50 140 48 Q 120 50 112 55 Z" fill="#1a2408" opacity="0.35"/>
+  <path d="M 232 55 Q 260 42 288 55 Q 280 50 260 48 Q 240 50 232 55 Z" fill="#1a2408" opacity="0.35"/>
+
+  <!-- ========== NOSTRILS (small raised dots) ========== -->
+  <ellipse cx="188" cy="130" rx="3" ry="4" fill="#1a2408"/>
+  <ellipse cx="212" cy="130" rx="3" ry="4" fill="#1a2408"/>
+  <!-- Tiny nostril highlights -->
+  <circle cx="187" cy="128" r="0.8" fill="#ffffff" opacity="0.6"/>
+  <circle cx="211" cy="128" r="0.8" fill="#ffffff" opacity="0.6"/>
+
+  <!-- ========== MOUTH (long thin line, slight downturn at corners) ========== -->
+  <path d="M 90 155 Q 150 172 200 170 Q 250 172 310 155" stroke="#0a0a0a" stroke-width="2.5" fill="none" opacity="0.8" stroke-linecap="round"/>
+  <!-- Mouth corner shadow (gives dimension) -->
+  <path d="M 90 155 Q 100 158 110 157" stroke="#0a0a0a" stroke-width="1.5" fill="none" opacity="0.5"/>
+  <path d="M 290 157 Q 300 158 310 155" stroke="#0a0a0a" stroke-width="1.5" fill="none" opacity="0.5"/>
+
+  <!-- ========== GENERAL BODY MOISTURE (big soft diffuse highlight across entire frog) ========== -->
+  <ellipse cx="180" cy="90" rx="60" ry="30" fill="url(#sheen)" filter="url(#softBlur)" opacity="0.5"/>
+
+  <!-- Final subtle grain overlay for skin texture (very light) -->
+  <path d="M 90 115 Q 80 55 200 50 Q 320 55 310 115 Q 310 165 300 230 Q 300 290 200 300 Q 100 290 100 230 Q 90 165 90 115 Z"
+        fill="#5a7030" opacity="0.08"/>
+</svg>

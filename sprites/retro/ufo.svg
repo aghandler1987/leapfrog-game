@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- UFO with abducted frog underneath. 24x18. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 18" shape-rendering="crispEdges">
+  <!-- Palette: black / silver / dark gray / green glow / cyan window / yellow lights / green frog -->
+
+  <!-- Dome top -->
+  <rect x="9"  y="0" width="6" height="1" fill="#0d0d0d"/>
+  <rect x="8"  y="1" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="9"  y="1" width="6" height="1" fill="#58d8f8"/>
+  <rect x="15" y="1" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="7"  y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8"  y="2" width="2" height="1" fill="#58d8f8"/>
+  <rect x="10" y="2" width="4" height="1" fill="#a8e8ff"/>
+  <rect x="14" y="2" width="2" height="1" fill="#58d8f8"/>
+  <rect x="16" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="7"  y="3" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8"  y="3" width="8" height="1" fill="#58d8f8"/>
+  <rect x="16" y="3" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Saucer body top rim -->
+  <rect x="2"  y="4" width="2" height="1" fill="#0d0d0d"/>
+  <rect x="4"  y="4" width="3" height="1" fill="#a8a8a8"/>
+  <rect x="7"  y="4" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8"  y="4" width="8" height="1" fill="#787878"/>
+  <rect x="16" y="4" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="17" y="4" width="3" height="1" fill="#a8a8a8"/>
+  <rect x="20" y="4" width="2" height="1" fill="#0d0d0d"/>
+
+  <!-- Saucer body with lights -->
+  <rect x="1"  y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2"  y="5" width="4" height="1" fill="#a8a8a8"/>
+  <rect x="6"  y="5" width="1" height="1" fill="#fcd800"/>
+  <rect x="7"  y="5" width="2" height="1" fill="#a8a8a8"/>
+  <rect x="9"  y="5" width="1" height="1" fill="#fcd800"/>
+  <rect x="10" y="5" width="3" height="1" fill="#a8a8a8"/>
+  <rect x="13" y="5" width="1" height="1" fill="#fcd800"/>
+  <rect x="14" y="5" width="2" height="1" fill="#a8a8a8"/>
+  <rect x="16" y="5" width="1" height="1" fill="#fcd800"/>
+  <rect x="17" y="5" width="4" height="1" fill="#a8a8a8"/>
+  <rect x="21" y="5" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Saucer bottom rim -->
+  <rect x="1"  y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2"  y="6" width="19" height="1" fill="#4a4a4a"/>
+  <rect x="21" y="6" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="2"  y="7" width="2" height="1" fill="#0d0d0d"/>
+  <rect x="4"  y="7" width="15" height="1" fill="#4a4a4a"/>
+  <rect x="19" y="7" width="2" height="1" fill="#0d0d0d"/>
+
+  <!-- Tractor beam -->
+  <rect x="9"  y="8" width="6" height="1" fill="#00a800" opacity="0.4"/>
+  <rect x="9"  y="9" width="6" height="1" fill="#00a800" opacity="0.5"/>
+  <rect x="8"  y="10" width="8" height="1" fill="#58d858" opacity="0.5"/>
+  <rect x="8"  y="11" width="8" height="1" fill="#58d858" opacity="0.4"/>
+  <rect x="7"  y="12" width="10" height="1" fill="#58d858" opacity="0.3"/>
+
+  <!-- Abducted frog floating in the beam -->
+  <rect x="10" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="13" width="2" height="1" fill="#58d858"/>
+  <rect x="13" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="9"  y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="10" y="14" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="11" y="14" width="2" height="1" fill="#58d858"/>
+  <rect x="13" y="14" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="14" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="9"  y="15" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="10" y="15" width="4" height="1" fill="#58d858"/>
+  <rect x="14" y="15" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="10" y="16" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="16" width="2" height="1" fill="#00a800"/>
+  <rect x="13" y="16" width="1" height="1" fill="#0d0d0d"/>
+</svg>

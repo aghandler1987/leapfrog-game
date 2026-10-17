@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frog Style Samples</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 2rem 1rem;
+      color: #2d2a3c;
+    }
+    h1 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin: 0 0 0.5rem;
+    }
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .sample {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+    .sample h2 {
+      font-size: 1.2rem;
+      margin: 0 0 0.4rem;
+      color: #2d2a3c;
+    }
+    .sample .desc {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+    .frog-wrap {
+      background: linear-gradient(to bottom, #e8f1f5 0%, #cfe9f5 60%, #a4d4ea 100%);
+      border-radius: 12px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 260px;
+    }
+    .frog-wrap img {
+      width: 220px;
+      height: 220px;
+    }
+    .pros-cons {
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: #555;
+      text-align: left;
+    }
+    .pros-cons .pro { color: #2a7a3a; }
+    .pros-cons .con { color: #a04040; }
+    .back {
+      display: inline-block;
+      margin: 2rem auto 0;
+      padding: 0.5rem 1rem;
+      background: #5e8bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    .back-wrap {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>🐸 Pick a Modern Style</h1>
+  <p class="subtitle">Three directions for the "Modern Flat" theme — tell me which one to commit to.</p>
+
+  <div class="grid">
+    <div class="sample">
+      <h2>1. Cute Cartoon</h2>
+      <p class="desc">Chubby, round, friendly. Soft gradients + highlights. Mobile puzzle game vibe.</p>
+      <div class="frog-wrap">
+        <img src="sprites/samples/frog-cartoon.svg" alt="Cartoon frog"/>
+      </div>
+      <div class="pros-cons">
+        <div class="pro">✓ Most approachable, kid-friendly</div>
+        <div class="pro">✓ Soft gradients hide my limitations</div>
+        <div class="con">✗ Can feel generic if overdone</div>
+      </div>
+    </div>
+
+    <div class="sample">
+      <h2>2. Semi-Realistic Nature</h2>
+      <p class="desc">Natural proportions, muted olive greens, textured. Nature documentary feel.</p>
+      <div class="frog-wrap">
+        <img src="sprites/samples/frog-realistic.svg" alt="Realistic frog"/>
+      </div>
+      <div class="pros-cons">
+        <div class="pro">✓ Most unique vs retro/emoji</div>
+        <div class="con">✗ Hardest for me — amateur touches will show</div>
+        <div class="con">✗ Darker palette; less "game" feeling</div>
+      </div>
+    </div>
+
+    <div class="sample">
+      <h2>3. Flat Geometric</h2>
+      <p class="desc">Bold flat shapes, zero gradients. Intentionally stylized, minimalist.</p>
+      <div class="frog-wrap">
+        <img src="sprites/samples/frog-flat.svg" alt="Flat frog"/>
+      </div>
+      <div class="pros-cons">
+        <div class="pro">✓ Most forgiving — looks intentional</div>
+        <div class="pro">✓ Scales infinitely, clean on any screen</div>
+        <div class="con">✗ Least detailed; closest to emoji feel</div>
+      </div>
+    </div>
+
+    <div class="sample" style="grid-column: 1 / -1; background: #fff8e1;">
+      <h2>⭐ 5. AI-Generated Photo-Realistic (Weave / Nano Banana 2.1)</h2>
+      <p class="desc">Generated with AI image gen — a real photo-realistic nature photograph. 2048×2048 PNG, ~10 Weave credits.</p>
+      <div class="frog-wrap" style="height: 440px; background: #ffffff;">
+        <img src="sprites/samples/frog-realistic-ai.png" alt="AI-generated realistic frog" style="width: 400px; height: 400px;"/>
+      </div>
+      <div class="pros-cons">
+        <div class="pro">✓ Actually photo-realistic — detail no SVG can match</div>
+        <div class="pro">✓ Real skin texture, correct frog anatomy, eye depth</div>
+        <div class="con">✗ Costs Weave credits per sprite (~10 each) — ~210 credits for full theme (21 sprites)</div>
+        <div class="con">✗ 2.8MB per PNG — need to resize/compress for game use</div>
+        <div class="con">✗ Each boss/variant has to be generated separately, each with its own prompt</div>
+      </div>
+    </div>
+
+    <div class="sample" style="grid-column: 1 / -1;">
+      <h2>4. Hyper-Realistic (push attempt)</h2>
+      <p class="desc">Pushed as hard as I can in pure SVG: layered gradients, radial iris, slit pupil with specular highlights, webbed toes with translucent membrane, muscle definition, dorsal ridge, spot pattern, moisture sheen, tympanum ear discs, nostrils, nictitating membrane hint.</p>
+      <div class="frog-wrap" style="height: 440px;">
+        <img src="sprites/samples/frog-hyperreal.svg" alt="Hyper-realistic frog" style="width: 400px; height: 400px;"/>
+      </div>
+      <div class="pros-cons">
+        <div class="pro">✓ Most anatomically accurate — real frog features present</div>
+        <div class="pro">✓ Rich eye detail, webbed toes, muscle hints</div>
+        <div class="con">✗ Still SVG — won't match photo-realism without raster</div>
+        <div class="con">✗ Large file size (10x the others)</div>
+        <div class="con">✗ 400×400 viewBox — scaling down to game size (~90px) will lose detail</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="back-wrap">
+    <a href="index.html" class="back">← Back to game</a>
+  </div>
+</body>
+</html>

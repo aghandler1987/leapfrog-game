@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Modern FLAT GEOMETRIC frog — simple shapes, bold flat colors, no gradients. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Palette: 3 flat colors + 1 accent -->
+  <!-- #5bbf5a mid-green, #3d8f44 dark-green, #f7e2a3 cream belly, #2c2c2c dark line -->
+
+  <!-- Hind feet - simple ellipses -->
+  <ellipse cx="25"  cy="155" rx="22" ry="12" fill="#3d8f44"/>
+  <ellipse cx="175" cy="155" rx="22" ry="12" fill="#3d8f44"/>
+
+  <!-- Body - single flat ellipse -->
+  <ellipse cx="100" cy="130" rx="68" ry="52" fill="#5bbf5a"/>
+
+  <!-- Belly - flat lighter oval, no gradient -->
+  <ellipse cx="100" cy="140" rx="38" ry="28" fill="#f7e2a3"/>
+
+  <!-- Front feet -->
+  <ellipse cx="60"  cy="175" rx="16" ry="8" fill="#3d8f44"/>
+  <ellipse cx="140" cy="175" rx="16" ry="8" fill="#3d8f44"/>
+
+  <!-- Head - clean dome -->
+  <ellipse cx="100" cy="85" rx="55" ry="48" fill="#5bbf5a"/>
+
+  <!-- Eye bulges - two simple circles -->
+  <circle cx="68"  cy="52" r="24" fill="#5bbf5a"/>
+  <circle cx="132" cy="52" r="24" fill="#5bbf5a"/>
+
+  <!-- Eye whites - flat white -->
+  <circle cx="68"  cy="50" r="18" fill="#ffffff"/>
+  <circle cx="132" cy="50" r="18" fill="#ffffff"/>
+
+  <!-- Pupils - flat dark -->
+  <circle cx="68"  cy="52" r="9" fill="#2c2c2c"/>
+  <circle cx="132" cy="52" r="9" fill="#2c2c2c"/>
+
+  <!-- Single highlight square (very minimal) -->
+  <rect x="63"  y="46" width="4" height="4" fill="#ffffff"/>
+  <rect x="127" y="46" width="4" height="4" fill="#ffffff"/>
+
+  <!-- Mouth - single flat shape -->
+  <path d="M 70 110 Q 100 118 130 110 L 130 112 Q 100 122 70 112 Z" fill="#2c2c2c"/>
+</svg>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Boss 3: Toad King — dark warty green toad with a gold crown. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- Palette: black / dark olive green / toad green / wart brown / gold / white -->
+
+  <!-- Row 0: crown spikes -->
+  <rect x="3" y="0" width="1" height="1" fill="#fcd800"/>
+  <rect x="5" y="0" width="1" height="1" fill="#fcd800"/>
+  <rect x="7" y="0" width="2" height="1" fill="#fcd800"/>
+  <rect x="10" y="0" width="1" height="1" fill="#fcd800"/>
+  <rect x="12" y="0" width="1" height="1" fill="#fcd800"/>
+
+  <!-- Row 1: crown band -->
+  <rect x="2" y="1" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="3" y="1" width="10" height="1" fill="#fc9838"/>
+  <rect x="13" y="1" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 2: head top -->
+  <rect x="1" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2" y="2" width="12" height="1" fill="#004410"/>
+  <rect x="14" y="2" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 3: eyes (yellow with slit pupils) -->
+  <rect x="0" y="3" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="3" width="2" height="1" fill="#006818"/>
+  <rect x="3" y="3" width="2" height="1" fill="#fcd800"/>
+  <rect x="5" y="3" width="1" height="1" fill="#006818"/>
+  <rect x="6" y="3" width="4" height="1" fill="#006818"/>
+  <rect x="10" y="3" width="1" height="1" fill="#006818"/>
+  <rect x="11" y="3" width="2" height="1" fill="#fcd800"/>
+  <rect x="13" y="3" width="1" height="1" fill="#006818"/>
+  <rect x="14" y="3" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Pupils -->
+  <rect x="0" y="4" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="4" width="1" height="1" fill="#006818"/>
+  <rect x="2" y="4" width="1" height="1" fill="#fcd800"/>
+  <rect x="3" y="4" width="1" height="1" fill="#fcd800"/>
+  <rect x="4" y="4" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5" y="4" width="1" height="1" fill="#006818"/>
+  <rect x="6" y="4" width="4" height="1" fill="#006818"/>
+  <rect x="10" y="4" width="1" height="1" fill="#006818"/>
+  <rect x="11" y="4" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="12" y="4" width="1" height="1" fill="#fcd800"/>
+  <rect x="13" y="4" width="1" height="1" fill="#fcd800"/>
+  <rect x="14" y="4" width="1" height="1" fill="#006818"/>
+  <rect x="15" y="4" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 5: wide mouth with tongue flicker -->
+  <rect x="0" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="5" width="3" height="1" fill="#006818"/>
+  <rect x="4" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5" y="5" width="6" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="12" y="5" width="3" height="1" fill="#006818"/>
+  <rect x="15" y="5" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 6: body with warts -->
+  <rect x="0" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="6" width="1" height="1" fill="#006818"/>
+  <rect x="2" y="6" width="1" height="1" fill="#4a3828"/>
+  <rect x="3" y="6" width="2" height="1" fill="#006818"/>
+  <rect x="5" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="6" width="4" height="1" fill="#58d858"/>
+  <rect x="10" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="6" width="2" height="1" fill="#006818"/>
+  <rect x="13" y="6" width="1" height="1" fill="#4a3828"/>
+  <rect x="14" y="6" width="1" height="1" fill="#006818"/>
+  <rect x="15" y="6" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="0" y="7" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="7" width="4" height="1" fill="#006818"/>
+  <rect x="5" y="7" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="7" width="4" height="1" fill="#58d858"/>
+  <rect x="10" y="7" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="7" width="4" height="1" fill="#006818"/>
+  <rect x="15" y="7" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="0" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="8" width="2" height="1" fill="#006818"/>
+  <rect x="3" y="8" width="1" height="1" fill="#4a3828"/>
+  <rect x="4" y="8" width="1" height="1" fill="#006818"/>
+  <rect x="5" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="8" width="4" height="1" fill="#58d858"/>
+  <rect x="10" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="8" width="1" height="1" fill="#006818"/>
+  <rect x="12" y="8" width="1" height="1" fill="#4a3828"/>
+  <rect x="13" y="8" width="2" height="1" fill="#006818"/>
+  <rect x="15" y="8" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="1" y="9" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2" y="9" width="3" height="1" fill="#004410"/>
+  <rect x="5" y="9" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="9" width="4" height="1" fill="#006818"/>
+  <rect x="10" y="9" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="9" width="3" height="1" fill="#004410"/>
+  <rect x="14" y="9" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Legs -->
+  <rect x="0" y="10" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="10" width="4" height="1" fill="#004410"/>
+  <rect x="5" y="10" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="10" width="4" height="1" fill="#006818"/>
+  <rect x="10" y="10" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="10" width="4" height="1" fill="#004410"/>
+  <rect x="15" y="10" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="0" y="11" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="11" width="4" height="1" fill="#004410"/>
+  <rect x="5" y="11" width="6" height="1" fill="#006818"/>
+  <rect x="11" y="11" width="4" height="1" fill="#004410"/>
+  <rect x="15" y="11" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="0" y="12" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="12" width="4" height="1" fill="#004410"/>
+  <rect x="5" y="12" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="12" width="4" height="1" fill="#004410"/>
+  <rect x="10" y="12" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="12" width="4" height="1" fill="#004410"/>
+  <rect x="15" y="12" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Toes -->
+  <rect x="0" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="13" width="1" height="1" fill="#006818"/>
+  <rect x="2" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="3" y="13" width="1" height="1" fill="#006818"/>
+  <rect x="4" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="13" width="1" height="1" fill="#006818"/>
+  <rect x="7" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8" y="13" width="1" height="1" fill="#006818"/>
+  <rect x="9" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="10" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="13" width="1" height="1" fill="#006818"/>
+  <rect x="12" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="13" y="13" width="1" height="1" fill="#006818"/>
+  <rect x="14" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="15" y="13" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="1" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="3" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="13" y="14" width="1" height="1" fill="#0d0d0d"/>
+</svg>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Modern CUTE CARTOON frog — chubby, round, friendly, soft gradients. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <!-- Body gradient (bright on top, darker underside) -->
+    <radialGradient id="bodyGrad" cx="40%" cy="30%" r="80%">
+      <stop offset="0%"  stop-color="#9fe870"/>
+      <stop offset="60%" stop-color="#6ac84a"/>
+      <stop offset="100%" stop-color="#3a8c28"/>
+    </radialGradient>
+    <!-- Belly gradient (pale cream for soft underbelly) -->
+    <linearGradient id="bellyGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%"  stop-color="#fff5d9"/>
+      <stop offset="100%" stop-color="#f0d99c"/>
+    </linearGradient>
+    <!-- Eye gradient (bright white with soft shade) -->
+    <radialGradient id="eyeGrad" cx="35%" cy="35%" r="70%">
+      <stop offset="0%"  stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#d8e3eb"/>
+    </radialGradient>
+    <!-- Cheek blush -->
+    <radialGradient id="blush" cx="50%" cy="50%" r="50%">
+      <stop offset="0%"  stop-color="#ff9eb3" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff9eb3" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Back feet (poking out at sides) -->
+  <ellipse cx="30"  cy="155" rx="25" ry="14" fill="#3a8c28"/>
+  <ellipse cx="170" cy="155" rx="25" ry="14" fill="#3a8c28"/>
+
+  <!-- Toe pads on back feet -->
+  <circle cx="12" cy="150" r="5" fill="#9fe870"/>
+  <circle cx="22" cy="145" r="5" fill="#9fe870"/>
+  <circle cx="188" cy="150" r="5" fill="#9fe870"/>
+  <circle cx="178" cy="145" r="5" fill="#9fe870"/>
+
+  <!-- Body (chubby round shape) -->
+  <ellipse cx="100" cy="130" rx="70" ry="55" fill="url(#bodyGrad)"/>
+
+  <!-- Belly (lighter patch on the front) -->
+  <ellipse cx="100" cy="145" rx="42" ry="32" fill="url(#bellyGrad)"/>
+
+  <!-- Front feet -->
+  <ellipse cx="60"  cy="178" rx="18" ry="10" fill="#3a8c28"/>
+  <ellipse cx="140" cy="178" rx="18" ry="10" fill="#3a8c28"/>
+  <!-- Toe pads front -->
+  <circle cx="48" cy="178" r="4" fill="#9fe870"/>
+  <circle cx="55" cy="183" r="4" fill="#9fe870"/>
+  <circle cx="62" cy="184" r="4" fill="#9fe870"/>
+  <circle cx="152" cy="178" r="4" fill="#9fe870"/>
+  <circle cx="145" cy="183" r="4" fill="#9fe870"/>
+  <circle cx="138" cy="184" r="4" fill="#9fe870"/>
+
+  <!-- Head (large dome rising from the body) -->
+  <ellipse cx="100" cy="90" rx="60" ry="50" fill="url(#bodyGrad)"/>
+
+  <!-- Cheek blushes -->
+  <circle cx="55"  cy="105" r="15" fill="url(#blush)"/>
+  <circle cx="145" cy="105" r="15" fill="url(#blush)"/>
+
+  <!-- Eye bulges (two big domes on top) -->
+  <circle cx="65"  cy="50" r="28" fill="url(#bodyGrad)"/>
+  <circle cx="135" cy="50" r="28" fill="url(#bodyGrad)"/>
+
+  <!-- Eye whites -->
+  <circle cx="65"  cy="48" r="22" fill="url(#eyeGrad)"/>
+  <circle cx="135" cy="48" r="22" fill="url(#eyeGrad)"/>
+
+  <!-- Pupils -->
+  <circle cx="68"  cy="52" r="11" fill="#2d2a3c"/>
+  <circle cx="132" cy="52" r="11" fill="#2d2a3c"/>
+
+  <!-- Pupil highlights -->
+  <circle cx="72"  cy="47" r="4" fill="#ffffff"/>
+  <circle cx="136" cy="47" r="4" fill="#ffffff"/>
+  <circle cx="65"  cy="56" r="2" fill="#ffffff"/>
+  <circle cx="129" cy="56" r="2" fill="#ffffff"/>
+
+  <!-- Mouth (smile curve) -->
+  <path d="M 70 110 Q 100 128 130 110" stroke="#2d2a3c" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+  <!-- Soft shadow under body -->
+  <ellipse cx="100" cy="195" rx="55" ry="6" fill="#000" opacity="0.15"/>
+</svg>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Frog 10: GIANT HEAD — oversized expressive head with tiny body underneath. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- Palette: black / dark teal / teal / mint / cream belly / white / pink tongue -->
+
+  <!-- Row 0: enormous head top (full width) -->
+  <rect x="2" y="0" width="12" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 1: head top bulges -->
+  <rect x="1" y="1" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2" y="1" width="2" height="1" fill="#2d8470"/>
+  <rect x="4" y="1" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5" y="1" width="6" height="1" fill="#2d8470"/>
+  <rect x="11" y="1" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="12" y="1" width="2" height="1" fill="#2d8470"/>
+  <rect x="14" y="1" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 2: HUGE eyes bulging out -->
+  <rect x="0" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="2" width="1" height="1" fill="#2d8470"/>
+  <rect x="2" y="2" width="2" height="1" fill="#fcfcfc"/>
+  <rect x="4" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5" y="2" width="6" height="1" fill="#58d8c0"/>
+  <rect x="11" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="12" y="2" width="2" height="1" fill="#fcfcfc"/>
+  <rect x="14" y="2" width="1" height="1" fill="#2d8470"/>
+  <rect x="15" y="2" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 3: pupils (big dot eyes) -->
+  <rect x="0" y="3" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="3" width="1" height="1" fill="#2d8470"/>
+  <rect x="2" y="3" width="2" height="1" fill="#0d0d0d"/>
+  <rect x="4" y="3" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5" y="3" width="6" height="1" fill="#58d8c0"/>
+  <rect x="11" y="3" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="12" y="3" width="2" height="1" fill="#0d0d0d"/>
+  <rect x="14" y="3" width="1" height="1" fill="#2d8470"/>
+  <rect x="15" y="3" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 4: cheeks -->
+  <rect x="0" y="4" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="4" width="14" height="1" fill="#58d8c0"/>
+  <rect x="15" y="4" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 5: MASSIVE goofy smile with tongue -->
+  <rect x="0" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="5" width="2" height="1" fill="#58d8c0"/>
+  <rect x="3" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="4" y="5" width="2" height="1" fill="#ff6680"/>
+  <rect x="6" y="5" width="4" height="1" fill="#0d0d0d"/>
+  <rect x="10" y="5" width="2" height="1" fill="#ff6680"/>
+  <rect x="12" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="13" y="5" width="2" height="1" fill="#58d8c0"/>
+  <rect x="15" y="5" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 6: lower head tapers (smile continues) -->
+  <rect x="0" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="6" width="3" height="1" fill="#58d8c0"/>
+  <rect x="4" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5" y="6" width="6" height="1" fill="#ff6680"/>
+  <rect x="11" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="12" y="6" width="3" height="1" fill="#58d8c0"/>
+  <rect x="15" y="6" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 7: head bottom -->
+  <rect x="1" y="7" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2" y="7" width="3" height="1" fill="#2d8470"/>
+  <rect x="5" y="7" width="6" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="7" width="3" height="1" fill="#2d8470"/>
+  <rect x="14" y="7" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 8: tiny body neck -->
+  <rect x="2" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="3" y="8" width="2" height="1" fill="#2d8470"/>
+  <rect x="5" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="8" width="4" height="1" fill="#f8e8c8"/>
+  <rect x="10" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="8" width="2" height="1" fill="#2d8470"/>
+  <rect x="13" y="8" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 9: tiny body (narrow) -->
+  <rect x="4" y="9" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5" y="9" width="1" height="1" fill="#2d8470"/>
+  <rect x="6" y="9" width="4" height="1" fill="#f8e8c8"/>
+  <rect x="10" y="9" width="1" height="1" fill="#2d8470"/>
+  <rect x="11" y="9" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 10: tiny stubby legs sticking out -->
+  <rect x="3" y="10" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="4" y="10" width="1" height="1" fill="#2d8470"/>
+  <rect x="5" y="10" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="10" width="4" height="1" fill="#2d8470"/>
+  <rect x="10" y="10" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="10" width="1" height="1" fill="#2d8470"/>
+  <rect x="12" y="10" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 11: little feet -->
+  <rect x="2" y="11" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="3" y="11" width="2" height="1" fill="#2d8470"/>
+  <rect x="5" y="11" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="11" width="4" height="1" fill="#2d8470"/>
+  <rect x="10" y="11" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="11" width="2" height="1" fill="#2d8470"/>
+  <rect x="13" y="11" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 12: feet -->
+  <rect x="2" y="12" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="3" y="12" width="2" height="1" fill="#2d8470"/>
+  <rect x="5" y="12" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="12" width="4" height="1" fill="#2d8470"/>
+  <rect x="10" y="12" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="12" width="2" height="1" fill="#2d8470"/>
+  <rect x="13" y="12" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 13: toes -->
+  <rect x="2" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="3" y="13" width="1" height="1" fill="#58d8c0"/>
+  <rect x="4" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="7" y="13" width="1" height="1" fill="#58d8c0"/>
+  <rect x="8" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="9" y="13" width="1" height="1" fill="#58d8c0"/>
+  <rect x="10" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="13" width="1" height="1" fill="#58d8c0"/>
+  <rect x="12" y="13" width="1" height="1" fill="#0d0d0d"/>
+</svg>

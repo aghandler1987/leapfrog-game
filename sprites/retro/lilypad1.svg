@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lilypad — flat oval seen from above with a side notch cut like a pie slice.
+     32x10 grid for a wider, flatter shape so it reads as a floating pad not a creature. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 10" shape-rendering="crispEdges">
+  <!-- Palette:
+       #0d0d0d  black outline
+       #004410  very dark green (bottom shade)
+       #006818  dark green (shade)
+       #00a800  mid green (pad)
+       #58d858  bright green (highlight)
+       #a0d848  pale lime (top shine)
+       #ff6680  pink (tiny flower bud)
+       #fcd800  yellow (flower center)
+       #1e4e6b  dark water (notch reveals water beneath)
+  -->
+
+  <!-- Row 0: thin top edge, with a tiny flower bud on the top-right -->
+  <rect x="7"  y="0" width="2"  height="1" fill="#0d0d0d"/>
+  <rect x="9"  y="0" width="14" height="1" fill="#a0d848"/>
+  <rect x="23" y="0" width="2"  height="1" fill="#0d0d0d"/>
+  <!-- Flower bud offset to the right, small -->
+  <rect x="25" y="0" width="1"  height="1" fill="#ff6680"/>
+
+  <!-- Row 1: top highlight band -->
+  <rect x="4"  y="1" width="3"  height="1" fill="#0d0d0d"/>
+  <rect x="7"  y="1" width="2"  height="1" fill="#a0d848"/>
+  <rect x="9"  y="1" width="14" height="1" fill="#58d858"/>
+  <rect x="23" y="1" width="2"  height="1" fill="#a0d848"/>
+  <rect x="25" y="1" width="3"  height="1" fill="#0d0d0d"/>
+
+  <!-- Row 2: wider pad -->
+  <rect x="2"  y="2" width="2"  height="1" fill="#0d0d0d"/>
+  <rect x="4"  y="2" width="3"  height="1" fill="#58d858"/>
+  <rect x="7"  y="2" width="18" height="1" fill="#00a800"/>
+  <rect x="25" y="2" width="3"  height="1" fill="#58d858"/>
+  <rect x="28" y="2" width="2"  height="1" fill="#0d0d0d"/>
+
+  <!-- Row 3: widest row, vein lines radiating from the notch -->
+  <rect x="1"  y="3" width="2"  height="1" fill="#0d0d0d"/>
+  <rect x="3"  y="3" width="2"  height="1" fill="#00a800"/>
+  <!-- Notch cut from the LEFT side — water visible through it -->
+  <rect x="5"  y="3" width="3"  height="1" fill="#1e4e6b"/>
+  <rect x="8"  y="3" width="1"  height="1" fill="#006818"/>
+  <rect x="9"  y="3" width="4"  height="1" fill="#00a800"/>
+  <rect x="13" y="3" width="1"  height="1" fill="#006818"/>
+  <rect x="14" y="3" width="4"  height="1" fill="#00a800"/>
+  <rect x="18" y="3" width="1"  height="1" fill="#006818"/>
+  <rect x="19" y="3" width="4"  height="1" fill="#00a800"/>
+  <rect x="23" y="3" width="1"  height="1" fill="#006818"/>
+  <rect x="24" y="3" width="5"  height="1" fill="#00a800"/>
+  <rect x="29" y="3" width="2"  height="1" fill="#0d0d0d"/>
+
+  <!-- Row 4: center row (widest), notch wedges deeper -->
+  <rect x="0"  y="4" width="2"  height="1" fill="#0d0d0d"/>
+  <rect x="2"  y="4" width="2"  height="1" fill="#00a800"/>
+  <rect x="4"  y="4" width="5"  height="1" fill="#1e4e6b"/>
+  <rect x="9"  y="4" width="3"  height="1" fill="#00a800"/>
+  <rect x="12" y="4" width="1"  height="1" fill="#006818"/>
+  <rect x="13" y="4" width="4"  height="1" fill="#00a800"/>
+  <rect x="17" y="4" width="1"  height="1" fill="#006818"/>
+  <rect x="18" y="4" width="4"  height="1" fill="#00a800"/>
+  <rect x="22" y="4" width="1"  height="1" fill="#006818"/>
+  <rect x="23" y="4" width="7"  height="1" fill="#00a800"/>
+  <rect x="30" y="4" width="2"  height="1" fill="#0d0d0d"/>
+
+  <!-- Row 5: notch narrows again -->
+  <rect x="1"  y="5" width="2"  height="1" fill="#0d0d0d"/>
+  <rect x="3"  y="5" width="2"  height="1" fill="#006818"/>
+  <rect x="5"  y="5" width="3"  height="1" fill="#1e4e6b"/>
+  <rect x="8"  y="5" width="22" height="1" fill="#006818"/>
+  <rect x="30" y="5" width="1"  height="1" fill="#0d0d0d"/>
+
+  <!-- Row 6: bottom shade -->
+  <rect x="2"  y="6" width="2"  height="1" fill="#0d0d0d"/>
+  <rect x="4"  y="6" width="24" height="1" fill="#004410"/>
+  <rect x="28" y="6" width="2"  height="1" fill="#0d0d0d"/>
+
+  <!-- Row 7: taper -->
+  <rect x="4"  y="7" width="3"  height="1" fill="#0d0d0d"/>
+  <rect x="7"  y="7" width="18" height="1" fill="#004410"/>
+  <rect x="25" y="7" width="3"  height="1" fill="#0d0d0d"/>
+
+  <!-- Row 8: last taper -->
+  <rect x="7"  y="8" width="2"  height="1" fill="#0d0d0d"/>
+  <rect x="9"  y="8" width="14" height="1" fill="#004410"/>
+  <rect x="23" y="8" width="2"  height="1" fill="#0d0d0d"/>
+
+  <!-- Row 9: water reflection streak just under the pad -->
+  <rect x="9"  y="9" width="2"  height="1" fill="#58d858" opacity="0.4"/>
+  <rect x="14" y="9" width="4"  height="1" fill="#58d858" opacity="0.4"/>
+  <rect x="22" y="9" width="2"  height="1" fill="#58d858" opacity="0.4"/>
+</svg>

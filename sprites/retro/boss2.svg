@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Boss 2: Skeletal undead frog — dark gray/black with glowing green eyes. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- Palette: black / dark gray / gray / bone white / glowing green eyes -->
+
+  <!-- Spiky skull top -->
+  <rect x="2" y="0" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="4" y="0" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="7" y="0" width="2" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="0" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="13" y="0" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="1" y="1" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2" y="1" width="3" height="1" fill="#787878"/>
+  <rect x="5" y="1" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="7" y="1" width="2" height="1" fill="#787878"/>
+  <rect x="9" y="1" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="1" width="3" height="1" fill="#787878"/>
+  <rect x="14" y="1" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Head top -->
+  <rect x="1" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2" y="2" width="3" height="1" fill="#4a4a4a"/>
+  <rect x="5" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="2" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="10" y="2" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="2" width="3" height="1" fill="#4a4a4a"/>
+  <rect x="14" y="2" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Glowing green eye sockets -->
+  <rect x="0" y="3" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="3" width="2" height="1" fill="#4a4a4a"/>
+  <rect x="3" y="3" width="2" height="1" fill="#00a800"/>
+  <rect x="5" y="3" width="1" height="1" fill="#4a4a4a"/>
+  <rect x="6" y="3" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="10" y="3" width="1" height="1" fill="#4a4a4a"/>
+  <rect x="11" y="3" width="2" height="1" fill="#00a800"/>
+  <rect x="13" y="3" width="2" height="1" fill="#4a4a4a"/>
+  <rect x="15" y="3" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Pupils in eye sockets -->
+  <rect x="0" y="4" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="4" width="1" height="1" fill="#4a4a4a"/>
+  <rect x="2" y="4" width="1" height="1" fill="#00a800"/>
+  <rect x="3" y="4" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="4" y="4" width="1" height="1" fill="#00a800"/>
+  <rect x="5" y="4" width="1" height="1" fill="#4a4a4a"/>
+  <rect x="6" y="4" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="10" y="4" width="1" height="1" fill="#4a4a4a"/>
+  <rect x="11" y="4" width="1" height="1" fill="#00a800"/>
+  <rect x="12" y="4" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="13" y="4" width="1" height="1" fill="#00a800"/>
+  <rect x="14" y="4" width="1" height="1" fill="#4a4a4a"/>
+  <rect x="15" y="4" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 5: skeletal grin with teeth -->
+  <rect x="0" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="5" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="5" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="5" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="7" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8" y="5" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="9" y="5" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="10" y="5" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="11" y="5" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="15" y="5" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Rib cage body -->
+  <rect x="0" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="6" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="5" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="6" width="1" height="1" fill="#787878"/>
+  <rect x="7" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8" y="6" width="1" height="1" fill="#787878"/>
+  <rect x="9" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="10" y="6" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="6" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="15" y="6" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 7: more ribs -->
+  <rect x="0" y="7" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="7" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="5" y="7" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="7" width="4" height="1" fill="#787878"/>
+  <rect x="10" y="7" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="7" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="15" y="7" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 8 -->
+  <rect x="0" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="8" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="5" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="8" width="1" height="1" fill="#787878"/>
+  <rect x="7" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8" y="8" width="1" height="1" fill="#787878"/>
+  <rect x="9" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="10" y="8" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="8" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="15" y="8" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Row 9 lower body -->
+  <rect x="1" y="9" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="2" y="9" width="3" height="1" fill="#2a2a2a"/>
+  <rect x="5" y="9" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="9" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="10" y="9" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="9" width="3" height="1" fill="#2a2a2a"/>
+  <rect x="14" y="9" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Legs -->
+  <rect x="0" y="10" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="10" width="4" height="1" fill="#2a2a2a"/>
+  <rect x="5" y="10" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="10" width="4" height="1" fill="#4a4a4a"/>
+  <rect x="10" y="10" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="10" width="4" height="1" fill="#2a2a2a"/>
+  <rect x="15" y="10" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="0" y="11" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="11" width="4" height="1" fill="#2a2a2a"/>
+  <rect x="5" y="11" width="6" height="1" fill="#4a4a4a"/>
+  <rect x="11" y="11" width="4" height="1" fill="#2a2a2a"/>
+  <rect x="15" y="11" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Feet -->
+  <rect x="0" y="12" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="12" width="4" height="1" fill="#2a2a2a"/>
+  <rect x="5" y="12" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="12" width="4" height="1" fill="#2a2a2a"/>
+  <rect x="10" y="12" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="12" width="4" height="1" fill="#2a2a2a"/>
+  <rect x="15" y="12" width="1" height="1" fill="#0d0d0d"/>
+
+  <!-- Bone claws -->
+  <rect x="0" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="1" y="13" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="2" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="3" y="13" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="4" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="5" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="13" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="7" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8" y="13" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="9" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="10" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="13" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="12" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="13" y="13" width="1" height="1" fill="#fcfcfc"/>
+  <rect x="14" y="13" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="15" y="13" width="1" height="1" fill="#0d0d0d"/>
+
+  <rect x="1" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="3" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="6" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="8" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="11" y="14" width="1" height="1" fill="#0d0d0d"/>
+  <rect x="13" y="14" width="1" height="1" fill="#0d0d0d"/>
+</svg>

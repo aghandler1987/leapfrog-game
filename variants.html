@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEAP FROG - Sprite Variants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script src="theme.js"></script>
+  <style>
+    body {
+      overflow: auto;
+      background: var(--nes-navy);
+      padding: 2rem 1rem 4rem;
+      color: var(--nes-white);
+    }
+    .variants-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.6rem;
+      color: var(--nes-black);
+      background: var(--nes-yellow);
+      border: 3px solid var(--nes-black);
+      box-shadow: 4px 4px 0 var(--nes-dark);
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-family: 'Press Start 2P', monospace;
+    }
+    .back-link:hover { transform: translate(-1px, -1px); }
+    .back-link:active { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--nes-dark); }
+
+    .page-title {
+      font-size: 1.6rem;
+      color: var(--nes-yellow);
+      text-shadow: 4px 4px 0 var(--nes-red), 8px 8px 0 var(--nes-black);
+      letter-spacing: 3px;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .page-subtitle {
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--nes-cyan);
+      letter-spacing: 2px;
+      margin-bottom: 2.5rem;
+    }
+
+    .section {
+      margin-bottom: 3.5rem;
+    }
+    .section-heading {
+      font-size: 1rem;
+      color: var(--nes-lime);
+      letter-spacing: 3px;
+      border-bottom: 3px solid var(--nes-lime);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 0 var(--nes-black);
+    }
+    .section-note {
+      font-size: 0.55rem;
+      color: var(--nes-cream);
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .variant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .variant-card {
+      background: var(--nes-black);
+      border: 4px solid var(--nes-white);
+      padding: 1.25rem 1rem 1rem;
+      box-shadow: 6px 6px 0 var(--nes-dark);
+      text-align: center;
+      position: relative;
+    }
+    .variant-card.selected {
+      border-color: var(--nes-yellow);
+      box-shadow: 6px 6px 0 var(--nes-red);
+    }
+    .variant-card.selected::before {
+      content: "✓ ACTIVE";
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.5rem;
+      color: var(--nes-black);
+      background: var(--nes-yellow);
+      padding: 3px 8px;
+      letter-spacing: 2px;
+      border: 2px solid var(--nes-black);
+    }
+
+    .variant-label {
+      font-size: 0.55rem;
+      color: var(--nes-cyan);
+      letter-spacing: 2px;
+      margin-bottom: 0.75rem;
+    }
+    .variant-name {
+      font-size: 0.65rem;
+      color: var(--nes-yellow);
+      letter-spacing: 2px;
+      margin-top: 0.75rem;
+      min-height: 1.5em;
+    }
+    .variant-img-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 128px;
+      background: var(--nes-navy);
+      border: 2px solid var(--nes-dark);
+      padding: 8px;
+      image-rendering: pixelated;
+    }
+    .variant-img-wrap.wide {
+      height: 72px;
+    }
+    .variant-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      image-rendering: pixelated;
+    }
+    .frog-img, .boss-img { width: 112px; height: 112px; }
+    .lilypad-img { width: 180px; height: 56px; }
+
+    .select-btn {
+      margin-top: 0.75rem;
+      width: 100%;
+      background: var(--nes-lime);
+      border: 2px solid var(--nes-black);
+      padding: 0.5rem;
+      font-size: 0.55rem;
+      font-family: 'Press Start 2P', monospace;
+      color: var(--nes-black);
+      letter-spacing: 2px;
+      cursor: pointer;
+      box-shadow:
+        inset -3px -3px 0 var(--nes-green),
+        inset 3px 3px 0 var(--nes-white),
+        3px 3px 0 var(--nes-black);
+    }
+    .select-btn:hover { transform: translate(-1px, -1px); }
+    .select-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow:
+        inset 3px 3px 0 var(--nes-green),
+        inset -3px -3px 0 var(--nes-white),
+        0 0 0 var(--nes-black);
+    }
+
+    .scanlines { z-index: 1000; }
+  </style>
+</head>
+<body>
+  <div class="scanlines"></div>
+
+  <div class="variants-container">
+    <a href="index.html" class="back-link">← BACK TO GAME</a>
+
+    <h1 class="page-title">SPRITE VARIANTS</h1>
+    <p class="page-subtitle">PICK YOUR FROG · PREVIEW BOSSES & LILYPADS</p>
+
+    <!-- Frogs -->
+    <section class="section">
+      <h2 class="section-heading">YOUR FROG</h2>
+      <p class="section-note">Choose your character. Your choice is saved and will show up in the main game next time you reload.</p>
+      <div class="variant-grid" id="frog-grid"></div>
+    </section>
+
+    <!-- Bosses -->
+    <section class="section">
+      <h2 class="section-heading">BOSS ROSTER</h2>
+      <p class="section-note">These enemy frogs will randomly appear during boss fights. (Not individually selectable — fight them all!)</p>
+      <div class="variant-grid" id="boss-grid"></div>
+    </section>
+
+    <!-- Lilypads -->
+    <section class="section">
+      <h2 class="section-heading">LILYPADS</h2>
+      <p class="section-note">All five lilypad shapes rotate randomly through the course for a varied look.</p>
+      <div class="variant-grid" id="lilypad-grid"></div>
+    </section>
+  </div>
+
+  <script>
+    // =============== Data ===============
+    // Sprite paths come from Theme.sprite() so this page reflects the
+    // currently-active theme's artwork.
+    const FROGS = [
+      { id: 1,  name: 'CLASSIC',       file: Theme.sprite('frog1')  },
+      { id: 2,  name: 'HAPPY YELLOW',  file: Theme.sprite('frog2')  },
+      { id: 3,  name: 'BLUE DART',     file: Theme.sprite('frog3')  },
+      { id: 4,  name: 'TOMATO',        file: Theme.sprite('frog4')  },
+      { id: 5,  name: 'SPACE FROG',    file: Theme.sprite('frog5')  },
+      { id: 6,  name: 'TALL TREE',     file: Theme.sprite('frog6')  },
+      { id: 7,  name: 'BULLFROG',      file: Theme.sprite('frog7')  },
+      { id: 8,  name: 'HORNED SPIKY',  file: Theme.sprite('frog8')  },
+      { id: 9,  name: 'GLASS FROG',    file: Theme.sprite('frog9')  },
+      { id: 10, name: 'BIG HEAD',      file: Theme.sprite('frog10') },
+    ];
+    const BOSSES = [
+      { id: 1, name: 'INFERNAL',    file: Theme.sprite('boss1') },
+      { id: 2, name: 'BONEJAW',     file: Theme.sprite('boss2') },
+      { id: 3, name: 'TOAD KING',   file: Theme.sprite('boss3') },
+      { id: 4, name: 'CYBORG',      file: Theme.sprite('boss4') },
+      { id: 5, name: 'PYRO',        file: Theme.sprite('boss5') },
+    ];
+    const LILYPADS = [
+      { id: 1, name: 'NOTCHED',    file: Theme.sprite('lilypad1') },
+      { id: 2, name: 'ROUND PINK', file: Theme.sprite('lilypad2') },
+      { id: 3, name: 'BLUE BLOOM', file: Theme.sprite('lilypad3') },
+      { id: 4, name: 'SMALL',      file: Theme.sprite('lilypad4') },
+      { id: 5, name: 'WIDE',       file: Theme.sprite('lilypad5') },
+    ];
+
+    const SELECTED_FROG_KEY = 'leapfrog_frog_id';
+    function getSelectedFrogId() {
+      return parseInt(localStorage.getItem(SELECTED_FROG_KEY) || '1', 10);
+    }
+    function setSelectedFrogId(id) {
+      localStorage.setItem(SELECTED_FROG_KEY, String(id));
+    }
+
+    // =============== Render helpers ===============
+    function render() {
+      const frogGrid = document.getElementById('frog-grid');
+      const bossGrid = document.getElementById('boss-grid');
+      const lilyGrid = document.getElementById('lilypad-grid');
+      const selectedId = getSelectedFrogId();
+
+      frogGrid.innerHTML = FROGS.map(f => `
+        <div class="variant-card ${f.id === selectedId ? 'selected' : ''}">
+          <div class="variant-label">FROG ${f.id}</div>
+          <div class="variant-img-wrap">
+            <img src="${f.file}" alt="${f.name}" class="frog-img"/>
+          </div>
+          <div class="variant-name">${f.name}</div>
+          <button class="select-btn" data-id="${f.id}">${f.id === selectedId ? 'SELECTED' : 'SELECT'}</button>
+        </div>
+      `).join('');
+
+      bossGrid.innerHTML = BOSSES.map(b => `
+        <div class="variant-card">
+          <div class="variant-label">BOSS ${b.id}</div>
+          <div class="variant-img-wrap">
+            <img src="${b.file}" alt="${b.name}" class="boss-img"/>
+          </div>
+          <div class="variant-name">${b.name}</div>
+        </div>
+      `).join('');
+
+      lilyGrid.innerHTML = LILYPADS.map(l => `
+        <div class="variant-card">
+          <div class="variant-label">LILYPAD ${l.id}</div>
+          <div class="variant-img-wrap wide">
+            <img src="${l.file}" alt="${l.name}" class="lilypad-img"/>
+          </div>
+          <div class="variant-name">${l.name}</div>
+        </div>
+      `).join('');
+
+      frogGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('.select-btn');
+        if (!btn) return;
+        const id = parseInt(btn.dataset.id, 10);
+        setSelectedFrogId(id);
+        render();
+      });
+    }
+
+    render();
+  </script>
+</body>
+</html>
