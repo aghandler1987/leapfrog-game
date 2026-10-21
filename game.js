@@ -867,11 +867,24 @@ window.addEventListener('resize', renderLilypads);
 // ========== Init ==========
 
 // Replace the frog image in the main-game HTML with the selected variant.
-// The HTML ships with frog.svg hardcoded; this swaps it on load.
+// The HTML ships with data-sprite="frog1" as a bootstrap default; this swaps
+// both the src AND the data-sprite attribute so any later rewriter (e.g.
+// theme.js's DOMContentLoaded rewriteStaticSprites) doesn't revert the sprite
+// back to frog1. Previously only src was updated, and the DOMContentLoaded
+// pass fired AFTER game.js init() if the script order put theme.js's listener
+// registration before game.js's synchronous init — the net effect was that
+// a golden-frog player would see frog1 after refresh with sparkles still on.
 function applySelectedFrogSprite() {
-  const file = selectedFrogFile();
+  const id = parseInt(localStorage.getItem('leapfrog_frog_id') || '1', 10);
+  const inRange = id >= 1 && id <= 11;
+  const excluded = window.Theme && Theme.isFrogExcluded && Theme.isFrogExcluded(id);
+  const effectiveId = inRange && !excluded ? id : 1;
+  const file = Theme.sprite(`frog${effectiveId}`);
   const img = el.frog && el.frog.querySelector('img');
-  if (img) img.src = file;
+  if (img) {
+    img.src = file;
+    img.dataset.sprite = `frog${effectiveId}`;
+  }
   // Toggle sparkle effect only when the Konami-unlocked golden frog is both
   // (a) selected AND (b) actually unlocked AND (c) not excluded by the active
   // theme. Previously this fired on any `leapfrog_frog_id === 11`, so a stale
