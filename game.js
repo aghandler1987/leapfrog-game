@@ -29,8 +29,12 @@ function randomLilypadHtml() {
 const LILYPAD_SPACING = 190;        // px between lilypad centers (pads are 160px wide → ~30px gap)
 const MAX_VISIBLE_BEHIND = 2;       // lilypads kept behind the frog before pruning
 const VISIBLE_AHEAD = 4;            // lilypads kept ahead of the frog
-const WRONG_FEEDBACK_MS = 2800;     // how long to show wrong-answer explanation
-const CORRECT_FEEDBACK_MS = 700;    // how long to show correct-answer explanation
+// Feedback timing — the Correct!/Wrong! explanation stays on-screen this long
+// before the next fact loads. Facts explanations can be 20-50 words so give
+// enough time to actually read them. ~250wpm reading = ~4 words/sec, so a
+// 30-word explanation needs ~7s. Both were too short previously (2.8s/0.7s).
+const WRONG_FEEDBACK_MS = 5500;     // how long to show wrong-answer explanation
+const CORRECT_FEEDBACK_MS = 3500;   // how long to show correct-answer explanation
 const STARTING_LIVES = 3;
 
 // ========== State ==========
