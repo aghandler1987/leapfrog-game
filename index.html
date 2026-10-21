@@ -41,7 +41,10 @@
       </div>
 
       <!-- Theme picker — switching reloads the page -->
-      <div class="theme-picker" id="splash-theme-picker"></div>
+      <div class="splash-theme">
+        <p class="splash-theme-label">CHOOSE A THEME</p>
+        <div class="theme-picker" id="splash-theme-picker"></div>
+      </div>
 
       <div class="start-splash-prompt">PRESS ANY KEY</div>
       <div class="start-splash-sub">OR CLICK TO START</div>
@@ -160,13 +163,19 @@
         <!-- Player side -->
         <div class="boss-fighter player-fighter" id="player-fighter">
           <div class="fighter-label">YOU</div>
-          <div class="power-bar">
-            <div class="power-fill stage-good" id="player-power-fill"></div>
-            <div class="power-ticks"></div>
+          <div class="bar-row">
+            <span class="bar-label">HP</span>
+            <div class="power-bar">
+              <div class="power-fill stage-good" id="player-power-fill"></div>
+              <div class="power-ticks"></div>
+            </div>
           </div>
-          <div class="meter">
-            <div class="meter-fill" id="player-meter-fill"></div>
-            <div class="meter-zone" id="player-meter-zone"></div>
+          <div class="bar-row">
+            <span class="bar-label">STRIKE</span>
+            <div class="meter">
+              <div class="meter-fill" id="player-meter-fill"></div>
+              <div class="meter-zone" id="player-meter-zone"></div>
+            </div>
           </div>
           <div class="fighter-stack">
             <div class="dizzy-stars" id="player-stars">💫</div>
@@ -180,12 +189,18 @@
         <!-- Boss side -->
         <div class="boss-fighter boss-fighter-enemy" id="boss-fighter">
           <div class="fighter-label" id="boss-label">BOSS</div>
-          <div class="power-bar">
-            <div class="power-fill stage-good" id="boss-power-fill"></div>
-            <div class="power-ticks"></div>
+          <div class="bar-row">
+            <span class="bar-label">HP</span>
+            <div class="power-bar">
+              <div class="power-fill stage-good" id="boss-power-fill"></div>
+              <div class="power-ticks"></div>
+            </div>
           </div>
-          <div class="meter">
-            <div class="meter-fill meter-fill-boss" id="boss-meter-fill"></div>
+          <div class="bar-row">
+            <span class="bar-label">STRIKE</span>
+            <div class="meter">
+              <div class="meter-fill meter-fill-boss" id="boss-meter-fill"></div>
+            </div>
           </div>
           <div class="fighter-stack">
             <div class="dizzy-stars" id="boss-stars">💫</div>
@@ -239,7 +254,7 @@
   </main>
 
   <footer class="credit">
-    T = TRUE  ·  F = FALSE  ·  SPACE STRIKE  ·  M MUTE
+    T = TRUE  ·  F = FALSE  ·  SPACE STRIKE  ·  ↓ DODGE (BOSS)  ·  ↑+SPACE TONGUE UP  ·  C CHOOSE FROG  ·  M MUTE
   </footer>
 
   <script src="theme.js"></script>

@@ -1021,10 +1021,23 @@ if (picker.modal) {
   });
 }
 
-// Escape key closes the picker
+// Escape closes the picker; C opens it (any screen except boss/game-over)
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && picker.modal && !picker.modal.classList.contains('hidden')) {
     closeFrogPicker();
+    return;
+  }
+  // C opens the frog picker — matches the footer legend hint
+  if (e.key && e.key.toLowerCase() === 'c') {
+    // Don't hijack C while typing in an input (future-proofing — no inputs today)
+    const t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    // Don't open during active boss fight or game-over
+    if (typeof BossFight !== 'undefined' && BossFight.isActive && BossFight.isActive()) return;
+    if (state.gameOver) return;
+    if (picker.modal && picker.modal.classList.contains('hidden')) {
+      openFrogPicker();
+    }
   }
 });
 

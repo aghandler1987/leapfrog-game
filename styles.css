@@ -1186,6 +1186,35 @@ html, body {
    Fighting-game style: 10 hits, color shifts as it depletes.
    ======================================================== */
 
+/* Row wrapper that puts a small label next to each boss-arena bar
+   (HP, STRIKE). Keeps labels tight to the bar without reflowing the stack. */
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+}
+
+.bar-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.42rem;
+  letter-spacing: 1px;
+  color: var(--nes-white);
+  text-shadow: 1px 1px 0 var(--nes-black);
+  min-width: 42px;
+  text-align: right;
+}
+
+/* Modern theme uses a cleaner font for the labels too */
+[data-theme="modern"] .bar-label {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
 .power-bar {
   position: relative;
   width: 160px;
@@ -2335,16 +2364,20 @@ html, body {
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.85rem;
+  /* Shrunk from 0.85rem to 0.7rem to fit the expanded legend
+     (DODGE, TONGUE UP, CHOOSE FROG) on a single line without overflow */
+  font-size: 0.7rem;
   color: var(--nes-white);
   z-index: 10;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-shadow: 2px 2px 0 var(--nes-black);
   display: flex;
   align-items: center;
   gap: 0.5rem;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 95vw;
+  text-align: center;
   white-space: nowrap;
 }
 
@@ -2439,6 +2472,28 @@ html, body {
   margin-top: 0.5rem;
   margin-bottom: 0.6rem;
   animation: blink 0.6s steps(2) infinite;
+}
+
+/* Splash-screen theme picker group — adds a labeled header above the tiles
+   so the row isn't ambiguous. Mirrors the "THEME" label on game-over modal. */
+.splash-theme {
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.splash-theme-label {
+  font-family: inherit;
+  font-size: 0.55rem;
+  letter-spacing: 3px;
+  color: var(--nes-dark, #9a9a9a);
+  margin: 0 0 0.5rem;
+}
+
+[data-theme="modern"] .splash-theme-label {
+  color: #4a4a5c;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
 }
 
 /* Theme picker on the splash screen — click a tile to reload with the theme */
