@@ -22,6 +22,19 @@
   --nes-white:   #fcfcfc;
   --nes-cream:   #f8e8c8;
   --nes-gray:    #787878;
+
+  /* Fraction (0-1) measuring the mouth's y-position from the top of the
+     frog sprite. Used by all tongue animations (fidget tongue, upward
+     tongue, fly-grab tongue, boss arena tongue) so that different-sized
+     sprites across themes keep their tongue origin aligned to the mouth.
+     Retro default: ~32% from top. Modern theme overrides this below. */
+  --mouth-y-ratio: 0.32;
+
+  /* Pixel offset applied via translateY to drop the frog's feet onto the
+     lilypad. Retro sprite has tight padding below the feet so +18px grounds
+     cleanly. Modern PNGs have ~30-40px of empty space below the feet (bigger
+     body + drop shadow), so Modern overrides this to a larger value. */
+  --frog-ground-offset: 18px;
 }
 
 /* ========================================================
@@ -277,11 +290,43 @@
   font-family: 'VT323', 'Press Start 2P', monospace;
   background: #0a0518;
   color: #ffffff;
+  /* VT323 has a smaller x-height than Press Start 2P, so at the same
+     declared font-size it reads noticeably smaller/thinner. Bump the base
+     up ~40% to compensate; downstream rem/em sizes inherit this. */
+  font-size: 140%;
 }
 
-/* VT323 is naturally larger — scale down most elements slightly to compensate */
+/* Neon base text styling — tighter letter-spacing (VT323 doesn't need the
+   retro's wide pixel spacing to be readable), and all caps have more weight
+   via text-shadow glow. */
 [data-theme="neon"] * {
   letter-spacing: 1px;
+}
+
+/* Specifically rescue the footer legend which was unreadable at the
+   base retro font-size (0.7rem). Bumped further on top of the 140% base. */
+[data-theme="neon"] .credit {
+  font-size: 1rem;
+  letter-spacing: 2px;
+}
+
+/* Boss arena labels / instructions — VT323 at these smaller sizes vanishes
+   against the glow effects. Bump them to actually be legible. */
+[data-theme="neon"] .bar-label,
+[data-theme="neon"] .fighter-label {
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+}
+
+[data-theme="neon"] .boss-instruction {
+  font-size: 1.15rem;
+}
+[data-theme="neon"] .boss-instruction-sub {
+  font-size: 1rem;
+}
+[data-theme="neon"] .boss-intro-sub,
+[data-theme="neon"] .boss-name-sub {
+  font-size: 1.1rem;
 }
 
 /* ===== Sky — dark starry gradient ===== */
@@ -652,6 +697,18 @@
    Palette shifts to natural sky/pond colors.
    ======================================================== */
 
+[data-theme="modern"] {
+  /* Modern frog sprites have a bigger head + eye bulges so the mouth sits
+     lower in the sprite box (~55% from the top instead of retro's 32%).
+     This shifts all 4 tongue origins consistently. */
+  --mouth-y-ratio: 0.55;
+
+  /* Modern PNGs have significant empty space below the feet (drop shadow,
+     padding) so the retro +18px grounding offset leaves the frog hovering.
+     Bump to +55px so the feet actually land on the lilypad. */
+  --frog-ground-offset: 55px;
+}
+
 [data-theme="modern"] html,
 [data-theme="modern"] body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
@@ -894,14 +951,24 @@
   letter-spacing: 2px;
 }
 
-/* Credits footer */
+/* Credits footer — dark pill with white text for strong contrast against
+   the light blue pond background. Previously semi-translucent white with
+   dark text, which was nearly unreadable against the pond gradient. */
 [data-theme="modern"] .credit {
   font-family: inherit;
-  color: #2d2a3c;
-  background: rgba(255, 255, 255, 0.8);
+  color: #ffffff;
+  background: rgba(45, 42, 60, 0.92);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 1px;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  text-shadow: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+/* Dim the thin separator dots so they read as separators, not characters */
+[data-theme="modern"] .credit .credit-line {
+  opacity: 1;
 }
 
 * {
@@ -1573,7 +1640,7 @@ html, body {
   line-height: 1;
   /* Translate up by (frog height) so its FEET sit at the top: 72% waterline.
      Then shift down ~18px so the frog overlaps the lilypad top for grounding. */
-  transform: translate(-50%, calc(-100% + 18px));
+  transform: translate(-50%, calc(-100% + var(--frog-ground-offset, 18px)));
   z-index: 5;
   transition: opacity 0.5s ease;
   filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.6));
@@ -1662,10 +1729,14 @@ html, body {
 }
 
 /* Fidget tongue — pure cosmetic. Positioned to come out of the frog's mouth
-   when SPACE is pressed outside battle mode. */
+   when SPACE is pressed outside battle mode.
+   The mouth position is theme-dependent (retro sprite has mouth at ~32% from
+   top, modern sprite has mouth at ~55% because of the larger head/eyes), so
+   `top` reads from the CSS variable `--mouth-y-ratio` defined per-theme on
+   the <html> element. Fallback 32% matches the historical retro behavior. */
 .frog-tongue {
   position: absolute;
-  top: 32%;           /* mouth sits at row 5 of 16 in the frog sprite ≈ 31% */
+  top: calc(var(--mouth-y-ratio, 0.32) * 100%);
   left: 50%;
   width: 0;
   height: 8px;
@@ -1704,10 +1775,12 @@ html, body {
 }
 
 /* Upward tongue — fires straight up when the player holds UP + presses SPACE.
-   Vertical bar extending from the frog's mouth upward, with a ball tip. */
+   Vertical bar extending from the frog's mouth upward, with a ball tip.
+   Mouth y-position is `--mouth-y-ratio` from the top, so the bottom offset
+   is `1 - that ratio` (expressed as a percentage of the parent height). */
 .frog-tongue-up {
   position: absolute;
-  bottom: 68%;           /* mouth is at row 5/16 from top = 11/16 ≈ 68% from bottom */
+  bottom: calc((1 - var(--mouth-y-ratio, 0.32)) * 100%);
   left: 50%;
   width: 8px;
   height: 0;
@@ -1795,32 +1868,32 @@ html, body {
 .frog.wobbling        { animation: wobble      0.6s steps(10, end); }
 .frog.falling         { animation: fall-in-water 0.9s steps(12, end) forwards; }
 
-/* Base rest transform: translate(-50%, calc(-100% + 18px))
+/* Base rest transform: translate(-50%, calc(-100% + var(--frog-ground-offset, 18px)))
    Hops offset further up from that base. */
 @keyframes hop-forward {
-  0%   { transform: translate(-50%, calc(-100% + 18px)); }
+  0%   { transform: translate(-50%, calc(-100% + var(--frog-ground-offset, 18px))); }
   50%  { transform: translate(-50%, calc(-100% - 82px)) rotate(8deg); }
-  100% { transform: translate(-50%, calc(-100% + 18px)); }
+  100% { transform: translate(-50%, calc(-100% + var(--frog-ground-offset, 18px))); }
 }
 
 @keyframes hop-back {
-  0%   { transform: translate(-50%, calc(-100% + 18px)); }
+  0%   { transform: translate(-50%, calc(-100% + var(--frog-ground-offset, 18px))); }
   50%  { transform: translate(-50%, calc(-100% - 52px)) rotate(-12deg) scaleX(-1); }
-  100% { transform: translate(-50%, calc(-100% + 18px)); }
+  100% { transform: translate(-50%, calc(-100% + var(--frog-ground-offset, 18px))); }
 }
 
 @keyframes wobble {
-  0%   { transform: translate(-50%, calc(-100% + 18px)) rotate(0deg); }
-  15%  { transform: translate(-60%, calc(-100% + 18px)) rotate(-10deg); }
-  30%  { transform: translate(-40%, calc(-100% + 18px)) rotate(10deg); }
-  45%  { transform: translate(-60%, calc(-100% + 18px)) rotate(-8deg); }
-  60%  { transform: translate(-40%, calc(-100% + 18px)) rotate(8deg); }
-  75%  { transform: translate(-55%, calc(-100% + 18px)) rotate(-4deg); }
-  100% { transform: translate(-50%, calc(-100% + 18px)) rotate(0deg); }
+  0%   { transform: translate(-50%, calc(-100% + var(--frog-ground-offset, 18px))) rotate(0deg); }
+  15%  { transform: translate(-60%, calc(-100% + var(--frog-ground-offset, 18px))) rotate(-10deg); }
+  30%  { transform: translate(-40%, calc(-100% + var(--frog-ground-offset, 18px))) rotate(10deg); }
+  45%  { transform: translate(-60%, calc(-100% + var(--frog-ground-offset, 18px))) rotate(-8deg); }
+  60%  { transform: translate(-40%, calc(-100% + var(--frog-ground-offset, 18px))) rotate(8deg); }
+  75%  { transform: translate(-55%, calc(-100% + var(--frog-ground-offset, 18px))) rotate(-4deg); }
+  100% { transform: translate(-50%, calc(-100% + var(--frog-ground-offset, 18px))) rotate(0deg); }
 }
 
 @keyframes fall-in-water {
-  0%   { transform: translate(-50%, calc(-100% + 18px)) rotate(0deg); opacity: 1; }
+  0%   { transform: translate(-50%, calc(-100% + var(--frog-ground-offset, 18px))) rotate(0deg); opacity: 1; }
   40%  { transform: translate(-50%, calc(-100% - 52px)) rotate(-25deg); opacity: 1; }
   100% { transform: translate(-50%, 100%) rotate(-120deg); opacity: 0; }
 }
@@ -3220,9 +3293,13 @@ html, body {
    Fighter is 180px wide, gap is 60px, so tongue needs ~220-240px to land. */
 .tongue {
   position: absolute;
-  /* Sprite is 110px, pedestal is 60px → stack ~170px tall. Sprite mouth is at
-     row 5/16 of 110px ≈ 34px from top → ~20% from top of the stack. */
-  top: 20%;
+  /* Boss arena: sprite is 110px, pedestal is 60px → stack ~170px tall.
+     Mouth y-position within the sprite is `--mouth-y-ratio` (0.32 retro,
+     0.55 modern). Within the taller stack, scale by sprite/stack ratio.
+     110/170 ≈ 0.647, so stack-level offset ≈ ratio * 0.647.
+     Retro: 0.32 * 0.647 ≈ 0.21 (matches historical 20%).
+     Modern: 0.55 * 0.647 ≈ 0.36. */
+  top: calc(var(--mouth-y-ratio, 0.32) * 64.7%);
   height: 12px;
   background: var(--nes-pink);
   border-top: 2px solid var(--nes-red);

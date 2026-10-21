@@ -387,9 +387,15 @@ function fireOrbTongue(orbEl) {
   const frogRect = el.frog.getBoundingClientRect();
   const orbRect  = orbEl.getBoundingClientRect();
 
-  // Mouth is roughly ~35% from the top of the frog box, centered horizontally
+  // The mouth's y-position within the sprite is theme-dependent — retro
+  // sprites have the mouth at ~32% from top, Modern sprites at ~55%. Read
+  // the same --mouth-y-ratio CSS variable that the CSS tongue positions use
+  // so everything stays in sync.
+  const mouthRatio = parseFloat(
+    getComputedStyle(document.documentElement).getPropertyValue('--mouth-y-ratio')
+  ) || 0.35;
   const mouthX = frogRect.left + frogRect.width / 2;
-  const mouthY = frogRect.top  + frogRect.height * 0.35;
+  const mouthY = frogRect.top  + frogRect.height * mouthRatio;
   const orbX   = orbRect.left + orbRect.width / 2;
   const orbY   = orbRect.top  + orbRect.height / 2;
 
