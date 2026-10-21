@@ -1385,15 +1385,44 @@ html, body {
 }
 
 /* ========================================================
-   HUD mobile layout — the full desktop HUD (score, title,
+   HUD responsive tiers — the full desktop HUD (score, title,
    lives, best, mute, music player, track name, frog picker)
-   is too cramped on narrow screens. On mobile we:
-   - hide the big LEAP FROG title (branding, not gameplay)
-   - hide the track name text (keep prev/play/next)
-   - hide the "Score"/"Lives"/"Best" labels — values alone
-   - shrink padding, gaps, and HUD items
-   - allow the right cluster to wrap so overflow stays visible
+   needs to collapse progressively as the viewport narrows,
+   not jump straight from "full" to "mobile":
+     > 1200px : full layout
+     900-1200 : hide title (frees ~250px of center space)
+     700-900  : + hide track name, shrink gaps
+     <= 700   : full mobile collapse (labels hidden, etc.)
+     <= 400   : extra-tight (iPhone SE)
    ======================================================== */
+
+/* Tier 1: >=901px but <=1200px — just hide the big center title.
+   The title is branding, not gameplay, and the ~250px it reserves
+   is where the overlap collisions start. */
+@media (max-width: 1200px) {
+  .title {
+    display: none;
+  }
+}
+
+/* Tier 2: 700-900px — also hide the track name text and tighten
+   gaps so the music player cluster doesn't crash into Best. */
+@media (max-width: 900px) {
+  .hud {
+    padding: 0.75rem;
+    gap: 0.6rem;
+  }
+  .hud-right {
+    gap: 0.5rem;
+  }
+  .track-name {
+    display: none;
+  }
+  .audio-cluster {
+    gap: 2px;
+  }
+}
+
 @media (max-width: 700px) {
   .hud {
     padding: 0.5rem;
