@@ -1444,9 +1444,11 @@ html, body {
   background: var(--nes-black);
   border: 2px solid var(--nes-white);
   padding: 3px 6px;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-align: center;
-  max-width: 110px;
+  /* Widen cap so the longest track ("5. SWAMP BLUES") fits without ellipsis.
+     Tighter letter-spacing (above) also reclaims a few px. */
+  max-width: 150px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -1454,7 +1456,7 @@ html, body {
 
 @media (max-width: 600px) {
   .player-btn { width: 24px; height: 20px; font-size: 0.4rem; }
-  .track-name { font-size: 0.35rem; max-width: 85px; }
+  .track-name { font-size: 0.35rem; max-width: 120px; }
 }
 
 /* ========================================================
