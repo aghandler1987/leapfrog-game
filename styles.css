@@ -59,6 +59,12 @@
   --nes-white:   #ffffff;
   --nes-cream:   #fff9e6;
   --nes-gray:    #a9b4c2;
+
+  /* The 🐸 emoji glyph fills most of its SVG box and the mouth sits in
+     the lower third. Push the mouth y-ratio down from retro's 0.32 so
+     all 4 tongue origins (fidget, upward, fly-grab, boss) emit from the
+     emoji's mouth instead of the top of its head. */
+  --mouth-y-ratio: 0.68;
 }
 
 [data-theme="emoji"] html,
