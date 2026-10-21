@@ -28,7 +28,9 @@
   function fishLoop() {
     const delay = FISH_MIN_MS + Math.random() * (FISH_MAX_MS - FISH_MIN_MS);
     setTimeout(() => {
-      spawnFish();
+      // Skip spawn (but keep the loop going) while the dance party is active —
+      // ambient wildlife shouldn't jump onto the stage.
+      if (!window.__celebrationActive) spawnFish();
       fishLoop();
     }, delay);
   }
@@ -61,7 +63,7 @@
   function bugLoop() {
     const delay = BUG_MIN_MS + Math.random() * (BUG_MAX_MS - BUG_MIN_MS);
     setTimeout(() => {
-      spawnBug();
+      if (!window.__celebrationActive) spawnBug();
       bugLoop();
     }, delay);
   }

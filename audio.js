@@ -386,6 +386,31 @@ const Audio = (() => {
 
   let bossMode = false;
   let bossThemeId = 1;
+  let partyMode = false;
+
+  // ===== Party theme — upbeat disco/funk for the dance party celebration.
+  // 160 BPM, 16-step pattern × 2 bars so it loops cleanly over ~6s and
+  // plays twice through the 10s party. 4-on-the-floor kick, synth stabs,
+  // walking bass, bright melody.
+  const PARTY_THEME = {
+    bpm: 160,
+    lead: [
+      'C5','.',  'E5','.',  'G5','.',  'C6','.',  'G5','.',  'E5','.',  'C5','.',  'G4','.',
+      'A4','.',  'C5','.',  'E5','.',  'A5','.',  'E5','.',  'C5','.',  'A4','.',  'E4','.',
+    ],
+    arp: [
+      'C4','E4','G4','C5','E5','G5','E5','C5', 'G4','E4','C4','E4','G4','C5','E5','C5',
+      'A3','C4','E4','A4','C5','E5','C5','A4', 'E4','C4','A3','C4','E4','A4','C5','A4',
+    ],
+    bass: [
+      'C3','.','.','.', 'C3','.','.','.', 'G2','.','.','.', 'G2','.','.','.',
+      'A2','.','.','.', 'A2','.','.','.', 'E2','.','.','.', 'E2','.','.','.',
+    ],
+    drum: [
+      'K','H','S','H','K','H','S','H','K','H','S','H','K','H','S','H',
+      'K','H','S','H','K','H','S','H','K','H','S','H','K','K','S','S',
+    ],
+  };
 
   function ensureCtx() {
     if (ctx) {
@@ -489,7 +514,10 @@ const Audio = (() => {
 
   function scheduleStep(step, when) {
     let tracks;
-    if (bossMode) {
+    if (partyMode) {
+      const stepSec = (60 / PARTY_THEME.bpm) / 4;
+      tracks = { lead: PARTY_THEME.lead, arp: PARTY_THEME.arp, bass: PARTY_THEME.bass, drum: PARTY_THEME.drum, stepSec };
+    } else if (bossMode) {
       const theme = BOSS_THEMES[bossThemeId] || BOSS_THEMES[1];
       const stepSec = (60 / theme.bpm) / 4;
       tracks = { lead: theme.lead, arp: null, bass: theme.bass, drum: theme.drum, stepSec };
@@ -507,7 +535,7 @@ const Audio = (() => {
         type: 'square',
         when,
         dur: tracks.stepSec * 1.8,
-        gain: bossMode ? 0.18 : 0.14,
+        gain: partyMode ? 0.22 : (bossMode ? 0.18 : 0.14),
         dest: musicGain,
       });
     }
@@ -695,6 +723,19 @@ const Audio = (() => {
     if (ctx) nextStepTime = ctx.currentTime + 0.05;
   }
 
+  // ===== Party mode — plays the dedicated celebration track =====
+  function enterPartyMode() {
+    partyMode = true;
+    currentStep = 0;
+    if (ctx) nextStepTime = ctx.currentTime + 0.05;
+  }
+
+  function exitPartyMode() {
+    partyMode = false;
+    currentStep = 0;
+    if (ctx) nextStepTime = ctx.currentTime + 0.05;
+  }
+
   // ===== Boss SFX =====
   function sfxTongueWhip() {
     ensureCtx();
@@ -792,6 +833,7 @@ const Audio = (() => {
   return {
     startMusic, stopMusic,
     enterBossMode, exitBossMode,
+    enterPartyMode, exitPartyMode,
     nextTrack, prevTrack, getCurrentTrack, togglePause, isPaused,
     sfxCorrect, sfxWrong, sfxHop, sfxSplash, sfxGameOver, sfxLifeLost,
     sfxTongueWhip, sfxBossHit, sfxBossIntro, sfxBossVictory, sfxBossDefeat, sfxThunder, sfxFanfare,

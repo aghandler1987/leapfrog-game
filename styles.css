@@ -3766,3 +3766,412 @@ html, body {
   .credit { font-size: 0.65rem; }
   .legend-arrow { font-size: 1.1rem; }
 }
+
+/* ========================================================
+   DANCE PARTY STAGE SHOW
+   Full theatrical overlay for the 3-boss milestone celebration.
+   Layer stack (bottom → top):
+     1. .stage-backdrop (dark theater)
+     2. .stage-spotlights (3 colored beams)
+     3. .stage-floor (wooden plank stage)
+     4. .stage-dancer-row (7 hopping frogs)
+     5. .stage-banner (text)
+     6. .stage-curtain-left/right (red velvet curtains — close + open)
+     7. .stage-confetti (overhead particles)
+   ======================================================== */
+
+.stage-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* === Dark theater backdrop === */
+.stage-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center 70%, #1a0a0a 0%, #050202 70%, #000 100%);
+}
+
+/* === Wooden stage floor (bottom third of screen) === */
+.stage-floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32%;
+  background:
+    /* Vertical plank seam lines */
+    repeating-linear-gradient(90deg,
+      rgba(0, 0, 0, 0.25) 0 2px,
+      transparent 2px 70px),
+    /* Wood grain gradient */
+    linear-gradient(180deg,
+      #6b3f1f 0%,
+      #8b5a2b 10%,
+      #a06838 50%,
+      #6b3f1f 100%);
+  border-top: 6px solid #3a1f0a;
+  box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.6);
+}
+/* Stage lip (front edge, slightly lighter) */
+.stage-floor::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 18px;
+  background: linear-gradient(180deg, #c89060 0%, #8b5a2b 100%);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* === Spotlights sweeping across stage === */
+.stage-spotlights {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.stage-spotlight {
+  --cx: 50%;
+  --spotlight-color: #ffee55;
+  --delay: 0s;
+  position: absolute;
+  top: 0;
+  left: var(--cx);
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--spotlight-color) 60%, transparent) 0%,
+    color-mix(in srgb, var(--spotlight-color) 20%, transparent) 50%,
+    transparent 100%);
+  clip-path: polygon(45% 0%, 55% 0%, 85% 100%, 15% 100%);
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: spotlight-sweep 2.5s ease-in-out var(--delay) infinite;
+  mix-blend-mode: screen;
+}
+@keyframes spotlight-sweep {
+  0%   { opacity: 0;    transform: translateX(-50%) rotate(-8deg); }
+  20%  { opacity: 0.75; }
+  50%  { opacity: 0.9;  transform: translateX(-50%) rotate(8deg); }
+  80%  { opacity: 0.75; }
+  100% { opacity: 0;    transform: translateX(-50%) rotate(-8deg); }
+}
+
+/* === Dancer row ON the stage ===
+   Each dancer is a two-layer stack: the outer div handles the WING ENTRY
+   animation (translateX from offscreen → 0), the inner <img> handles the
+   HOP (translateY + rotate). Separating them avoids transform conflicts
+   between the two animations. */
+.stage-dancer-row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 7%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 0 4%;
+  pointer-events: none;
+  z-index: 2;
+}
+.stage-dancer-center-spacer {
+  width: 140px;    /* reserves the center slot for the star dancer */
+  height: 1px;
+}
+
+.stage-dancer {
+  --enter-delay: 0.7s;
+  --hop-delay: 1.2s;
+  --hop-dur: 500ms;
+  width: 90px;
+  height: 90px;
+  opacity: 0;
+  animation: dancer-enter 0.55s cubic-bezier(.3, 1.5, .5, 1) var(--enter-delay) forwards;
+}
+.stage-dancer.from-wing-left  { transform: translateX(-120vw); }
+.stage-dancer.from-wing-right { transform: translateX(120vw); }
+
+@keyframes dancer-enter {
+  0%   { opacity: 0; }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.stage-dancer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.6));
+  animation: dancer-hop var(--hop-dur) ease-in-out var(--hop-delay) infinite;
+}
+@keyframes dancer-hop {
+  0%   { transform: translateY(0)    rotate(-8deg); }
+  50%  { transform: translateY(-32px) rotate(8deg); }
+  100% { transform: translateY(0)    rotate(-8deg); }
+}
+/* Alternate dancers hop out of phase for a wave effect */
+.stage-dancer:nth-child(even) .stage-dancer-img {
+  animation-direction: reverse;
+}
+[data-theme="modern"] .stage-dancer-img,
+[data-theme="emoji"]  .stage-dancer-img {
+  image-rendering: auto;
+}
+
+/* === STAR DANCER — the player's selected frog, center stage, bigger,
+   cycles through 4 different signature moves (jump, spin, cartwheel,
+   split-leap) over the party duration. Appears from below the stage
+   with a dramatic entrance. */
+.stage-star-dancer {
+  --enter-delay: 0.8s;
+  position: absolute;
+  left: 50%;
+  bottom: 7%;
+  width: 130px;
+  height: 130px;
+  transform: translate(-50%, 160px);
+  opacity: 0;
+  z-index: 3;
+  animation: star-enter 0.8s cubic-bezier(.3, 1.6, .5, 1) var(--enter-delay) forwards;
+}
+@keyframes star-enter {
+  0%   { opacity: 0; transform: translate(-50%, 160px) scale(0.5); }
+  60%  { opacity: 1; transform: translate(-50%, -40px) scale(1.15); }
+  100% { opacity: 1; transform: translate(-50%, 0)    scale(1); }
+}
+
+.stage-star-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: drop-shadow(5px 5px 0 rgba(0, 0, 0, 0.7));
+  transform-origin: center center;
+  /* 4 moves × 2 seconds each = 8s, play once (not infinite) so the final
+     frame holds for the last ~0.5s before the curtain closes. */
+  animation: star-moves 8s linear 1.7s 1 forwards;
+}
+[data-theme="modern"] .stage-star-img,
+[data-theme="emoji"]  .stage-star-img {
+  image-rendering: auto;
+}
+
+/* Star's signature-move medley:
+     0 - 25%  JUMP   : four quick vertical hops
+    25 - 50%  SPIN   : full 720° rotation while hopping
+    50 - 75%  CARTWHEEL: 360° rotation + horizontal sway
+    75 -100%  SPLIT   : big leap with legs apart (scale skew)
+*/
+@keyframes star-moves {
+  /* --- JUMP phase (0-25%) --- */
+  0%   { transform: translateY(0)   rotate(0deg); }
+  3%   { transform: translateY(-50px) rotate(0deg); }
+  6%   { transform: translateY(0)   rotate(0deg); }
+  9%   { transform: translateY(-50px) rotate(0deg); }
+  12%  { transform: translateY(0)   rotate(0deg); }
+  15%  { transform: translateY(-60px) rotate(0deg); }
+  18%  { transform: translateY(0)   rotate(0deg); }
+  22%  { transform: translateY(-45px) rotate(0deg); }
+  25%  { transform: translateY(0)   rotate(0deg); }
+
+  /* --- SPIN phase (25-50%) — two full rotations in the air --- */
+  28%  { transform: translateY(-30px) rotate(180deg); }
+  32%  { transform: translateY(-55px) rotate(360deg); }
+  36%  { transform: translateY(-30px) rotate(540deg); }
+  40%  { transform: translateY(-55px) rotate(720deg); }
+  44%  { transform: translateY(-30px) rotate(900deg); }
+  48%  { transform: translateY(-10px) rotate(1080deg); }
+  50%  { transform: translateY(0)    rotate(1080deg); }
+
+  /* --- CARTWHEEL phase (50-75%) — rotate 360° while traversing left-right --- */
+  53%  { transform: translate(-30px, -20px) rotate(1260deg); }
+  58%  { transform: translate(-50px, -40px) rotate(1440deg); }
+  63%  { transform: translate( 50px, -40px) rotate(1620deg); }
+  68%  { transform: translate( 30px, -20px) rotate(1800deg); }
+  73%  { transform: translate(0,     -10px) rotate(1800deg); }
+  75%  { transform: translate(0,      0)    rotate(1800deg); }
+
+  /* --- SPLIT-LEAP phase (75-100%) — massive leap with scale pulse --- */
+  78%  { transform: translateY(-30px) scale(1.1, 0.9) rotate(1800deg); }
+  83%  { transform: translateY(-90px) scale(1.3, 0.7) rotate(1800deg); }
+  88%  { transform: translateY(-70px) scale(1.1, 0.9) rotate(1800deg); }
+  92%  { transform: translateY(-40px) scale(1,    1)  rotate(1800deg); }
+  96%  { transform: translateY(-15px) scale(1,    1)  rotate(1800deg); }
+  100% { transform: translateY(0)    scale(1,    1)  rotate(1800deg); }
+}
+
+/* Mobile scaling for the star */
+@media (max-width: 600px) {
+  .stage-star-dancer { width: 90px; height: 90px; }
+  .stage-dancer-center-spacer { width: 100px; }
+}
+
+/* === Banner above the stage === */
+.stage-banner {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 3;
+  opacity: 0;
+  animation: banner-drop 0.7s cubic-bezier(.3, 1.6, .5, 1) 1.2s forwards;
+}
+@keyframes banner-drop {
+  0%   { opacity: 0; transform: translate(-50%, -80px) scale(0.6); }
+  70%  { opacity: 1; transform: translate(-50%, 10px) scale(1.1); }
+  100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+.stage-banner-main {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 2.4rem;
+  color: var(--nes-yellow, #ffd700);
+  letter-spacing: 4px;
+  text-shadow:
+    4px 4px 0 #d82800,
+    8px 8px 0 #000;
+  margin-bottom: 0.8rem;
+  white-space: nowrap;
+}
+.stage-banner-sub {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.1rem;
+  color: #fff;
+  letter-spacing: 6px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* === Red velvet curtains === */
+.stage-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 55%;    /* 10% overlap at center so no gap during closed state */
+  z-index: 10;
+  background:
+    /* Vertical velvet pleats */
+    repeating-linear-gradient(90deg,
+      rgba(0, 0, 0, 0.35) 0 4px,
+      rgba(255, 255, 255, 0.04) 4px 8px,
+      rgba(0, 0, 0, 0.25) 8px 30px),
+    /* Red velvet gradient */
+    linear-gradient(180deg,
+      #8b0000 0%,
+      #a51b1b 20%,
+      #c42c2c 50%,
+      #8b0000 100%);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.6);
+  will-change: transform;
+}
+.stage-curtain-left {
+  left: 0;
+  transform-origin: left center;
+  /* Opens: slide left offscreen. Closed state is translateX(0). */
+  animation: curtain-open-left 0.7s ease-in-out 0.5s forwards;
+}
+.stage-curtain-right {
+  right: 0;
+  transform-origin: right center;
+  animation: curtain-open-right 0.7s ease-in-out 0.5s forwards;
+}
+
+/* Pelmet / valance at the top — fancy scalloped drape */
+.stage-curtain::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(180deg, #4a0000 0%, #8b0000 100%);
+  z-index: 1;
+}
+
+/* Gold rope tiebacks when curtain is open */
+.stage-curtain::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  height: 60px;
+  width: 12px;
+  background: linear-gradient(90deg, #b8860b 0%, #ffd700 50%, #b8860b 100%);
+  border-radius: 6px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  transform: translateY(-50%);
+  opacity: 0;
+  animation: tieback-appear 0.3s ease-out 1.2s forwards;
+}
+.stage-curtain-left::after  { right: 10px; }
+.stage-curtain-right::after { left: 10px; }
+
+@keyframes curtain-open-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+@keyframes curtain-open-right {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+@keyframes tieback-appear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Closing state: reverse the animation */
+.stage-overlay.closing .stage-curtain-left {
+  animation: curtain-close-left 0.7s ease-in-out forwards;
+}
+.stage-overlay.closing .stage-curtain-right {
+  animation: curtain-close-right 0.7s ease-in-out forwards;
+}
+.stage-overlay.closing .stage-curtain::after {
+  animation: tieback-disappear 0.2s ease-in forwards;
+}
+.stage-overlay.closing .stage-banner,
+.stage-overlay.closing .stage-dancer {
+  animation: content-fadeout 0.3s ease-in forwards;
+}
+@keyframes curtain-close-left {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes curtain-close-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes tieback-disappear {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes content-fadeout {
+  to { opacity: 0; }
+}
+
+/* === Confetti rain === */
+.stage-confetti {
+  --spin: 720deg;
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  z-index: 11;
+  animation: confetti-fall 4s linear infinite;
+}
+@keyframes confetti-fall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(100vh) rotate(var(--spin)); opacity: 0; }
+}
+
+/* === Mobile tweaks: smaller banner, smaller dancers === */
+@media (max-width: 600px) {
+  .stage-banner-main { font-size: 1.4rem; letter-spacing: 2px; }
+  .stage-banner-sub  { font-size: 0.7rem; letter-spacing: 3px; }
+  .stage-dancer      { width: 70px; height: 70px; }
+  .stage-dancer-row  { padding: 0 2%; }
+}

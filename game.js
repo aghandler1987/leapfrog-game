@@ -48,11 +48,14 @@ const state = {
   locked: false,
   gameOver: false,
   streak: 0,              // consecutive correct answers — triggers boss at BOSS_STREAK
+  bossWins: 0,            // bosses defeated this session — every DANCE_PARTY_BOSS_WINS triggers celebration
   lilypads: new Map(),    // Map<index, HTMLElement>
 };
 
 const BOSS_STREAK = 3;
 const BOSS_WIN_SCORE_BONUS = 3;
+// Every N boss wins triggers a dance party celebration before the next fact.
+const DANCE_PARTY_BOSS_WINS = 3;
 
 // ========== DOM refs ==========
 const el = {
@@ -328,7 +331,21 @@ function startBossFight() {
       setAnswerOrbsVisible(true);
       state.locked = false;
       setMusicPlayerLocked(false);
-      nextFact();
+
+      // Dance party milestone — every N boss wins, pause for a celebration
+      // before the next fact loads. Visual + audio reward for a long run.
+      state.bossWins += 1;
+      if (state.bossWins % DANCE_PARTY_BOSS_WINS === 0 &&
+          typeof Celebration !== 'undefined') {
+        state.locked = true;
+        Celebration.start('milestone');
+        setTimeout(() => {
+          state.locked = false;
+          nextFact();
+        }, 4600); // slightly longer than PARTY_DURATION_MS so UI resumes cleanly
+      } else {
+        nextFact();
+      }
     },
     onLose: () => {
       // Penalty: lose a heart. If that was the last, game over.
@@ -549,6 +566,7 @@ function restart() {
   state.lives = STARTING_LIVES;
   state.position = 0;
   state.streak = 0;
+  state.bossWins = 0;
   state.currentFact = null;
   state.locked = false;
   state.gameOver = false;
