@@ -1994,9 +1994,10 @@ html, body {
    subtle jittery animation and has a labeled key cap. The frog tongues them. */
 .answer-flies {
   position: fixed;
-  /* Anchor to the frog's upper-body level and center the stack vertically
-     so both flies float ABOVE the waterline, flanking the frog's mouth. */
-  top: 60%;
+  /* Anchor LOW on the viewport (~70%) so the TRUE/FALSE stack sits near
+     the frog but well below any expanded fact-card at the top. Previously
+     at top: 60% which was close enough to overlap long explanations. */
+  top: 72%;
   transform: translateY(-50%);
   left: calc(50% + 90px);
   display: flex;
@@ -2320,6 +2321,12 @@ html, body {
 
 .feedback {
   margin-top: 0.9rem;
+  /* Also add a bottom margin so the colored banner has breathing room
+     between its outer border and the card's inner frame. Previously the
+     banner hugged the card's bottom edge with no gap, which looked
+     cramped and made the red/green border visually fuse with the black
+     card border. */
+  margin-bottom: 0.4rem;
   padding: 0.7rem 0.8rem;
   font-size: 0.65rem;
   line-height: 1.6;
