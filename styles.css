@@ -1994,10 +1994,11 @@ html, body {
    subtle jittery animation and has a labeled key cap. The frog tongues them. */
 .answer-flies {
   position: fixed;
-  /* Anchor LOW on the viewport (~70%) so the TRUE/FALSE stack sits near
-     the frog but well below any expanded fact-card at the top. Previously
-     at top: 60% which was close enough to overlap long explanations. */
-  top: 72%;
+  /* Position the fly stack above the waterline / lilypad row, next to the
+     frog's upper body. 66% is low enough to clear the expanded fact card
+     at the top but high enough that the lower (FALSE) fly doesn't hover
+     over the next lilypad. */
+  top: 66%;
   transform: translateY(-50%);
   left: calc(50% + 90px);
   display: flex;
@@ -2172,10 +2173,11 @@ html, body {
   transform: translateX(-50%);
   width: min(72vw, 480px);
   /* Cap the card's bottom edge above the answer-flies stack. The flies
-     sit at top: 60% with ~70px height centered, so their TOP edge is
-     around 55% of viewport. Keep the card at least ~5vh above that so
-     a long explanation scrolls instead of overlapping the flies. */
-  max-height: calc(50vh - 5rem);
+     sit at top: 66% with ~70px total centered, so their TOP edge is at
+     roughly 62% of viewport. Keep the card bottom at ~57vh so there's
+     a solid 5vh gap for breathing room; long explanations scroll inside
+     the card instead of overlapping the flies. */
+  max-height: calc(57vh - 5rem);
   overflow-y: auto;
   background: var(--nes-black);
   color: var(--nes-white);
@@ -2192,7 +2194,7 @@ html, body {
 @media (max-width: 700px) {
   .fact-card {
     width: min(92vw, 480px);
-    max-height: calc(45vh - 5rem);
+    max-height: calc(52vh - 5rem);
   }
 }
 
