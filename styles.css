@@ -2112,11 +2112,14 @@ html, body {
   /* Pin near the top of the viewport so the card can grow downward with
      the explanation without ever reaching the frog mid-hop. */
   top: 5rem;
-  /* Left-align the card so its right edge leaves horizontal clearance for
-     the TRUE/FALSE flies that float at `left: calc(50% + 90px)`. The card
-     stops just before the fly column so the explanation never covers them. */
-  left: 50%;
-  transform: translateX(-50%);
+  /* The TRUE/FALSE answer flies float at left: calc(50% + 90px). The fact
+     card must leave horizontal clearance for them even when fully expanded
+     with a long explanation. Anchor the card's RIGHT edge at 50% + 60px
+     (30px gap before the fly column), so no matter how tall the card gets
+     it never overlaps the flies. */
+  right: calc(50% - 60px);
+  left: auto;
+  transform: none;
   width: min(72vw, 480px);
   max-height: calc(60vh - 6rem);
   overflow-y: auto;
@@ -2129,6 +2132,18 @@ html, body {
     inset 0 0 0 4px var(--nes-black);
   z-index: 20;
   transition: opacity 0.3s ease;
+}
+
+/* On very narrow screens (<=700px) the flies are off to the side less,
+   and the card centering + offset becomes awkward. Fall back to centering
+   there — the flies also shrink under their own mobile rules. */
+@media (max-width: 700px) {
+  .fact-card {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92vw, 480px);
+  }
 }
 
 .fact-card.hidden-temporarily {
