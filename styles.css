@@ -1384,6 +1384,84 @@ html, body {
   .track-name { font-size: 0.35rem; max-width: 85px; }
 }
 
+/* ========================================================
+   HUD mobile layout — the full desktop HUD (score, title,
+   lives, best, mute, music player, track name, frog picker)
+   is too cramped on narrow screens. On mobile we:
+   - hide the big LEAP FROG title (branding, not gameplay)
+   - hide the track name text (keep prev/play/next)
+   - hide the "Score"/"Lives"/"Best" labels — values alone
+   - shrink padding, gaps, and HUD items
+   - allow the right cluster to wrap so overflow stays visible
+   ======================================================== */
+@media (max-width: 700px) {
+  .hud {
+    padding: 0.5rem;
+    gap: 0.4rem;
+  }
+  .title {
+    display: none;
+  }
+  .hud-right {
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    max-width: 70vw;
+  }
+  .hud-item,
+  .lives-wrap {
+    padding: 0.25rem 0.4rem;
+  }
+  .hud-label {
+    display: none;
+  }
+  .hud-value {
+    font-size: 0.75rem;
+  }
+  .lives {
+    gap: 2px;
+  }
+  .life {
+    font-size: 0.85rem;
+  }
+  .track-name {
+    display: none;
+  }
+  .variants-link {
+    width: 34px;
+    height: 34px;
+    font-size: 0.8rem;
+    box-shadow: 2px 2px 0 var(--nes-dark);
+    border-width: 2px;
+  }
+  .mute-btn {
+    width: 34px;
+    height: 34px;
+  }
+  /* Collapse the audio cluster horizontally: mute + player buttons on
+     one row instead of stacked (track name is already hidden). */
+  .audio-cluster {
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+  }
+}
+
+/* Even tighter below 400px — iPhone SE etc. */
+@media (max-width: 400px) {
+  .hud-value {
+    font-size: 0.65rem;
+  }
+  .life {
+    font-size: 0.75rem;
+  }
+  .player-btn {
+    width: 20px;
+    height: 18px;
+    font-size: 0.35rem;
+  }
+}
+
 .variants-link {
   pointer-events: auto;
   background: var(--nes-black);
