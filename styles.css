@@ -1386,15 +1386,32 @@ html, body {
   color: var(--nes-gray);
 }
 
-/* Audio cluster — mute button on top, mini player + track name below */
+/* Audio cluster — mute button on top, mini player + track name below.
+   Fixed width (and flex-shrink: 0) prevents the cluster from resizing
+   as the track-name pill expands/contracts between songs, which previously
+   pushed the Lives/Best/★ badges horizontally. The track pill is centered
+   inside and allowed to overflow visually without affecting layout. */
 .audio-cluster {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
   pointer-events: none;
+  width: 150px;
+  flex-shrink: 0;
+  position: relative;
 }
 .audio-cluster > * { pointer-events: auto; }
+/* The track pill is absolutely positioned under the player buttons so its
+   intrinsic width doesn't contribute to the cluster's layout width. */
+.audio-cluster .track-name {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 4px;
+  white-space: nowrap;
+}
 
 /* Mini music player — prev/play/next buttons in a row */
 .music-player {
