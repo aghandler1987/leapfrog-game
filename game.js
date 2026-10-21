@@ -375,6 +375,11 @@ function answerViaOrb(isTrue) {
     orb.classList.remove('grabbed');
     void orb.offsetWidth;
     orb.classList.add('grabbed');
+    // Remove `.grabbed` after the pop-flash animation finishes so the
+    // underlying `fly-buzz` animation resumes. Without this cleanup the
+    // fly stays frozen on its final grabbed-animation frame until the
+    // next answer, which looked like a bug (fly stops shaking).
+    setTimeout(() => orb.classList.remove('grabbed'), 450);
   }, 200);
   // Wait for the tongue to fully retract into the mouth (0.4s animation) BEFORE
   // triggering the hop/feedback, so the tongue never visibly detaches when the
