@@ -1446,17 +1446,16 @@ html, body {
   padding: 3px 6px;
   letter-spacing: 0.5px;
   text-align: center;
-  /* Widen cap so the longest track ("5. SWAMP BLUES") fits without ellipsis.
-     Tighter letter-spacing (above) also reclaims a few px. */
-  max-width: 150px;
-  overflow: hidden;
+  /* No max-width cap — the pill expands to fit any track name in full.
+     Previously capped at 150px with ellipsis which still clipped tracks
+     like "2. SUNNY POND" and "5. SWAMP BLUES" at some zoom levels. */
   white-space: nowrap;
-  text-overflow: ellipsis;
+  display: inline-block;
 }
 
 @media (max-width: 600px) {
   .player-btn { width: 24px; height: 20px; font-size: 0.4rem; }
-  .track-name { font-size: 0.35rem; max-width: 120px; }
+  .track-name { font-size: 0.35rem; }
 }
 
 /* ========================================================
