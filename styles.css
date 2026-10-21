@@ -2364,21 +2364,39 @@ html, body {
   bottom: 1rem;
   left: 50%;
   transform: translateX(-50%);
-  /* Shrunk from 0.85rem to 0.7rem to fit the expanded legend
-     (DODGE, TONGUE UP, CHOOSE FROG) on a single line without overflow */
   font-size: 0.7rem;
   color: var(--nes-white);
   z-index: 10;
   letter-spacing: 2px;
   text-shadow: 2px 2px 0 var(--nes-black);
+  /* Stack into two vertical lines so each half fits on narrow screens.
+     Each .credit-line is one row; they center-align below one another. */
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 0.35rem;
   max-width: 95vw;
   text-align: center;
+  line-height: 1.5;
+}
+
+.credit-line {
+  display: block;
   white-space: nowrap;
+}
+
+/* On narrow screens (<=600px) shrink the font further and allow each
+   line to wrap if it still overflows */
+@media (max-width: 600px) {
+  .credit {
+    font-size: 0.55rem;
+    letter-spacing: 1.5px;
+    gap: 0.25rem;
+    bottom: 0.5rem;
+  }
+  .credit-line {
+    white-space: normal;
+  }
 }
 
 /* Make the arrow glyphs bigger and brighter than the surrounding text */
@@ -2485,8 +2503,11 @@ html, body {
   font-family: inherit;
   font-size: 0.55rem;
   letter-spacing: 3px;
-  color: var(--nes-dark, #9a9a9a);
-  margin: 0 0 0.5rem;
+  /* Was var(--nes-dark) which is almost invisible on the dark splash.
+     Use the bright yellow accent so the label pops like other splash copy. */
+  color: var(--nes-yellow, #ffd700);
+  text-shadow: 2px 2px 0 var(--nes-black, #000);
+  margin: 0 0 0.6rem;
 }
 
 [data-theme="modern"] .splash-theme-label {
